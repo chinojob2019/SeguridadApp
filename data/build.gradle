@@ -1,0 +1,77 @@
+apply plugin: 'com.android.library'
+
+def HOST_API_SEGURIDAD = "HOST_API_SEGURIDAD"
+def HOST_API_ACCESO = "HOST_API_ACCESO"
+def HOST_API_D4 = "HOST_API_D4"
+def X_APPKEY = "X_APPKEY"
+def X_APPCODE = "X_APPCODE"
+def BDVERSION = "BDVERSION"
+def BDNAME = "BDNAME"
+
+android {
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion globalConfiguration["androidCompileSdkVersion"]
+    buildToolsVersion globalConfiguration["androidBuildToolsVersion"]
+    publishNonDefault true
+    defaultConfig {
+        minSdkVersion globalConfiguration["androidMinSdkVersion"]
+        targetSdkVersion globalConfiguration["androidTargetSdkVersion"]
+        versionCode 1
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    flavorDimensions "default"
+    productFlavors {
+
+        pre {
+            buildConfigField 'String', HOST_API_SEGURIDAD, '"http://10.240.133.32/rest/seguridad/api/v1/"'
+            buildConfigField 'String', HOST_API_ACCESO, '"http://10.240.133.32/rest/acceso/api/v1/"'
+            buildConfigField 'String', HOST_API_D4, '"http://10.240.133.32/rest/d4workspace/api/v1/"'
+            buildConfigField 'String', X_APPKEY, '"ZGlzdHJpbHV6X2Q0d29ya3NwYWNlX3dlYg=="'
+            buildConfigField 'String', X_APPCODE, '"AE614D9E-E75B-4E2F-AC18-3316F599FADC"'
+            buildConfigField 'String', BDNAME, '"Distriluz.db"'
+            buildConfigField 'int', BDVERSION, '1'
+        }
+
+        prod {
+            buildConfigField 'String', HOST_API_SEGURIDAD, '"http://10.240.133.32/rest/seguridad/api/v1/"'
+            buildConfigField 'String', HOST_API_ACCESO, '"http://10.240.133.32/rest/acceso/api/v1/"'
+            buildConfigField 'String', HOST_API_D4, '"http://10.240.133.32/rest/d4workspace/api/v1/"'
+            buildConfigField 'String', X_APPKEY, '"ZGlzdHJpbHV6X2Q0d29ya3NwYWNlX3dlYg=="'
+            buildConfigField 'String', X_APPCODE, '"AE614D9E-E75B-4E2F-AC18-3316F599FADC"'
+            buildConfigField 'String', BDNAME, '"Distriluz.db"'
+            buildConfigField 'int', BDVERSION, '1'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+dependencies {
+    implementation dataDependencies.rxJava
+    implementation dataDependencies.javaxInject
+    implementation dataDependencies.javaxAnnotation
+    implementation dataDependencies.rxAndroid
+    implementation dataDependencies.arrow
+    implementation dataDependencies.retrofit2rxJava2
+    implementation dataDependencies.retrofit2
+    implementation dataDependencies.retrofit2GsonConverter
+    implementation dataDependencies.ormlite
+    implementation dataDependencies.ApacheLang
+    implementation project(':domain')
+}
+repositories {
+    mavenCentral()
+}

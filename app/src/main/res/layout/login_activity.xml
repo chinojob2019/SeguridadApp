@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="pe.com.distriluz.app.ui.login.LoginMvvm.ViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+
+                android:layout_weight="1">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:focusable="true"
+                    android:src="@drawable/bg_home" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/BackgroundApp" />
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="#f5f6fa"
+                android:orientation="vertical">
+
+            </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="10"
+                android:layout_marginBottom="24dp"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="180dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+                        app:layout_constraintVertical_bias="0.16000003"
+                        app:srcCompat="@drawable/ic_img_workspace" />
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="107dp"
+                        android:layout_height="94dp"
+                        android:textAlignment="gravity"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+                        app:layout_constraintVertical_bias="0.29000002"
+                        app:srcCompat="@drawable/ic_logo4" />
+
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="108dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_banner_distriluz" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="16"
+                android:orientation="vertical"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp">
+
+
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:id="@+id/cajas"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    app:cardElevation="0dp"-->
+<!--                    android:layout_height="match_parent">-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_horizontal"
+                        android:paddingTop="48dp"
+                        android:background="@drawable/gradient_bg"
+                        android:orientation="vertical">
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputlayoutLogin"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
+                            app:endIconDrawable="@drawable/ic_person_black_24dp"
+                            app:endIconMode="custom"
+                            app:endIconTint="@color/colorEndIconInactivo"
+                            app:endIconTintMode="src_in"
+                            app:error="@{vm.model.errorUser}">
+                            <EditText
+                                android:id="@+id/txtlogin"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginRight="16dp"
+                                tools:text="asdasdasd"
+                                android:enabled="@{!vm.isLoaded}"
+                                android:fontFamily="@font/roboto_regular"
+                                android:hint="Usuario"
+                                android:inputType="textPersonName"
+                                android:lines="1"
+                                android:imeOptions="actionNext"
+                                android:maxLines="1"
+                                android:paddingStart="8dp"
+                                android:paddingTop="4dp"
+                                android:paddingEnd="8dp"
+                                android:paddingBottom="24dp"
+                                android:text="@={vm.model.user}"
+                                android:textAlignment="textStart"
+                                android:textSize="18dp"
+
+                                />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inpulayoutPassword"
+
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
+                            android:layout_width="match_parent"
+                            app:passwordToggleEnabled="true"
+                            app:passwordToggleDrawable="@drawable/selector_visible_password"
+                            android:layout_height="wrap_content"
+                            app:passwordToggleTint="@color/colorEndIconInactivo"
+                            app:passwordToggleTintMode="src_in"
+                            app:errorEnabled="true"
+                            app:error="@{vm.model.errorPass}"
+                            >
+
+                            <EditText
+                                android:id="@+id/txtpassword"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="16dp"
+                                android:layout_marginRight="16dp"
+                                android:enabled="@{!vm.isLoaded}"
+                                android:fontFamily="@font/roboto_regular"
+                                android:hint="Contraseña"
+                                android:imeOptions="actionDone"
+                                android:inputType="textPassword"
+                                android:lines="1"
+                                android:maxLines="1"
+                                android:paddingStart="8dp"
+                                android:paddingTop="4dp"
+                                android:paddingEnd="8dp"
+                                android:paddingBottom="24dp"
+                                android:text="@={vm.model.pass}"
+                                android:textAlignment="textStart"
+                                android:textSize="18dp"
+
+                                />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <LinearLayout
+                            android:id="@+id/button_login"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="24dp"
+                            android:paddingStart="36dp"
+                            android:paddingEnd="36dp"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/login"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:enabled="@{vm.model.enableButtom}"
+                                android:onClick="@{vm::onClickIniciarSesion}"
+                                android:text="Iniciar sesión"
+                                android:visibility="@{!vm.isLoaded}"
+                                tools:visibility="gone"
+                                />
+                            <pe.com.distriluz.app.ui.custom.AppLoader
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:visibility="@{vm.isLoaded}"
+                                tools:visibility="visible"
+                                />
+
+                        </LinearLayout>
+                        <TextView
+                            android:id="@+id/txtolvidecontrasena"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:layout_marginTop="24dp"
+                            android:textSize="16dp"
+                            android:enabled="@{!vm.isLoaded}"
+                            android:fontFamily="@font/sourcesansproregular"
+                            android:textColor="#0172ce"
+                            android:onClick="@{vm::onClickForgotPassword}"
+                            android:text="Olvidé mi contraseña" />
+                    </LinearLayout>
+<!--                </androidx.cardview.widget.CardView>-->
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
+

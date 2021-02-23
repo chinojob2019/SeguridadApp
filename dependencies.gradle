@@ -1,0 +1,119 @@
+ext {
+    //Android
+    androidBuildToolsVersion = "28.0.3"
+    androidMinSdkVersion = 21
+    androidTargetSdkVersion = 28
+    androidCompileSdkVersion = 28
+
+    //LibrariesVersion
+    AndroidXVersion='1.0.0'
+    AndroidXConstrainVersion='1.1.3'
+    javaxAnnotationVersion = '1.3.2'
+    javaxInjectVersion = '1'
+    androidAnnotationsVersion = '28.0.0'
+    rxJavaVersion = '2.2.8'
+    rxAndroidVersion = '2.1.1'
+    arrowVersion = '1.0.0'
+    retrofit2Version = '2.5.0'
+    dagger2Version = '2.21'
+    loggingInterceptorVersion = '3.4.1'
+    annimonStreamVersion = '1.1.5'
+    CircularProgressVersion = '2.5.0'
+    LottieVersion = '3.0.7'
+    EasyImageVersion = '2.0.2'
+    GlideVersion = '4.9.0'
+    GlideTransformVersion = '2.0.1'
+    CircleImageViewVersion = '1.3.0'
+    ParcelerVersion = '1.1.6'
+    GoogleMapsServicesVersion = '16.0.0'
+    ormliteVersion = '5.0'
+    socketIOVersion = '0.8.3'
+    CircularImageViewVersion = '3.0.2'
+    ViewPagerDotsVersion = '3.0.3'
+    ApacheLangVersion = '3.3.2'
+    MultiDexVersion = '1.0.3'
+    RXCameraVersion = '0.6.1-2.x'
+    GsonVersion = '2.8.2'
+    commonsCodecVersion = '1.11'
+
+    //Libraries packages
+
+    PercentPackageName= "androidx.percentlayout:percentlayout"
+    recyclerViewPackageName= "androidx.recyclerview:recyclerview"
+    cardViewPackageName= "androidx.cardview:cardview"
+    androidAnnotationsPackageName= "androidx.annotation:annotation"
+    appCompatPackageName= "androidx.appcompat:appcompat"
+    ConstraintPackageName= "androidx.constraintlayout:constraintlayout"
+    MultiDexPackageName= "com.android.support:multidex"
+    designPackageName= "com.google.android.material:material"
+    dagger2PackageName= "com.google.dagger:dagger"
+    dagger2CompilerPackageName= "com.google.dagger:dagger-compiler"
+    GoogleMapsServicesPackageName= "com.google.android.gms:play-services-maps"
+    GsonPackageName= "com.google.code.gson:gson"
+    javaxAnnotationPackageName= "javax.annotation:javax.annotation-api"
+    commonsCodecPackageName= "commons-codec:commons-codec"
+    rxJavaPackageName= "io.reactivex.rxjava2:rxjava"
+    rxAndroidPackageName= "io.reactivex.rxjava2:rxandroid"
+    GlidePackageName= "com.github.bumptech.glide:glide"
+    GlideCompilerPackageName= "com.github.bumptech.glide:compiler"
+    ParcelerPackageName= "org.parceler:parceler-api"
+    ParcelerAnnotationPackageName= "org.parceler:parceler"
+    ViewPagerDotsPackageName= "com.tbuonomo.andrui:viewpagerdotsindicator"
+    RXCameraPackageName= "com.github.miguelbcr:RxPaparazzo"
+    retrofit2ScalarsConverterPackageName= "com.squareup.retrofit2:converter-scalars"
+    javaxInjectPackageName= "javax.inject:javax.inject"
+    arrowPackageName= "com.fernandocejas:arrow"
+    retrofit2rxJava2PackageName="com.squareup.retrofit2:adapter-rxjava2"
+    retrofit2PackageName="com.squareup.retrofit2:retrofit"
+    retrofit2GsonConverterPackageName="com.squareup.retrofit2:converter-gson"
+    ormlitePackageName="com.j256.ormlite:ormlite-android"
+    ApacheLangPackageName="org.apache.commons:commons-lang3"
+    LottiePackageName="com.airbnb.android:lottie"
+
+    presentationDependencies = [
+            Percent                     : "${PercentPackageName}:${AndroidXVersion}",
+            recyclerView                : "${recyclerViewPackageName}:${AndroidXVersion}",
+            cardView                    : "${cardViewPackageName}:${AndroidXVersion}",
+            javaxAnnotation             : "${javaxAnnotationPackageName}:${javaxAnnotationVersion}",
+            androidAnnotations          : "${androidAnnotationsPackageName}:${AndroidXVersion}",
+            commonsCodec                : "${commonsCodecPackageName}:${commonsCodecVersion}",
+            appCompat                   : "${appCompatPackageName}:${AndroidXVersion}",
+            design                      : "${designPackageName}:${AndroidXVersion}",
+            Constraint                  : "${ConstraintPackageName}:${AndroidXConstrainVersion}",
+            rxJava                      : "${rxJavaPackageName}:${rxJavaVersion}",
+            rxAndroid                   : "${rxAndroidPackageName}:${rxAndroidVersion}",
+            dagger2                     : "${dagger2PackageName}:${dagger2Version}",
+            dagger2Compiler             : "${dagger2CompilerPackageName}:${dagger2Version}",
+            Glide                       : "${GlidePackageName}:${GlideVersion}",
+            GlideCompiler               : "${GlideCompilerPackageName}:${GlideVersion}",
+            Parceler                    : "${ParcelerPackageName}:${AndroidXVersion}",
+            ParcelerAnnotation          : "${ParcelerAnnotationPackageName}:${AndroidXVersion}",
+            GoogleMapsServices          : "${GoogleMapsServicesPackageName}:${GoogleMapsServicesVersion}",
+            ViewPagerDots               : "${ViewPagerDotsPackageName}:${ViewPagerDotsVersion}",
+            MultiDex                    : "${MultiDexPackageName}:${MultiDexVersion}",
+            RXCamera                    : "${RXCameraPackageName}:${RXCameraVersion}",
+            Gson                        : "${GsonPackageName}:${GsonVersion}",
+            retrofit2ScalarsConverter   : "${retrofit2ScalarsConverterPackageName}:${retrofit2Version}",
+            Lottie                      : "${LottiePackageName}:${LottieVersion}",
+    ]
+
+    domainDependencies = [
+            javaxAnnotation: "${javaxAnnotationPackageName}:${javaxAnnotationVersion}",
+            javaxInject    : "${javaxInjectPackageName}:${javaxInjectVersion}",
+            rxJava         : "${rxJavaPackageName}:${rxJavaVersion}",
+            arrow          : "${arrowPackageName}:${arrowVersion}",
+    ]
+
+    dataDependencies = [
+            javaxAnnotation          : "${javaxAnnotationPackageName}:${javaxAnnotationVersion}",
+            javaxInject              : "${javaxInjectPackageName}:${javaxInjectVersion}",
+            rxJava                   : "${rxJavaPackageName}:${rxJavaVersion}",
+            rxAndroid                : "${rxAndroidPackageName}:${rxAndroidVersion}",
+            arrow                    : "${arrowPackageName}:${arrowVersion}",
+            retrofit2rxJava2         : "${retrofit2rxJava2PackageName}:${retrofit2Version}",
+            retrofit2                : "${retrofit2PackageName}:${retrofit2Version}",
+            retrofit2GsonConverter   : "${retrofit2GsonConverterPackageName}:${retrofit2Version}",
+            ormlite                  : "${ormlitePackageName}:${ormliteVersion}",
+            ApacheLang               : "${ApacheLangPackageName}:${ApacheLangVersion}",
+    ]
+}

@@ -1,0 +1,107 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
+
+def app_name = "Distriluz"
+def APP_NAME = "APP_NAME"
+
+android {
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+    dataBinding.enabled = true
+    compileSdkVersion globalConfiguration["androidCompileSdkVersion"]
+    buildToolsVersion globalConfiguration["androidBuildToolsVersion"]
+    publishNonDefault true
+    defaultConfig {
+        applicationId "pe.com.distriluz.app"
+        minSdkVersion globalConfiguration["androidMinSdkVersion"]
+        targetSdkVersion globalConfiguration["androidTargetSdkVersion"]
+        versionName version
+        multiDexEnabled true
+
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+
+        debug {
+            useProguard false
+            debuggable true
+            minifyEnabled false
+        }
+        release {
+            debuggable false
+            minifyEnabled false
+            useProguard false
+//            proguardFile 'proguard-rules.pro'
+//            proguardFiles getDefaultProguardFile('proguard-android.txt')
+        }
+    }
+    flavorDimensions "default"
+    productFlavors {
+        pre {
+            buildConfigField 'String', APP_NAME, '"' + "${app_name}" + '"'
+            versionName "0.0.1"
+            versionCode 1
+            applicationIdSuffix ".pre"
+            manifestPlaceholders = [app_name: "${app_name}", flavor_suffix: " pre"]
+        }
+        prod {
+            buildConfigField 'String', APP_NAME, '"' + "${app_name}" + '"'
+            versionName "1.0.0"
+            versionCode 1
+            applicationIdSuffix ""
+            manifestPlaceholders = [app_name: "${app_name}", flavor_suffix: ""]
+        }
+    }
+}
+dependencies {
+    implementation presentationDependencies.MultiDex
+    implementation presentationDependencies.RXCamera
+    implementation presentationDependencies.appCompat
+    implementation presentationDependencies.design
+    implementation presentationDependencies.recyclerView
+    implementation presentationDependencies.cardView
+    implementation presentationDependencies.androidAnnotations
+    implementation presentationDependencies.Glide
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.google.android.material:material:1.1.0-beta01'
+    implementation 'androidx.navigation:navigation-fragment:2.0.0'
+    implementation 'androidx.navigation:navigation-ui:2.0.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    implementation 'de.hdodenhof:circleimageview:3.0.1'
+    annotationProcessor presentationDependencies.GlideCompiler
+    implementation presentationDependencies.dagger2
+    annotationProcessor presentationDependencies.dagger2Compiler
+    implementation presentationDependencies.Gson
+    implementation presentationDependencies.javaxAnnotation
+    implementation presentationDependencies.rxJava
+    implementation presentationDependencies.rxAndroid
+    implementation presentationDependencies.Constraint
+    implementation presentationDependencies.Parceler
+    implementation presentationDependencies.Lottie
+    annotationProcessor presentationDependencies.ParcelerAnnotation
+    implementation project(':domain')
+    api project(':data')
+    compile "androidx.core:core-ktx:+"
+    compile "androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
+}

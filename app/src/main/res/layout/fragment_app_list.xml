@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="pe.com.distriluz.app.ui.appslista.AppListaMvvm.ViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/colorPrimary"
+                android:paddingTop="16dp"
+                android:paddingStart="16dp"
+                android:paddingBottom="40dp"
+                android:paddingEnd="16dp">
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_home_actionbar"
+                    android:background="@android:color/transparent"
+                    android:onClick="@{vm::onClickOpenDrawer}"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="24dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:text="@{vm.activityModel.saludo}"
+                    android:layout_marginTop="14dp"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/sourcesansprosemibold"
+                    tools:text="¡Bienvenido, Luis!"
+                    >
+                    <requestFocus/>
+                </TextView>
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="24dp"
+                    android:layout_height="3dp"
+                    android:background="@drawable/bg_resalt"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="12dp"
+                    android:layout_marginTop="17dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/bg_searchview">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_search"/>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="Busca una aplicación"
+                        android:text="@={vm.activityModel.query}"
+                        android:textColorHint="#9d9d9d"
+                        android:fontFamily="@font/roboto_regular"
+                        android:background="@android:color/transparent"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:background="@color/white"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginTop="24dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="18dp"
+                    android:text="Ver:"/>
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:onClick="@{vm::onClickShowGrid}"
+                    android:tint="@{vm.model.isGrid ? @color/verde  : @color/colorEndIconInactivo}"
+                    android:src="@drawable/ic_grid"
+                    android:background="@android:color/transparent"/>
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:onClick="@{vm::onClickShowList}"
+                    android:tint="@{vm.model.isGrid ? @color/colorEndIconInactivo  : @color/verde}"
+                    android:src="@drawable/ic_list"
+                    android:background="@android:color/transparent"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="@{vm.model.isGrid}"
+                tools:visibility="visible"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sourcesansprosemibold"
+                    android:text="Aplicaciones destacadas"
+                    android:layout_marginTop="24dp"
+                    android:visibility="@{vm.model.visibleDestacados}"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="25dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_destacado"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    tools:itemCount="2"
+                    tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    tools:listitem="@layout/item_app"
+                    tools:orientation="vertical"
+                    android:overScrollMode="never"
+                    tools:spanCount="3"/>
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:visibility="@{vm.model.visibleRecurrentes}"
+                    android:fontFamily="@font/sourcesansprosemibold"
+                    android:text="Aplicaciones que más usas"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="25dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_more_to_use"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    tools:itemCount="5"
+                    android:overScrollMode="never"
+                    tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    tools:listitem="@layout/item_app"
+                    tools:orientation="vertical"
+                    tools:spanCount="3"/>
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{vm.model.visibleTodos}"
+                    android:layout_marginTop="32dp"
+                    android:fontFamily="@font/sourcesansprosemibold"
+                    android:text="Todas las aplicaciones"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="25dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_all"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    tools:itemCount="7"
+                    android:overScrollMode="never"
+                    tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    tools:listitem="@layout/item_app"
+                    tools:orientation="vertical"
+                    tools:spanCount="3" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:visibility="@{vm.model.visibleLanzamientos}"
+                    android:fontFamily="@font/sourcesansprosemibold"
+                    android:text="Próximos lanzamientos"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="25dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_lanzamientos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    tools:itemCount="7"
+                    android:overScrollMode="never"
+                    tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    tools:listitem="@layout/item_app"
+                    tools:orientation="vertical"
+                    tools:spanCount="3" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="@{!vm.model.isGrid}"
+                tools:visibility="visible"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sourcesansprosemibold"
+                    android:text="Aplicaciones destacadas"
+                    android:layout_marginTop="24dp"
+                    android:visibility="@{vm.model.visibleDestacados}"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="25dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_destacado_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    tools:itemCount="4"
+                    tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    tools:listitem="@layout/item_list_app"
+                    tools:orientation="vertical"
+                    android:overScrollMode="never"
+                    tools:spanCount="1"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:visibility="@{vm.model.visibleRecurrentes}"
+                    android:fontFamily="@font/sourcesansprosemibold"
+                    android:text="Aplicaciones que más usas"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="25dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_more_to_use_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    tools:itemCount="5"
+                    android:overScrollMode="never"
+                    tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    tools:listitem="@layout/item_list_app"
+                    tools:orientation="vertical"
+                    tools:spanCount="1"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:visibility="@{vm.model.visibleTodos}"
+                    android:fontFamily="@font/sourcesansprosemibold"
+                    android:text="Todas las aplicaciones"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="25dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_all_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    tools:itemCount="7"
+                    android:overScrollMode="never"
+                    tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    tools:listitem="@layout/item_list_app"
+                    tools:orientation="vertical"
+                    tools:spanCount="1" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:fontFamily="@font/sourcesansprosemibold"
+                    android:text="Próximos lanzamientos"
+                    android:visibility="@{vm.model.visibleLanzamientos}"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="25dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_lanzamientos_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    tools:itemCount="7"
+                    android:overScrollMode="never"
+                    tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    tools:listitem="@layout/item_list_app"
+                    tools:orientation="vertical"
+                    tools:spanCount="1" />
+            </LinearLayout>
+        </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

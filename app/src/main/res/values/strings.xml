@@ -1,0 +1,129 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+
+    <string name="app_name">App Distriluz</string>
+
+
+    <string name="dialog_error_title">¡Ocurrió un error!</string>
+    <string name="dialog_error_message">El correo ingresado no se encuentra registrado en nuestra base de datos.</string>
+    <string name="dialog_error_button_message">Volver a intentar</string>
+
+
+    <string name="vistas">%s vistas</string>
+    <string name="login_usuario">Usuario</string>
+    <string name="login_password">Contraseña</string>
+    <string name="login_button">Iniciar sessión</string>
+    <string name="login_recovery_password">Olvidé mi contraseña</string>
+    <string name="login_error_caracter_min">La contraseña debe tener 8 caracteres como minimo</string>
+    <string name="login_error_password_invalido">La contraseña es invalida</string>
+
+
+    <string name="change_password_title">¿Olvidaste tu contraseña?</string>
+    <string name="change_password_subtitle">Ingresa tu correo para enviarte el código para restablecer tu contraseña.</string>
+    <string name="change_password_email">Correo electrónico</string>
+    <string name="change_password_button">Enviar</string>
+
+    <string name="code_confirm_title">Código de verificación</string>
+    <string name="code_confirm_subtitle">Por favor ingresa el código de 4 digitos enviado a </string>
+    <string name="code_confirm_button">Enviar</string>
+    <string name="code_confirm_reenviar">Reenviar código</string>
+
+
+    <string name="recovery_password_title">Restablecer tu contraseña</string>
+    <string name="recovery_password_subtitle">Ingresa tu nueva contraseña para acceder a la plataforma </string>
+    <string name="recovery_password_hint">Contraseña</string>
+    <string name="recovery_password_button">Enviar</string>
+
+    <string name="dialog_finish_title"> ¡Listo!</string>
+    <string name="dialog_finish_subtitle">La contraseña ha sido restablecida correctamente.</string>
+    <string name="dialog_finish_button">Volver al inicio</string>
+
+    <string name="dialog_take_photo">Tomar una foto</string>
+    <string name="dialog_select_image">Elegir de la galería</string>
+
+
+    <string name="search_maps_hint">Ingresar dirección</string>
+    <string name="search_maps_button">Agregar dirección</string>
+
+    <string name="pending_send_title"> Pendientes de envió</string>
+    <string name="pending_send_subtitle">¡No tienes registros pendientes!</string>
+    <string name="pending_send_subtitle2">Por el momento no cuentas con registros de envio.</string>
+
+
+    <string name="sincronize_title">Sincronizar</string>
+    <string name="sincronize_button">Sincronizar</string>
+
+    <string name="component_title">Componentes</string>
+    <string name="component_hint">Busca un componente</string>
+
+    <string name="detail_client_title">Distriluz</string>
+    <string name="detail_client_razon_social">Razón Social</string>
+    <string name="detail_client_direccion">Dirección</string>
+    <string name="detail_client_tipo_documento">Tipo de documento</string>
+    <string name="detail_client_nro_documento">Numero de documento</string>
+
+
+
+
+
+
+
+
+
+    <string name="register_client_title">Registrar cliente</string>
+    <string name="register_client_item_empresa">Empresa</string>
+    <string name="register_client_item_razon_social">Razón Social</string>
+    <string name="register_client_item_direccion">Dirección</string>
+    <string name="register_client_item_button_ubicacion">Ubicación actual</string>
+    <string name="register_client_item_tipo_documento">Tipo de documento</string>
+    <string name="register_client_item_nro_documento">Número de documento</string>
+    <string name="register_client_item_button_registrar">Registrar</string>
+    <string name="title_activity_cliente_listar">ClienteListarActivity</string>
+
+
+    <string name="drawer_header_titulo">Jose Luis</string>
+    <string name="drawer_header_subtitulo">Distriluz</string>
+    <string name="drawer_header_version">Version 2.0</string>
+
+    <string name="drawer_title_cliente">Cliente</string>
+    <string name="drawer_subtitle_cliente">Lista de clientes registrados</string>
+    <string name="drawer_title_pendiente_envio">Pendientes de envio</string>
+    <string name="drawer_subtitle_pendiente_envio">Envia trabajos ejecutados offline</string>
+    <string name="drawer_title_sincronizar">Sincronizar</string>
+    <string name="drawer_subtitle_sincronizar">Obtener trabajos asignados</string>
+    <string name="drawer_title_componentes">Componentes</string>
+    <string name="drawer_subtitle_componentes">Lista de componentes</string>
+    <string name="drawer_title_cerrar_sesion">Cerrar sesión</string>
+
+
+    <string name="lista_client_hint_buscar">Busca un cliente</string>
+    <string name="lista_client_title">Clientes</string>
+    <string name="lista_client_subtitle">¡Aún no tienes clientes registrados!</string>
+    <string name="lista_client_subtitle2"> Para empezar a registrar a tus clientes da tab en el boton "+"</string>
+
+
+
+
+
+
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+
+
+
+
+
+
+</resources>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorToolbarGreen">#43b02a</color>
+    <color name="colorEndIconInactivo">#e2e2e2</color>
+    <color name="colorEndIconactivo">#43b02a</color>
+    <color name="BackgroundApp">#D8003A70</color>
+    <color name="colorblank">#FFFFFF</color>
+    <color name="colorTextoTitle">#003a70</color>
+
+    <color name="colorTranparente">#00ffffff</color>
+    <color name="colorPlomo">#9d9d9d</color>
+    <color name="colorPlomoBg">#f5f6fa</color>
+    <color name="colorPlomoTransparente">#32ffffff</color>
+
+    <color name="colorBlack">#000000</color>
+    <color name="black">#000000</color>
+    <color name="actionbar_background">#000000</color>
+    <color name="drak_grey">#454545</color>
+    <color name="medium_grey">#606060</color>
+    <color name="drak_blue">#7B8E9C</color>
+    <color name="link_text_light">#0000ee</color>
+
+
+    <color name="plomo_ios_default">#919195</color>
+    <color name="plomo_background">#f2f2f2</color>
+    <color name="stroke_form">#E4E4E4</color>
+    <color name="background_popup">#DDDDDD</color>
+    <color name="colorPrimaryLigth">#6DA4BF</color>
+    <color name="colorPrimary">#003a70</color>
+    <color name="colorPrimaryDark">#003a70</color>
+    <color name="colorAccent">#43b02a</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_transparent">#CCFFFFFF</color>
+    <color name="darkplomo">#262729</color>
+    <color name="background_footer_item_grid_categorias">#90000000</color>
+    <color name="colorBlueBackground">#2E5093</color>
+    <color name="color_light">#ffffff</color>
+    <color name="point_sin_enviar">#E0E0E0</color>
+    <color name="point_enviado">#2fa0fc</color>
+    <color name="azul">#335AAE</color>
+    <color name="plomo_faber">#6c757d</color>
+    <color name="border_box">#ced4da</color>
+
+    <color name="background_header_seccion_inicio">#4B4B4B</color>
+    <color name="background_celeste_claro">#E2EDF2</color>
+    <color name="fondo_fragment">#e8e8e8</color>
+
+
+    <color name="verde_principal">#009c44</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#727272</color>
+    <color name="white_pressed">#f1f1f1</color>
+    <color name="half_black">#808080</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#B6B6B6</color>
+    <color name="black_semi_transparent">#00000000</color>
+
+    <color name="jet">#222222</color>
+    <color name="oil">#333333</color>
+    <color name="monsoon">#777777</color>
+    <color name="jumbo">#888888</color>
+    <color name="aluminum">#999999</color>
+    <color name="base">#AAAAAA</color>
+    <color name="iron">#CCCCCC</color>
+    <color name="white_transp">#96ffffff</color>
+    <color name="fondo_titulos">#f5f5f5</color>
+    <color name="verde">#62b523</color>
+    <color name="rojo">#FF0016</color>
+    <color name="rojo_google">#C3282C</color>
+    <color name="naranja">#F75721</color>
+    <color name="amarillo">#F1A322</color>
+    <color name="plomo">#bfbfbf</color>
+    <color name="fondo_lista">#e9f1f4</color>
+    <color name="verde_claro">#99caac</color>
+    <color name="amarillo_claro">#e3c15f</color>
+    <color name="color_principal">#1e85c7</color>
+    <color name="fondo_capa_botones">#b70d0e0e</color>
+    <color name="fondo_gris_transparente">#FFFFFF</color>
+    <color name="fondo_casi_blanco">#e8e8e8</color>
+    <color name="tran">#e00000</color>
+    <color name="verde_faber">#05301a</color>
+    <color name="button_login_faber">#c0ac8e</color>
+    <color name="faber_color_select">#E0096C</color>
+
+
+    <color name="por_atender_local">#f6a315</color>
+    <color name="entregado_local">#00c051</color>
+    <color name="pendiente_envio">#ca4e52</color>
+    <color name="enviado">#2fa0fc</color>
+    <color name="recibido">#00c051</color>
+
+
+    <color name="vp_verde">#89C34A</color>
+    <color name="vp_rojo">#F14545</color>
+    <color name="rojo_expired">#FF5A5A</color>
+    <color name="vp_naranja">#F8A139</color>
+    <color name="vp_azul">#D4E1EA</color>
+    <color name="green_continue">#1fc055</color>
+    <color name="chip_color">#d4edfa</color>
+    <color name="chip_inner_color">#e0e4e4</color>
+    <color name="chip_yellow_color">#fbe191</color>
+    <color name="chip_yellow_inner_color">#eed280</color>
+
+    <color name="purple_color">#5515a9</color>
+    <color name="purple_color_gradient">#651dc4</color>
+
+    <color name="green_color">#108b4c</color>
+    <color name="green_color_gradient">#1caf57</color>
+
+    <color name="blue_color">#5D8BF2</color>
+    <color name="blue_color_gradient">#3545AE</color>
+
+    <color name="pink_color">#d04c84</color>
+    <color name="pink_color_gradient">#d04882</color>
+
+    <color name="default_color">#363434</color>
+    <color name="default_color_gradient">#434141</color>
+
+    <color name="brown_color">#800000</color>
+    <color name="brown_color_gradient">#A52A2A</color>
+    <color name="waze">#CFD9DE</color>
+    <color name="waze_background">#7EBBCE</color>
+    <color name="fb">#4D6FA9</color>
+
+    <color name="button_login">#2e5093</color>
+    <color name="item">#3B7FC1</color>
+    <color name="fondo_menu">#F6F6F6</color>
+
+    <color name="black_overlay">#66000000</color>
+
+
+</resources>

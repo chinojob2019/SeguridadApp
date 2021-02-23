@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="vm"
+            type="pe.com.distriluz.app.ui.appslista.recyclerView.AppsItemMvvm.ViewModel" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="2dp"
+        app:cardUseCompatPadding="true"
+        app:cardBackgroundColor="@color/white">
+        <androidx.constraintlayout.widget.ConstraintLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            >
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/appCompatImageView4"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:onClick="@{vm::onClickApp}"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_defaul_logo_app"
+                app:imgpost="@{vm.model.imagenUrl}"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/roboto_mediun"
+                android:maxLines="2"
+                android:text="@{vm.model.nombre}"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toTopOf="@+id/textView15"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/appCompatImageView4"
+                app:layout_constraintTop_toTopOf="@+id/appCompatImageView4"
+                tools:text="Recaudación" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/roboto_regular"
+                android:maxLines="2"
+                android:text="@{vm.model.descripcion}"
+                android:textColor="@color/black"
+                android:textSize="14dp"
+                app:layout_constraintBottom_toTopOf="@+id/appCompatImageButton2"
+                app:layout_constraintEnd_toEndOf="@+id/textView16"
+                app:layout_constraintStart_toStartOf="@+id/textView16"
+                app:layout_constraintTop_toBottomOf="@+id/textView16"
+                tools:text="DescripciólicaciónDescripciólicaciónDescripciólicaciónDescripciólicaciónDescripciólicación." />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/appCompatImageButton2"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@android:color/transparent"
+                android:padding="4dp"
+                android:src="@drawable/ic_visibility_black_24dp"
+                android:tint="@color/verde"
+                app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView4"
+                app:layout_constraintStart_toStartOf="@+id/textView16"
+                app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="@{String.format(@string/vistas, vm.model.textVistaGeneral)}"
+                android:textColor="#9d9d9d"
+                android:textSize="12dp"
+                android:fontFamily="@font/roboto_regular"
+                app:layout_constraintBottom_toBottomOf="@+id/appCompatImageButton2"
+                app:layout_constraintEnd_toStartOf="@+id/appCompatImageButton"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/appCompatImageButton2"
+                app:layout_constraintTop_toTopOf="@+id/appCompatImageButton2"
+                tools:text="110 vistas" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/appCompatImageButton"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@android:color/transparent"
+                android:onClick="@{vm::onClickItem}"
+                android:padding="4dp"
+                android:src="@drawable/ic_pin"
+                android:tint="@{vm.model.destacadas == 1 ? @color/verde : @color/colorEndIconInactivo}"
+                app:layout_constraintBottom_toBottomOf="@+id/appCompatImageButton2"
+                app:layout_constraintEnd_toEndOf="@+id/textView16"
+                app:layout_constraintTop_toTopOf="@+id/appCompatImageButton2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

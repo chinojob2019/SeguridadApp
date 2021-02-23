@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="colorControlNormal">@color/colorPlomo</item>
+        <item name="colorControlActivated">@color/colorPrimaryDark</item>
+        <item name="colorControlHighlight">@color/colorPrimaryDark</item>
+        <item name="android:textColorHighlight">@color/colorPrimaryDark</item>
+        <item name="android:colorActivatedHighlight">@color/colorPrimaryDark</item>
+
+<!--        <item name="android:textColorHint">@color/colorPlomo</item>-->
+
+        <item name="colorButtonNormal">@color/colorPrimaryDark</item>
+        <item name="android:editTextColor">@color/black</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="searchViewStyle">@style/SearchViewStyle</item>
+        <item name="android:searchViewStyle">@style/SearchViewStyle</item>
+        <item name="android:buttonStyle">@style/GenericButton</item>
+        <item name="buttonStyle">@style/GenericButton</item>
+    </style>
+
+
+    <style name="GenericButton" parent="Widget.AppCompat.Button">
+        <item name="android:fontFamily">@font/sourcesansprosemibold</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/gradient_bt</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat</item>
+    </style>
+    <style name="AppTheme_alert" parent="Theme.AppCompat.DayNight.NoActionBar">
+<!--        <item name="android:windowContentTransitions">true</item>-->
+<!--        <item name="android:windowAllowEnterTransitionOverlap">true</item>-->
+<!--        <item name="android:windowAllowReturnTransitionOverlap">true</item>-->
+<!--        <item name="android:windowSharedElementEnterTransition">@android:transition/move</item>-->
+<!--        <item name="android:windowSharedElementExitTransition">@android:transition/move</item>-->
+<!--        <item name="android:textColor">@color/black</item>-->
+    </style>
+
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <!-- Gets rid of the search icon -->
+        <item name="searchIcon">@drawable/ic_search</item>
+        <!-- Gets rid of the "underline" in the text -->
+        <item name="queryBackground">@drawable/bg_searchview</item>
+        <item name="android:background">@drawable/bg_searchview</item>
+        <!-- Gets rid of the search icon when the SearchView is expanded -->
+        <item name="searchHintIcon">@null</item>
+        <!-- The hint text that appears when the user has not typed anything -->
+        <item name="queryHint">"Busca una aplicación"</item>
+        <item name="android:editTextColor">@color/plomo_ios_default</item>
+        <item name="android:textColorHint">@color/plomo_ios_default</item>
+    </style>
+</resources>
