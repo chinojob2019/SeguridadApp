@@ -19,7 +19,7 @@ import retrofit2.http.Path;
 public interface AuthRestApi {
 
 
-    @POST("acceso")
+    @POST("autenticacion")
     Observable<Response<LoginResponse>> login(@Body LoginRequest dataLogin);
 
     @GET("persona/datos/")
