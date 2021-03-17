@@ -6,14 +6,12 @@ import android.util.Log;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.internal.$Gson$Preconditions;
 
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicReference;
 
 import javax.inject.Inject;
 
-import io.reactivex.annotations.Nullable;
 import io.reactivex.disposables.CompositeDisposable;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -245,10 +243,10 @@ public class BaseNet extends BaseRestApiImpl {
         @Override
         public Response intercept(Chain chain) throws IOException {
             Log.i("LoggingRfrshInterceptor", "inside intercept callback");
-            Request request = chain.request();
-            Request.Builder builderRequest = request.newBuilder();
+            AtomicReference<Request> request = new AtomicReference<>(chain.request());
+            Request.Builder builderRequest = request.get().newBuilder();
 
-            AtomicReference<Response> response = new AtomicReference<>(executeApiLog(request, chain));
+            AtomicReference<Response> response = new AtomicReference<>(executeApiLog(request.get(), chain));
 
             /*
             long t1 = System.nanoTime();
@@ -288,7 +286,6 @@ public class BaseNet extends BaseRestApiImpl {
                         AuthRestApi restApi = refreshTokens(AuthRestApi.class, tat, this.context);
                         RefreshTokensRequest.UsuarioId Usuario = new RefreshTokensRequest.UsuarioId(getIdUser());
                         String rToken = getRefreshToken();
-                        String refreshToken = String.format("Bearer %s", rToken);
 
                         disposable.add(restApi.refreshTokens(new RefreshTokensRequest(rToken, Usuario)).subscribe(
                                 serverResponse -> {
@@ -297,11 +294,14 @@ public class BaseNet extends BaseRestApiImpl {
                                         if (serverResponse.isSuccessful() && serverResponse.body() != null) {
                                             this.context = contextAnterior;
                                             RefreshTokensResponse RTResponse = serverResponse.body();
-                                            setToken(RTResponse.getAccessToken());
+                                            setToken(String.format("Bearer %s", RTResponse.getAccessToken()));
                                             setRefreshToken(RTResponse.getRefreshToken());
-                                            builderRequest.header("Authorization", String.format("Bearer %s", getToken()));
+                                            String newToken = getToken();
+                                            builderRequest.header("Authorization", newToken);
                                             builderRequest.build();
-                                            response.set(executeApiLog(request, chain));
+                                            request.set(builderRequest.build());
+
+                                            response.set(executeApiLog(request.get(), chain));
                                         }
                                         else{
                                             indError = true;
@@ -312,8 +312,6 @@ public class BaseNet extends BaseRestApiImpl {
                                     }
 
                                     if(indError){
-                                        //response.set(null);
-                                        //AtomicReference<Response> responseError = new AtomicReference<Response>(response.get().newBuilder().body(ResponseBody.create(null, new byte[0])).build());
                                         response.set(response.get().newBuilder().code(Constantes.TYPE_ERROR_CODE_TOKEN).body(ResponseBody.create(null, new byte[0])).build());
                                     }
                                 }
