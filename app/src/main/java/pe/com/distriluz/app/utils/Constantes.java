@@ -62,5 +62,6 @@ public class Constantes {
 
     public static final int MENU_ITEM_LISTA_INICIO=1;
     public static final int MENU_ITEM_PREGUNTAS=2;
-    public static final int MENU_ITEM_CERRAR_SESSION =3;
+    public static final int MENU_ITEM_MESA_SERVICIO =3;
+    public static final int MENU_ITEM_CERRAR_SESSION =4;
 }

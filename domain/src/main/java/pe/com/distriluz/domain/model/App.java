@@ -18,7 +18,7 @@ public class App {
 	private int vistaUsuario;
 	private String url;
 	private String imagenUrl;
-	private int esLanzador;
+	private Boolean esLanzador;
 	private int idEstado;
 	private int idTipo;
 	private int lanzamiento;
@@ -130,11 +130,11 @@ public class App {
 		return imagenUrl;
 	}
 
-	public void setEsLanzador(int esLanzador){
+	public void setEsLanzador(Boolean esLanzador){
 		this.esLanzador = esLanzador;
 	}
 
-	public int getEsLanzador(){
+	public Boolean getEsLanzador(){
 		return esLanzador;
 	}
 

@@ -100,7 +100,7 @@ public class AppsObservableModel extends BaseObservable {
         private int vistaUsuario;
         private String url;
         private String imagenUrl;
-        private int esLanzador;
+        private Boolean esLanzador;
         private int idEstado;
         private int idTipo;
         private int lanzamiento;
@@ -246,11 +246,11 @@ public class AppsObservableModel extends BaseObservable {
         }
 
         @Bindable
-        public int getEsLanzador() {
+        public Boolean getEsLanzador() {
             return esLanzador;
         }
 
-        public void setEsLanzador(int esLanzador) {
+        public void setEsLanzador(Boolean esLanzador) {
             this.esLanzador = esLanzador;
             notifyPropertyChanged(pe.com.distriluz.app.BR.esLanzador);
         }

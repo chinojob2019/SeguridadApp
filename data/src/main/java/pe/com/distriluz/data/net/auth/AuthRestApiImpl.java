@@ -16,6 +16,7 @@ import io.reactivex.Single;
 import io.reactivex.disposables.CompositeDisposable;
 import pe.com.distriluz.data.exception.ErrorException;
 import pe.com.distriluz.data.exception.NetworkConnectionException;
+import pe.com.distriluz.data.exception.TokenException;
 import pe.com.distriluz.data.net.BaseNet;
 import pe.com.distriluz.data.net.BaseRestApiImpl;
 import pe.com.distriluz.data.net.auth.model.EditProfileRequest;
@@ -75,7 +76,7 @@ public class AuthRestApiImpl extends BaseRestApiImpl {
         return Single.create(emitter -> {
             if (isThereInternetConnection()) {
                 CompositeDisposable disposable = new CompositeDisposable();
-                AuthRestApi restApi = new BaseNet().create(Constantes.HOST_API_D4,AuthRestApi.class, getToken());
+                AuthRestApi restApi = new BaseNet().create(Constantes.HOST_API_D4,AuthRestApi.class, getToken(), this.context);
                 disposable.add(restApi.getDetailUser().subscribe(
                         serverResponse -> {
                             if (serverResponse != null) {
@@ -84,7 +85,12 @@ public class AuthRestApiImpl extends BaseRestApiImpl {
                                     emitter.onSuccess(true);
                                 }else{
                                     ErrorResponse response =new Gson().fromJson(serverResponse.errorBody().charStream(), ErrorResponse.class);
-                                    emitter.onError(new ErrorException(response.getError().getMensaje()));
+                                    int code = serverResponse.code();
+                                    if(code == Constantes.TYPE_ERROR_CODE_TOKEN){
+                                        emitter.onError(new TokenException(response.getError().getTitulo()));
+                                    }else {
+                                        emitter.onError(new ErrorException(response.getError().getMensaje()));
+                                    }
                                 }
                             } else {
                                 emitter.onError(new ErrorException("Datos Nulos"));
@@ -216,7 +222,7 @@ public class AuthRestApiImpl extends BaseRestApiImpl {
         return Single.create(emitter -> {
             if (isThereInternetConnection()) {
                 CompositeDisposable disposable = new CompositeDisposable();
-                AuthRestApi restApi = new BaseNet().create(Constantes.HOST_API_D4,AuthRestApi.class, getToken());
+                AuthRestApi restApi = new BaseNet().create(Constantes.HOST_API_D4,AuthRestApi.class, getToken(), this.context);
                 List<EditProfileRequest> data = new ArrayList<>();
                 data.add(new EditProfileRequest("Direccion", finalDireccion));
                 data.add(new EditProfileRequest("Telefono", finalTelefono));
@@ -227,7 +233,12 @@ public class AuthRestApiImpl extends BaseRestApiImpl {
                                     emitter.onSuccess(true);
                                 }else{
                                     ErrorResponse response =new Gson().fromJson(serverResponse.errorBody().charStream(), ErrorResponse.class);
-                                    emitter.onError(new ErrorException(response.getError().getMensaje()));
+                                    int code = serverResponse.code();
+                                    if(code == Constantes.TYPE_ERROR_CODE_TOKEN){
+                                        emitter.onError(new TokenException(response.getError().getTitulo()));
+                                    }else {
+                                        emitter.onError(new ErrorException(response.getError().getMensaje()));
+                                    }
                                 }
                             } else {
                                 emitter.onError(new ErrorException("Datos Nulos"));
@@ -252,7 +263,7 @@ public class AuthRestApiImpl extends BaseRestApiImpl {
         return Single.create(emitter -> {
             if (isThereInternetConnection()) {
                 CompositeDisposable disposable = new CompositeDisposable();
-                AuthRestApi restApi = new BaseNet().create(Constantes.HOST_API_D4,AuthRestApi.class, getToken());
+                AuthRestApi restApi = new BaseNet().create(Constantes.HOST_API_D4,AuthRestApi.class, getToken(), this.context);
                 disposable.add(restApi.savePhoto(Utils.getIdPerson(context), new EditProfileRequest("Foto",base64) ).subscribe(
                         serverResponse -> {
                             if (serverResponse != null) {
@@ -260,7 +271,12 @@ public class AuthRestApiImpl extends BaseRestApiImpl {
                                     emitter.onSuccess(true);
                                 }else{
                                     ErrorResponse response =new Gson().fromJson(serverResponse.errorBody().charStream(), ErrorResponse.class);
-                                    emitter.onError(new ErrorException(response.getError().getMensaje()));
+                                    int code = serverResponse.code();
+                                    if(code == Constantes.TYPE_ERROR_CODE_TOKEN){
+                                        emitter.onError(new TokenException(response.getError().getTitulo()));
+                                    }else {
+                                        emitter.onError(new ErrorException(response.getError().getMensaje()));
+                                    }
                                 }
                             } else {
                                 emitter.onError(new ErrorException("Datos Nulos"));

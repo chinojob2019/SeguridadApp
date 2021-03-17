@@ -1,7 +1,9 @@
 package pe.com.distriluz.app.ui.clientelistar;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
@@ -23,12 +25,13 @@ import pe.com.distriluz.app.utils.Constantes;
 public class ClienteListarViewModel extends BaseActivityViewModel<ClienteListarMvvm.View> implements ClienteListarMvvm.ViewModel {
     private final Resources resources;
     private ClienteListarObservableModel model = new ClienteListarObservableModel();
-
+private Context context;
     // TODO falta crear obserbale string
     @Inject
     public ClienteListarViewModel(@AppContext Context appContext, Navigator navigator, Resources resources) {
         super(appContext, navigator);
         this.resources = resources;
+        this.context=appContext;
         additemsMenu();
         iniciarFragmentHome();
     }
@@ -57,6 +60,12 @@ public class ClienteListarViewModel extends BaseActivityViewModel<ClienteListarM
                         "Descripción corta para este item",
                         resources.getDrawable(R.drawable.ic_menu_questions),
                         Constantes.MENU_ITEM_PREGUNTAS));
+        model.getListItemsMenu().add(
+                new ClienteListarObservableModel.NavigationItems(
+                        "Mesa de servicio",
+                        "Descripción corta para este item",
+                        resources.getDrawable(R.drawable.ic_mesa_servicio),
+                        Constantes.MENU_ITEM_MESA_SERVICIO));
         model.getListItemsMenu().add(
                 new ClienteListarObservableModel.NavigationItems(
                         "Cerrar sesión",
@@ -89,6 +98,12 @@ public class ClienteListarViewModel extends BaseActivityViewModel<ClienteListarM
             case Constantes.MENU_ITEM_CERRAR_SESSION:
                 navigator.closeDrawer();
                 navigator.clearSession();
+                break;
+            case Constantes.MENU_ITEM_MESA_SERVICIO:
+                navigator.closeDrawer();
+                Uri uri= Uri.parse("url");
+                Intent intent= new Intent(Intent.ACTION_VIEW,uri);
+                context.startActivity(intent);
                 break;
             case Constantes.MENU_ITEM_LISTA_INICIO:
                 navigator.closeDrawer();

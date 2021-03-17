@@ -17,6 +17,10 @@ public abstract class BaseRestApiImpl {
         this.context = context.getApplicationContext();
     }
 
+    public BaseRestApiImpl() {
+
+    }
+
     @SuppressLint("MissingPermission")
     protected boolean isThereInternetConnection() {
         boolean isConnected;
@@ -38,6 +42,30 @@ public abstract class BaseRestApiImpl {
     }
     protected String getToken(){
         return Utils.getToken(context);
+    }
+    protected void setToken(String token){
+        Utils.setToken(context, token);
+    }
+    protected String getRefreshToken(){
+        return Utils.getrefreshToken(context);
+    }
+    protected void setRefreshToken(String refreshToken){
+        Utils.setrefreshToken(context, refreshToken);
+    }
+
+    protected int getIdPerson(){
+        String idPerson = Utils.getIdPerson(context);
+        return idPerson == "0" ? 0 : Integer.getInteger(idPerson);
+    }
+    protected void setIdPerson(String idPerson){
+        Utils.setIdPerson(context, idPerson);
+    }
+
+    protected int getIdUser(){
+        return Utils.getid_user(context);
+    }
+    protected void setIdUser(int idUser){
+        Utils.setid_user(context, idUser);
     }
 
 }

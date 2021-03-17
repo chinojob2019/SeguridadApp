@@ -38,12 +38,14 @@ public class Utils {
 
     public static void saveSession(Context context, LoginResponse serverResponse, String username, String pass, boolean session, String token) {
         setToken(context,token);
+        setrefreshToken(context, serverResponse.getrefreshToken());
         setfirstname(context,serverResponse.getUsuario().getNombre());
         setemail(context,serverResponse.getUsuario().getEmail());
         setpass(context,pass);
         setusername(context,username);
         setLogin(context,session);
         setIdPerson(context, "" +serverResponse.getUsuario().getIdPersona());
+        setid_user(context, serverResponse.getUsuario().getId());
     }
     public static String getPicturePerfil(Context context) {
         String result = context.getSharedPreferences(Constantes.PREFERENCES, Context.MODE_PRIVATE).getString(Constantes.PREF_PICTURE_PERFIL, "");
@@ -126,6 +128,13 @@ public class Utils {
     }
     public static String getfirstname(Context context){
         return context.getSharedPreferences(Constantes.PREFERENCES, Context.MODE_PRIVATE).getString(Constantes.PREF_firstname,"");
+    }
+
+    public static void setrefreshToken(Context context,String refreshToken){
+        context.getSharedPreferences(Constantes.PREFERENCES, Context.MODE_PRIVATE).edit().putString(Constantes.PREF_refreshToken,refreshToken).apply();
+    }
+    public static String getrefreshToken(Context context){
+        return context.getSharedPreferences(Constantes.PREFERENCES, Context.MODE_PRIVATE).getString(Constantes.PREF_refreshToken,"");
     }
 
     public static void setfirstname(Context context,String firstname){

@@ -9,6 +9,8 @@ import pe.com.distriluz.data.net.auth.model.DetailUserResponse;
 import pe.com.distriluz.data.net.auth.model.EditProfileRequest;
 import pe.com.distriluz.data.net.auth.model.LoginRequest;
 import pe.com.distriluz.data.net.auth.model.LoginResponse;
+import pe.com.distriluz.data.net.auth.model.RefreshTokensRequest;
+import pe.com.distriluz.data.net.auth.model.RefreshTokensResponse;
 import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -39,5 +41,8 @@ public interface AuthRestApi {
 
     @PUT("persona/{idPersona}/foto")
     Observable<Response<Void>> savePhoto(@Path("idPersona") String idPersona, @Body EditProfileRequest data);
+
+    @POST("autenticacion/refresh/token")
+    Observable<Response<RefreshTokensResponse>> refreshTokens(@Body RefreshTokensRequest dataRefreshTokens);
 
 }

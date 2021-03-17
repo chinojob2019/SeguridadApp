@@ -81,7 +81,7 @@ public class AppsResponse{
 		private String descripcion;
 
 		@SerializedName("esLanzador")
-		private int esLanzador;
+		private Boolean esLanzador;
 
 		@SerializedName("url")
 		private String url;
@@ -179,11 +179,11 @@ public class AppsResponse{
 			return imagenUrl;
 		}
 
-		public void setEsLanzador(int esLanzador){
+		public void setEsLanzador(Boolean esLanzador){
 			this.esLanzador = esLanzador;
 		}
 
-		public int getEsLanzador(){
+		public Boolean getEsLanzador(){
 			return esLanzador;
 		}
 
