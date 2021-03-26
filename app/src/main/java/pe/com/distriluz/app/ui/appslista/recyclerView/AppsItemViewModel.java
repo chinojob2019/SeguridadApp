@@ -2,14 +2,23 @@ package pe.com.distriluz.app.ui.appslista.recyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import javax.inject.Inject;
 
 import io.reactivex.observers.DisposableSingleObserver;
+import pe.com.distriluz.app.R;
 import pe.com.distriluz.app.injection.qualifier.AppContext;
 import pe.com.distriluz.app.injection.scopes.PerViewHolder;
+import pe.com.distriluz.app.ui.alerts.AlertEmailErrorDialog;
 import pe.com.distriluz.app.ui.alerts.AlertLoadingDialog;
 import pe.com.distriluz.app.ui.appslista.AppsObservableModel;
 import pe.com.distriluz.app.ui.base.navigator.Navigator;
@@ -66,8 +75,16 @@ public class AppsItemViewModel extends BaseViewHolderViewModel<AppsItemMvvm.View
 
     @Override
     public void onClickItem(View v) {
+        navigator.startDialog(
+                new AlertEmailErrorDialog("Destacados",
+                        getModel().getDestacadas() == 0 ? "¿Desea destacar la aplicación?" : "¿Desea quitar la aplicación de destacados?",
+                        "Aceptar", this, R.drawable.ic_edit));
+    }
+
+    @Override
+    public void okAlertGeneric() {
         showLoading();
-        setDestacadoUseCase.execute(new DefaultObserverSingle<Boolean>(){
+        this.setDestacadoUseCase.execute(new DefaultObserverSingle<Boolean>(){
             @Override
             public void onError(Throwable e) {
                 validateErrorToken(e);
@@ -82,6 +99,11 @@ public class AppsItemViewModel extends BaseViewHolderViewModel<AppsItemMvvm.View
                 getView().reloadApps();
             }
         }, SetDestacadoUseCase.Params.datos("" + getModel().getId(), getModel().getDestacadas() == 0 ? "1" : "0"));
+    }
+
+    @Override
+    public void closeAlertGeneric() {
+
     }
 
     @Override

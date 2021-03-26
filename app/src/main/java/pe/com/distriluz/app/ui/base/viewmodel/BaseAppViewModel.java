@@ -1,11 +1,16 @@
 package pe.com.distriluz.app.ui.base.viewmodel;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.databinding.ObservableBoolean;
 import androidx.fragment.app.DialogFragment;
 
@@ -62,13 +67,13 @@ public abstract class BaseAppViewModel<V extends MvvmView> extends BaseViewModel
     }
 
     protected void showError(String title,String mensaje, String textButtom) {
-        navigator.startDialog(new AlertEmailErrorDialog(title,mensaje,textButtom));
+        navigator.startDialog(new AlertEmailErrorDialog(title, mensaje, textButtom, this, null));
     }
     protected void showError(Throwable  e) {
 
         navigator.startDialog(new AlertEmailErrorDialog(ApplicationContext.getRes().getString(R.string.dialog_error_title),
                 e.getMessage(),
-                ApplicationContext.getRes().getString(R.string.dialog_error_button_message)));
+                ApplicationContext.getRes().getString(R.string.dialog_error_button_message), this, null));
     }
 
     @Override
@@ -95,6 +100,16 @@ public abstract class BaseAppViewModel<V extends MvvmView> extends BaseViewModel
 
     @Override
     public void openGallery() {
+
+    }
+
+    @Override
+    public void closeAlertGeneric() {
+
+    }
+
+    @Override
+    public void okAlertGeneric() {
 
     }
 }
