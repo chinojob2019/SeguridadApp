@@ -107,11 +107,11 @@
                     android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_regular"
+                    android:fontFamily="@font/sourcesansprosemibold"
                     android:text="@{vm.model.login}"
-                    tools:text="lucho_perales"
                     android:textColor="#2a2a2a"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    tools:text="lucho_perales" />
 
 
                 <TextView

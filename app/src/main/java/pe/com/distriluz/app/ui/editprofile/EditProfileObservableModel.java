@@ -6,8 +6,6 @@ import androidx.databinding.Bindable;
 
 import java.io.File;
 
-import pe.com.distriluz.app.BR;
-
 /**
  * Created by pedro.zevallos on 9/07/2017.
  */
@@ -17,11 +15,13 @@ public class EditProfileObservableModel extends BaseObservable {
     private String telefono;
     private String foto;
     private File newFoto;
+    private String email;
 
-    public EditProfileObservableModel(String direccion, String telefono, String foto) {
+    public EditProfileObservableModel(String direccion, String telefono, String foto, String email) {
         this.direccion = direccion;
         this.telefono = telefono;
         this.foto = foto;
+        this.email = email;
     }
 
     @Bindable
@@ -62,5 +62,15 @@ public class EditProfileObservableModel extends BaseObservable {
     public void setFoto(String foto) {
         this.foto = foto;
         notifyPropertyChanged(pe.com.distriluz.app.BR.foto);
+    }
+
+    @Bindable
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+        notifyPropertyChanged(pe.com.distriluz.app.BR.email);
     }
 }

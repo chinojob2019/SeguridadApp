@@ -38,8 +38,8 @@ public class EditProfileViewModel extends BaseActivityViewModel<EditProfileMvvm.
         this.model = new EditProfileObservableModel(
                 Utils.getInfo(ApplicationContext.getInstance()).getPersonales().getDireccion(),
                 Utils.getInfo(ApplicationContext.getInstance()).getPersonales().getTelefono(),
-                Utils.getInfo(ApplicationContext.getInstance()).getPersonales().getFoto()
-        );
+                Utils.getInfo(ApplicationContext.getInstance()).getPersonales().getFoto(),
+                Utils.getInfo(ApplicationContext.getInstance()).getPersonales().getEmail());
         this.saveInfoUserUseCase  = saveInfoUserUseCase;
     }
 
@@ -101,9 +101,14 @@ public class EditProfileViewModel extends BaseActivityViewModel<EditProfileMvvm.
     }
 
     private boolean validateSendinfo() {
-        return !model.getDireccion().equals(Utils.getInfo(ApplicationContext.getInstance()).getPersonales().getDireccion()) ||
+        String vacio = "";
+
+        return (!model.getDireccion().equals(Utils.getInfo(ApplicationContext.getInstance()).getPersonales().getDireccion()) ||
                 !model.getTelefono().equals(Utils.getInfo(ApplicationContext.getInstance()).getPersonales().getTelefono()) ||
-                model.getNewFoto()  != null;
+                !model.getEmail().equals(Utils.getInfo(ApplicationContext.getInstance()).getPersonales().getEmail()) ||
+                model.getNewFoto()  != null) && (!model.getDireccion().equals(vacio) &&
+                !model.getTelefono().equals(vacio) &&
+                !model.getEmail().equals(vacio));
     }
 
     @Override
