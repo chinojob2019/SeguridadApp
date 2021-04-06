@@ -7,5 +7,6 @@ dependencies {
     implementation domainDependencies.arrow
     implementation domainDependencies.javaxInject
     implementation domainDependencies.javaxAnnotation
+    implementation presentationDependencies.Gson
 
 }

@@ -75,7 +75,7 @@ public class EditProfileViewModel extends BaseActivityViewModel<EditProfileMvvm.
                     showError(e);
 
                 }
-            }, SaveInfoUserUseCase.Params.datos(getDireccion(), getTelefono(), getPhoto()));
+            }, SaveInfoUserUseCase.Params.datos(getDireccion(), getTelefono(), getPhoto(), getEmail()));
         }
     }
 
@@ -84,6 +84,13 @@ public class EditProfileViewModel extends BaseActivityViewModel<EditProfileMvvm.
             return "";
         }
         return model.getDireccion();
+    }
+
+    private String getEmail() {
+        if(model.getEmail().equals(Utils.getInfo(ApplicationContext.getInstance()).getPersonales().getEmail())) {
+            return "";
+        }
+        return model.getEmail();
     }
 
     private String getTelefono() {

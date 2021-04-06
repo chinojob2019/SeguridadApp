@@ -10,6 +10,7 @@ public class App {
 	private String code;
 	private String nombreHost;
 	private String dominio;
+	//@SerializedName("vistaGeneral")
 	private int vistaGeneral;
 	private String ipAddress;
 	private int destacadas;

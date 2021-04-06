@@ -211,14 +211,17 @@ public class AuthRestApiImpl extends BaseRestApiImpl {
         });
     }
 
-    public Single<Boolean> saveDataInfo(String direccion, String telefono) {
+    public Single<Boolean> saveDataInfo(String direccion, String telefono, String email) {
         if(direccion.isEmpty())
             direccion = Utils.getInfo(context).getPersonales().getDireccion();
         if(telefono.isEmpty())
             telefono = Utils.getInfo(context).getPersonales().getTelefono();
+        if(email.isEmpty())
+            email = Utils.getInfo(context).getPersonales().getEmail();
 
         String finalDireccion = direccion;
         String finalTelefono = telefono;
+        String finalemail = email;
         return Single.create(emitter -> {
             if (isThereInternetConnection()) {
                 CompositeDisposable disposable = new CompositeDisposable();
@@ -226,6 +229,7 @@ public class AuthRestApiImpl extends BaseRestApiImpl {
                 List<EditProfileRequest> data = new ArrayList<>();
                 data.add(new EditProfileRequest("Direccion", finalDireccion));
                 data.add(new EditProfileRequest("Telefono", finalTelefono));
+                data.add(new EditProfileRequest("Email", finalemail));
                 disposable.add(restApi.saveDataInfo(Utils.getIdPerson(context), data ).subscribe(
                         serverResponse -> {
                             if (serverResponse != null) {

@@ -23,7 +23,7 @@ public class SaveInfoUserUseCase extends UseCaseSingle<Boolean, SaveInfoUserUseC
 
     @Override
     public Single<Boolean> buildUseCase(Params params) {
-        return repository.saveDataInfo(params.direccion, params.telefono, params.photo);
+        return repository.saveDataInfo(params.direccion, params.telefono, params.photo, params.email);
     }
 
 
@@ -31,15 +31,17 @@ public class SaveInfoUserUseCase extends UseCaseSingle<Boolean, SaveInfoUserUseC
         private String photo;
         private String direccion;
         private String telefono;
+        private String email;
 
-        public Params(String direccion, String telefono, String photo) {
+        public Params(String direccion, String telefono, String photo, String email) {
             this.direccion = direccion;
             this.telefono = telefono;
             this.photo = photo;
+            this.email = email;
         }
 
-        public static Params datos(String direccion, String telefono, String photo) {
-            return new Params(direccion, telefono, photo);
+        public static Params datos(String direccion, String telefono, String photo, String email) {
+            return new Params(direccion, telefono, photo, email);
         }
     }
 

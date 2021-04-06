@@ -92,22 +92,22 @@ public class AppsResponse{
 		@SerializedName("code")
 		private String code;
 
-		@SerializedName("idtipoaplicacion")
+		@SerializedName("idTipoAplicacion")
 		private int idTipo;
 
-		@SerializedName("idestado")
+		@SerializedName("idEstado")
 		private int idEstado;
 
-		@SerializedName("imagenurl")
+		@SerializedName("imagenUrl")
 		private String imagenUrl;
 
 		@SerializedName("destacadas")
 		private int destacadas;
 
-		@SerializedName("vistausuario")
+		@SerializedName("vistaUsuario")
 		private int vistaUsuario;
 
-		@SerializedName("vistageneral")
+		@SerializedName("vistaGeneral")
 		private int vistaGeneral;
 
 		@SerializedName("lanzamiento")
