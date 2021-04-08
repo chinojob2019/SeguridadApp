@@ -64,7 +64,7 @@ public class AppsListaMapper {
         result.setEsLanzador(item.getEsLanzador());
         result.setIdEstado(item.getIdEstado());
         result.setIdTipo(item.getIdTipo());
-        result.setLanzamiento( item.getLanzamiento());
+        result.setEsapplanzamiento( item.getEsapplanzamiento());
         result.setId(item.getId());
         result.setBrowserDefault(item.getBrowserDefault());
         result.setKey(item.getKey());

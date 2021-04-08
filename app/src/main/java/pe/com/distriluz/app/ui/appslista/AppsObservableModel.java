@@ -103,7 +103,7 @@ public class AppsObservableModel extends BaseObservable {
         private Boolean esLanzador;
         private int idEstado;
         private int idTipo;
-        private int lanzamiento;
+        private boolean esapplanzamiento;
         private int id;
         private String browserDefault;
         private String key;
@@ -276,13 +276,13 @@ public class AppsObservableModel extends BaseObservable {
         }
 
         @Bindable
-        public int getLanzamiento() {
-            return lanzamiento;
+        public boolean getEsapplanzamiento() {
+            return esapplanzamiento;
         }
 
-        public void setLanzamiento(int lanzamiento) {
-            this.lanzamiento = lanzamiento;
-            notifyPropertyChanged(pe.com.distriluz.app.BR.lanzamiento);
+        public void setEsapplanzamiento(boolean esapplanzamiento) {
+            this.esapplanzamiento = esapplanzamiento;
+            notifyPropertyChanged(pe.com.distriluz.app.BR.esapplanzamiento);
         }
 
         @Bindable

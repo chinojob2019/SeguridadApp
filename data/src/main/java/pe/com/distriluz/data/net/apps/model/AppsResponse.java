@@ -110,8 +110,8 @@ public class AppsResponse{
 		@SerializedName("vistaGeneral")
 		private int vistaGeneral;
 
-		@SerializedName("lanzamiento")
-		private int lanzamiento;
+		@SerializedName("esAppLanzamiento")
+		private boolean esapplanzamiento;
 
 
 		public void setDescripcion(String descripcion){
@@ -203,12 +203,12 @@ public class AppsResponse{
 			return idTipo;
 		}
 
-		public void setLanzamiento(int lanzamiento){
-			this.lanzamiento = lanzamiento;
+		public void setEsapplanzamiento(boolean esapplanzamiento){
+			this.esapplanzamiento = esapplanzamiento;
 		}
 
-		public int getLanzamiento(){
-			return lanzamiento;
+		public boolean getEsapplanzamiento(){
+			return esapplanzamiento;
 		}
 
 		public void setId(int id){
