@@ -106,6 +106,9 @@ public class DetailUserResponse{
 		private String foto;
 
 		public String getFechanacimiento() {
+			if(!fechanacimiento.equals("") && fechanacimiento != null){
+
+			}
 			return fechanacimiento;
 		}
 
