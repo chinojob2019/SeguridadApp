@@ -79,16 +79,16 @@ public class DetailUserResponse{
 
 	public static class Personales{
 
-		@SerializedName("fechanacimiento")
+		@SerializedName("fechaNacimiento")
 		private String fechanacimiento;
 
-		@SerializedName("apellidomaterno")
+		@SerializedName("apellidoMaterno")
 		private String apellidomaterno;
 
 		@SerializedName("direccion")
 		private String direccion;
 
-		@SerializedName("apellidopaterno")
+		@SerializedName("apellidoPaterno")
 		private String apellidopaterno;
 
 		@SerializedName("login")

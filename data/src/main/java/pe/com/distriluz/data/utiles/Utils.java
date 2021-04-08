@@ -186,11 +186,11 @@ public class Utils {
         context.getSharedPreferences(Constantes.PREFERENCES, Context.MODE_PRIVATE).edit().putString(Constantes.PREF_INFOR_USER,new Gson().toJson(body)).apply();
     }
 
-    public static DetailUser getInfo(Context context){
+    public static DetailUserResponse getInfo(Context context){
         return new Gson().fromJson(
                 context.getSharedPreferences(Constantes.PREFERENCES, Context.MODE_PRIVATE)
                         .getString(Constantes.PREF_INFOR_USER,""),
-                DetailUser.class
+                DetailUserResponse.class
         );
     }
 }

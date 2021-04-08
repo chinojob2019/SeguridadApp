@@ -88,6 +88,8 @@
                 android:layout_height="match_parent"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profile_image">
@@ -107,9 +109,9 @@
                     android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/sourcesansprosemibold"
+                    android:fontFamily="@font/roboto_bold"
                     android:text="@{vm.model.login}"
-                    android:textColor="#2a2a2a"
+                    android:textColor="@color/colorAccent"
                     android:textSize="16dp"
                     tools:text="lucho_perales" />
 

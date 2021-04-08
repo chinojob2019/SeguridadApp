@@ -10,6 +10,7 @@ import androidx.core.content.res.ResourcesCompat;
 import pe.com.distriluz.app.R;
 import pe.com.distriluz.app.databinding.EditProfileActivityBinding;
 import pe.com.distriluz.app.ui.base.BaseActivity;
+import pe.com.distriluz.app.utils.Constantes;
 
 public class EditProfileActivity extends BaseActivity<EditProfileActivityBinding, EditProfileMvvm.ViewModel> implements EditProfileMvvm.View {
 
@@ -127,7 +128,7 @@ public class EditProfileActivity extends BaseActivity<EditProfileActivityBinding
             public void afterTextChanged(Editable s) {
 
                 ColorStateList myList;
-                if(s.length()>0){
+                if(s.length()>0 && s.toString().trim().matches(Constantes.EMAIL_PATTERN)){
                     int[][] states = new int[][] {
                             new int[] {android.R.attr.state_enabled},
                             new int[] {-android.R.attr.state_enabled}
