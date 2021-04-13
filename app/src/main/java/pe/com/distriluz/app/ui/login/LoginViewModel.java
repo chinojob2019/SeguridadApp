@@ -39,7 +39,7 @@ public class LoginViewModel extends BaseActivityViewModel<LoginMvvm.View> implem
         this.mapper=mapper;
         this.loginUseCase=loginUseCase;
         if(BuildConfig.DEBUG){
-            this.model = new LoginObservableModel("@dministr4dOr2", "rmorales");
+            this.model = new LoginObservableModel("@dministr4dOr", "rmorales");
 //            onClickIniciarSesion(null);
         }else {
             this.model = new LoginObservableModel("", "");

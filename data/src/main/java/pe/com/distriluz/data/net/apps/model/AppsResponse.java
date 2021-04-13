@@ -21,7 +21,7 @@ public class AppsResponse{
 	}
 
 
-	public static class Aplicaciones{
+	public  class Aplicaciones{
 
 		@SerializedName("recurrentes")
 		private List<Appitem> recurrentes;
@@ -68,7 +68,33 @@ public class AppsResponse{
 		}
 	}
 
-	public class Appitem{
+	public static class DesplieguesItem{
+
+		@SerializedName("urlEmpresa")
+		private String urlEmpresa;
+
+		@SerializedName("nombreEmpresa")
+		private String nombreEmpresa;
+
+		public void setUrlEmpresa(String urlEmpresa){
+			this.urlEmpresa = urlEmpresa;
+		}
+
+		public String getUrlEmpresa(){
+			return urlEmpresa;
+		}
+
+		public void setNombreEmpresa(String nombreEmpresa){
+			this.nombreEmpresa = nombreEmpresa;
+		}
+
+		public String getNombreEmpresa(){
+			return nombreEmpresa;
+		}
+
+	}
+
+	public static class Appitem{
 
 
 		@SerializedName("id")
@@ -113,6 +139,16 @@ public class AppsResponse{
 		@SerializedName("esAppLanzamiento")
 		private boolean esapplanzamiento;
 
+		@SerializedName("despliegues")
+		private List<DesplieguesItem> despliegues;
+
+		public void setDespliegues(List<DesplieguesItem> despliegues){
+			this.despliegues = despliegues;
+		}
+
+		public List<DesplieguesItem> getDespliegues(){
+			return despliegues;
+		}
 
 		public void setDescripcion(String descripcion){
 			this.descripcion = descripcion;

@@ -1,5 +1,9 @@
 package pe.com.distriluz.domain.model;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
+
 import javax.annotation.Generated;
 
 @Generated("com.robohorse.robopojogenerator")
@@ -25,6 +29,17 @@ public class App {
 	private int id;
 	private String browserDefault;
 	private String key;
+	private List<DesplieguesItem> despliegues;
+
+
+	public void setDespliegues(List<DesplieguesItem> despliegues){
+		this.despliegues = despliegues;
+	}
+
+	public List<DesplieguesItem> getDespliegues(){
+		return despliegues;
+	}
+
 
 	public void setDescripcion(String descripcion){
 		this.descripcion = descripcion;
@@ -184,5 +199,38 @@ public class App {
 
 	public String getKey(){
 		return key;
+	}
+
+
+
+
+	public static class DesplieguesItem{
+
+
+		private String urlEmpresa;
+
+		private String nombreEmpresa;
+
+		public DesplieguesItem(String urlEmpresa, String nombreEmpresa) {
+			this.urlEmpresa = urlEmpresa;
+			this.nombreEmpresa = nombreEmpresa;
+		}
+
+		public void setUrlEmpresa(String urlEmpresa){
+			this.urlEmpresa = urlEmpresa;
+		}
+
+		public String getUrlEmpresa(){
+			return urlEmpresa;
+		}
+
+		public void setNombreEmpresa(String nombreEmpresa){
+			this.nombreEmpresa = nombreEmpresa;
+		}
+
+		public String getNombreEmpresa(){
+			return nombreEmpresa;
+		}
+
 	}
 }
