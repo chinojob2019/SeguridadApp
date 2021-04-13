@@ -33,9 +33,9 @@ android {
     productFlavors {
 
         pre {
-            buildConfigField 'String', HOST_API_SEGURIDAD, '"http://10.217.1.104/rest-v2/seguridad/api/v1/"'//'"http://10.240.133.32/rest/seguridad/api/v1/"'
-            buildConfigField 'String', HOST_API_ACCESO, '"http://10.217.1.104/rest-v2/autenticacion/api/v1/"'//'"http://10.240.133.32/rest/acceso/api/v1/"'
-            buildConfigField 'String', HOST_API_D4,     '"http://10.217.1.104/rest-v2/workspace/api/v1/"'//'"http://10.240.133.32/rest/d4workspace/api/v1/"'
+            buildConfigField 'String', HOST_API_SEGURIDAD,  '"http://10.217.1.104/rest-v2/seguridad/api/v1/"'//'"http://10.240.133.32/rest/seguridad/api/v1/"'
+            buildConfigField 'String', HOST_API_ACCESO, '"http://10.217.1.104/rest-v2/autenticacion/api/v1/"' // '"http://10.240.133.32/rest/acceso/api/v1/"'
+            buildConfigField 'String', HOST_API_D4,    '"http://10.217.1.104/rest-v2/workspace/api/v1/"'
             buildConfigField 'String', X_APPKEY, '"RGlzdHJpbHV6X0Q0LVdPUktTUEFDRSBNT1ZJTF9BcGxpY2FjaW9u"'
             buildConfigField 'String', X_APPCODE, '"28E8D7E8-C83C-44F2-AFEC-47A65B558CCA"'
             buildConfigField 'String', BDNAME, '"Distriluz.db"'
