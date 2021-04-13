@@ -114,9 +114,15 @@ public final class BindingAdapterUtils {
     public static void SetImagePost(ImageView imageView , String url){
         if(url!=null && !url.isEmpty()) {
             Uri uri = Uri.parse(url);
-            getConstructorLoaded(imageView.getContext())
+            /*getConstructorLoaded(imageView.getContext())
                     .load(uri)
-                    .into(imageView);
+                    .into(imageView);*/
+            RequestOptions options = new RequestOptions()
+                    .centerCrop()
+                    .placeholder(R.mipmap.ic_launcher_round)
+                    .error(R.mipmap.ic_launcher_round);
+
+            Glide.with(imageView.getContext()).load(uri).apply(options).into(imageView);
         }
     }
 
