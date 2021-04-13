@@ -56,6 +56,38 @@ public class RestorePasswordActivity extends BaseActivity<RestorePasswordActivit
                 }
 
             }
-        });
+        }
+
+        );
+        binding.txtpassword2.addTextChangedListener(new TextWatcher() {
+                                                       @Override
+                                                       public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                                                       }
+
+                                                       @Override
+                                                       public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                                                       }
+
+                                                       @Override
+                                                       public void afterTextChanged(Editable s) {
+
+                                                           if(s.length()>0){
+                                                               if(viewModel.getModel().getErrorPass() == null){
+                                                                   binding.inputlayoutcorreo2.setEndIconTintList(Utils.getColorActive());
+                                                               }else {
+                                                                   binding.inputlayoutcorreo2.setEndIconTintList(Utils.getColorError());
+                                                               }
+                                                           }else if(binding.txtpassword2.isFocused()){
+                                                               binding.inputlayoutcorreo2.setEndIconTintList(Utils.getColorActive());
+                                                           }else{
+                                                               binding.inputlayoutcorreo2.setEndIconTintList(Utils.getColorInactive());
+                                                           }
+
+                                                       }
+                                                   }
+
+        );
     }
 }

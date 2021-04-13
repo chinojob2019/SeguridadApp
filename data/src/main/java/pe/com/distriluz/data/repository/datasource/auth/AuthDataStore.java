@@ -19,7 +19,7 @@ public interface AuthDataStore {
 
     Single<Boolean> restablecePass(String idUser, String clave);
 
-    Single<Boolean> saveDataInfo(String direccion, String telefono);
+    Single<Boolean> saveDataInfo(String direccion, String telefono, String email);
 
     Single<Boolean> savePhoto(String base64);
 }

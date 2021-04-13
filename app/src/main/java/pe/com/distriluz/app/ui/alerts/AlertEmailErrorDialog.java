@@ -3,6 +3,7 @@ package pe.com.distriluz.app.ui.alerts;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
+import pe.com.distriluz.app.ApplicationContext;
 import pe.com.distriluz.app.R;
 import pe.com.distriluz.app.databinding.AlertEmailErrorFragmentBinding;
 import pe.com.distriluz.app.ui.base.BaseDialog;
+import pe.com.distriluz.app.ui.base.viewmodel.IViewModel;
 import pe.com.distriluz.app.ui.base.viewmodel.NoOpViewModel;
 
 import static android.view.KeyEvent.KEYCODE_BACK;
@@ -22,6 +25,8 @@ import static android.view.KeyEvent.KEYCODE_BACK;
 
 public class AlertEmailErrorDialog extends BaseDialog<AlertEmailErrorFragmentBinding, NoOpViewModel> {
 
+    private final IViewModel listener;
+    private final Integer idImage;
     private String title;
     private String subtitle;
     private String textButton;
@@ -33,10 +38,12 @@ public class AlertEmailErrorDialog extends BaseDialog<AlertEmailErrorFragmentBin
 
     }
 
-    public AlertEmailErrorDialog(String title, String subtitle, String textButton) {
+    public AlertEmailErrorDialog(String title, String subtitle, String textButton, IViewModel listener, @Nullable Integer idImage) {
         this.title = title;
         this.subtitle = subtitle;
         this.textButton = textButton;
+        this.listener = listener;
+        this.idImage = idImage;
     }
 
     @NonNull
@@ -54,11 +61,23 @@ public class AlertEmailErrorDialog extends BaseDialog<AlertEmailErrorFragmentBin
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+
+        if (idImage != null)
+        {
+            binding.appCompatImageView.setImageDrawable(ApplicationContext.getRes().getDrawable(idImage));
+        }
+
         binding.txtitle.setText(title);
         binding.txtsubtitle.setText(subtitle);
         binding.btnCancel.setText(textButton);
-        binding.btnClose.setOnClickListener(v -> dismissAllowingStateLoss());
-        binding.btnCancel.setOnClickListener(v -> dismissAllowingStateLoss());
+        binding.btnClose.setOnClickListener(v -> {
+            this.listener.closeAlertGeneric();
+            dismissAllowingStateLoss();
+        });
+        binding.btnCancel.setOnClickListener(v -> {
+            this.listener.okAlertGeneric();
+            dismissAllowingStateLoss();
+        });
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         return super.onCreateView(inflater, container, savedInstanceState);
     }

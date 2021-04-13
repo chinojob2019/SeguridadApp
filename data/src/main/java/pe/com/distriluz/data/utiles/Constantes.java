@@ -32,11 +32,14 @@ public class Constantes {
     public static final String PREF_pass = "pref_pass";
     public static final String PREF_login = "pref_login";
     public static final String PREF_INFOR_USER = "pref_info_user";
+    public static final String PREF_refreshToken = "pref_refreshToken";
 
 
 
 
     public static final String ERROR_CODE_TOKEN = "5016";
+    public static final int TYPE_ERROR_CODE_TOKEN = 401;
+    public static final int TYPE_CODE_OK = 200;
 
 
 

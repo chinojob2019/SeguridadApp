@@ -153,6 +153,46 @@
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_correo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            app:endIconDrawable="@drawable/ic_email"
+            app:endIconMode="custom"
+            app:endIconTint="@color/colorEndIconInactivo"
+            app:endIconTintMode="src_in"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/til_telefono">
+
+            <EditText
+                android:id="@+id/et_correo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                tools:text="pzevallos@gmail.com"
+                android:ems="13"
+                android:enabled="@{!vm.isLoaded}"
+                android:fontFamily="@font/roboto_regular"
+                android:hint="Correo"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress"
+                android:lines="1"
+                android:maxLines="1"
+                android:paddingTop="4dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="24dp"
+                android:text="@={vm.model.email}"
+                android:textAlignment="textStart"
+                android:textSize="18dp"
+
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
         <LinearLayout
             android:id="@+id/button_login"
             android:layout_width="match_parent"
@@ -166,7 +206,7 @@
             android:paddingEnd="18dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/til_telefono">
+            app:layout_constraintTop_toBottomOf="@+id/til_correo">
 
             <Button
                 android:id="@+id/login"

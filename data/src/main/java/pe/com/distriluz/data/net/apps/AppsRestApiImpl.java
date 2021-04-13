@@ -37,15 +37,16 @@ public class AppsRestApiImpl extends BaseRestApiImpl {
             if (isThereInternetConnection()) {
                 try{
                     CompositeDisposable disposable = new CompositeDisposable();
-                    AppsRestApi restApi = new BaseNet().create(Constantes.HOST_API_D4,AppsRestApi.class, getToken());
+                    AppsRestApi restApi = new BaseNet().create(Constantes.HOST_API_D4,AppsRestApi.class, getToken(), this.context);
                     disposable.add(restApi.getApps().subscribe(
                             serverResponse -> {
                                 if (serverResponse != null) {
                                     if(serverResponse.isSuccessful() && serverResponse.body()!=null){
                                         emitter.onSuccess(serverResponse.body());
                                     }else{
+                                        int code = serverResponse.code();
                                         ErrorResponse response =new Gson().fromJson(serverResponse.errorBody().charStream(), ErrorResponse.class);
-                                        if(response.getError().getCodigo().equals(Constantes.ERROR_CODE_TOKEN)){
+                                        if(code == Constantes.TYPE_ERROR_CODE_TOKEN){
                                             emitter.onError(new TokenException(response.getError().getTitulo()));
                                         }else {
                                             emitter.onError(new ErrorException(response.getError().getMensaje()));
@@ -77,7 +78,7 @@ public class AppsRestApiImpl extends BaseRestApiImpl {
         return Single.create(emitter -> {
             if (isThereInternetConnection()) {
                 CompositeDisposable disposable = new CompositeDisposable();
-                AppsRestApi restApi = new BaseNet().create(Constantes.HOST_API_D4,AppsRestApi.class, getToken());
+                AppsRestApi restApi = new BaseNet().create(Constantes.HOST_API_D4,AppsRestApi.class, getToken(), this.context);
                 disposable.add(restApi.setDestacado(idApp, value).subscribe(
                         serverResponse -> {
                             if (serverResponse != null) {
@@ -85,7 +86,8 @@ public class AppsRestApiImpl extends BaseRestApiImpl {
                                     emitter.onSuccess(true);
                                 }else{
                                     ErrorResponse response =new Gson().fromJson(serverResponse.errorBody().charStream(), ErrorResponse.class);
-                                    if(response.getError().getCodigo().equals(Constantes.ERROR_CODE_TOKEN)){
+                                    int code = serverResponse.code();
+                                    if(code == Constantes.TYPE_ERROR_CODE_TOKEN){
                                         emitter.onError(new TokenException(response.getError().getTitulo()));
                                     }else {
                                         emitter.onError(new ErrorException(response.getError().getMensaje()));
@@ -114,7 +116,7 @@ public class AppsRestApiImpl extends BaseRestApiImpl {
         return Single.create(emitter -> {
             if (isThereInternetConnection()) {
                 CompositeDisposable disposable = new CompositeDisposable();
-                AppsRestApi restApi = new BaseNet().create(Constantes.HOST_API_D4,AppsRestApi.class, getToken());
+                AppsRestApi restApi = new BaseNet().create(Constantes.HOST_API_D4,AppsRestApi.class, getToken(), this.context);
                 disposable.add(restApi.addContador(idApp).subscribe(
                         serverResponse -> {
                             if (serverResponse != null) {
@@ -122,7 +124,8 @@ public class AppsRestApiImpl extends BaseRestApiImpl {
                                     emitter.onSuccess(true);
                                 }else{
                                     ErrorResponse response =new Gson().fromJson(serverResponse.errorBody().charStream(), ErrorResponse.class);
-                                    if(response.getError().getCodigo().equals(Constantes.ERROR_CODE_TOKEN)){
+                                    int code = serverResponse.code();
+                                    if(code == Constantes.TYPE_ERROR_CODE_TOKEN){
                                         emitter.onError(new TokenException(response.getError().getTitulo()));
                                     }else {
                                         emitter.onError(new ErrorException(response.getError().getMensaje()));
@@ -152,7 +155,7 @@ public class AppsRestApiImpl extends BaseRestApiImpl {
         return Single.create(emitter -> {
             if (isThereInternetConnection()) {
                 CompositeDisposable disposable = new CompositeDisposable();
-                AppsRestApi restApi = new BaseNet().create(Constantes.HOST_API_D4,AppsRestApi.class, getToken());
+                AppsRestApi restApi = new BaseNet().create(Constantes.HOST_API_D4,AppsRestApi.class, getToken(), this.context);
                 disposable.add(restApi.getPreguntasFrecuentes().subscribe(
                         serverResponse -> {
                             if (serverResponse != null) {
@@ -160,7 +163,8 @@ public class AppsRestApiImpl extends BaseRestApiImpl {
                                     emitter.onSuccess(serverResponse.body().getPreguntasfrecuentes());
                                 }else{
                                     ErrorResponse response =new Gson().fromJson(serverResponse.errorBody().charStream(), ErrorResponse.class);
-                                    if(response.getError().getCodigo().equals(Constantes.ERROR_CODE_TOKEN)){
+                                    int code = serverResponse.code();
+                                    if(code == Constantes.TYPE_ERROR_CODE_TOKEN){
                                         emitter.onError(new TokenException(response.getError().getTitulo()));
                                     }else {
                                         emitter.onError(new ErrorException(response.getError().getMensaje()));

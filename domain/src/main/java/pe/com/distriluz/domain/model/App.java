@@ -18,10 +18,10 @@ public class App {
 	private int vistaUsuario;
 	private String url;
 	private String imagenUrl;
-	private int esLanzador;
+	private Boolean esLanzador;
 	private int idEstado;
 	private int idTipo;
-	private int lanzamiento;
+	private boolean esapplanzamiento;
 	private int id;
 	private String browserDefault;
 	private String key;
@@ -130,11 +130,11 @@ public class App {
 		return imagenUrl;
 	}
 
-	public void setEsLanzador(int esLanzador){
+	public void setEsLanzador(Boolean esLanzador){
 		this.esLanzador = esLanzador;
 	}
 
-	public int getEsLanzador(){
+	public Boolean getEsLanzador(){
 		return esLanzador;
 	}
 
@@ -154,12 +154,12 @@ public class App {
 		return idTipo;
 	}
 
-	public void setLanzamiento(int lanzamiento){
-		this.lanzamiento = lanzamiento;
+	public void setEsapplanzamiento(boolean esapplanzamiento){
+		this.esapplanzamiento = esapplanzamiento;
 	}
 
-	public int getLanzamiento(){
-		return lanzamiento;
+	public boolean getEsapplanzamiento(){
+		return esapplanzamiento;
 	}
 
 	public void setId(int id){

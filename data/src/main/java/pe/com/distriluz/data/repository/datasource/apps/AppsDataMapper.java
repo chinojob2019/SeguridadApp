@@ -67,7 +67,7 @@ public class AppsDataMapper {
         result.setEsLanzador(item.getEsLanzador());
         result.setIdEstado(item.getIdEstado());
         result.setIdTipo(item.getIdTipo());
-        result.setLanzamiento( item.getLanzamiento());
+        result.setEsapplanzamiento( item.getEsapplanzamiento());
         result.setId(item.getId());
         result.setBrowserDefault("");
         result.setKey(item.getKey());

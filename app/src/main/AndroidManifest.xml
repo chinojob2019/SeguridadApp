@@ -54,8 +54,8 @@
 
                 <data
                     android:scheme="http"
-                    android:host="10.240.133.32"
-                    android:path="/D4workspace/auth/code-auth" />
+                    android:host="10.217.1.104"
+                    android:path="/d4workspace-v2/auth/code-auth" />
             </intent-filter>
         </activity>
         <activity

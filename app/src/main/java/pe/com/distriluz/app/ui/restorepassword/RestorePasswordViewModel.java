@@ -22,7 +22,7 @@ import pe.com.distriluz.domain.interactor.baseinteractors.DefaultObserverSingle;
 public class RestorePasswordViewModel extends BaseActivityViewModel<RestorePasswordMvvm.View> implements RestorePasswordMvvm.ViewModel {
     private RestablecePassUseCase  restablecePassUseCase;
     private Resources resources;
-    private RestorePasswordObservableModel model = new RestorePasswordObservableModel("");
+    private RestorePasswordObservableModel model = new RestorePasswordObservableModel("","");
     private String idUser = "";
 
     // TODO falta crear obserbale string

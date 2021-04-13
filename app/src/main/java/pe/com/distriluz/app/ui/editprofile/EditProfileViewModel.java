@@ -21,6 +21,7 @@ import pe.com.distriluz.app.ui.alerts.AlertSelectPhotoDialog;
 import pe.com.distriluz.app.ui.base.BaseActivity;
 import pe.com.distriluz.app.ui.base.navigator.Navigator;
 import pe.com.distriluz.app.ui.base.viewmodel.BaseActivityViewModel;
+import pe.com.distriluz.app.utils.Constantes;
 import pe.com.distriluz.data.utiles.Utils;
 import pe.com.distriluz.domain.interactor.SaveInfoUserUseCase;
 import pe.com.distriluz.domain.interactor.baseinteractors.DefaultObserverObservable;
@@ -38,8 +39,8 @@ public class EditProfileViewModel extends BaseActivityViewModel<EditProfileMvvm.
         this.model = new EditProfileObservableModel(
                 Utils.getInfo(ApplicationContext.getInstance()).getPersonales().getDireccion(),
                 Utils.getInfo(ApplicationContext.getInstance()).getPersonales().getTelefono(),
-                Utils.getInfo(ApplicationContext.getInstance()).getPersonales().getFoto()
-        );
+                Utils.getInfo(ApplicationContext.getInstance()).getPersonales().getFoto(),
+                Utils.getInfo(ApplicationContext.getInstance()).getPersonales().getEmail());
         this.saveInfoUserUseCase  = saveInfoUserUseCase;
     }
 
@@ -75,7 +76,7 @@ public class EditProfileViewModel extends BaseActivityViewModel<EditProfileMvvm.
                     showError(e);
 
                 }
-            }, SaveInfoUserUseCase.Params.datos(getDireccion(), getTelefono(), getPhoto()));
+            }, SaveInfoUserUseCase.Params.datos(getDireccion(), getTelefono(), getPhoto(), getEmail()));
         }
     }
 
@@ -84,6 +85,13 @@ public class EditProfileViewModel extends BaseActivityViewModel<EditProfileMvvm.
             return "";
         }
         return model.getDireccion();
+    }
+
+    private String getEmail() {
+        if(model.getEmail().equals(Utils.getInfo(ApplicationContext.getInstance()).getPersonales().getEmail())) {
+            return "";
+        }
+        return model.getEmail();
     }
 
     private String getTelefono() {
@@ -101,9 +109,16 @@ public class EditProfileViewModel extends BaseActivityViewModel<EditProfileMvvm.
     }
 
     private boolean validateSendinfo() {
-        return !model.getDireccion().equals(Utils.getInfo(ApplicationContext.getInstance()).getPersonales().getDireccion()) ||
+        String vacio = "";
+
+        return (!model.getDireccion().equals(Utils.getInfo(ApplicationContext.getInstance()).getPersonales().getDireccion()) ||
                 !model.getTelefono().equals(Utils.getInfo(ApplicationContext.getInstance()).getPersonales().getTelefono()) ||
-                model.getNewFoto()  != null;
+                !model.getEmail().equals(Utils.getInfo(ApplicationContext.getInstance()).getPersonales().getEmail()) ||
+                model.getNewFoto()  != null) &&
+                (!model.getDireccion().equals(vacio) &&
+                !model.getTelefono().equals(vacio) &&
+                !model.getEmail().equals(vacio) &&
+                 model.getEmail().matches(Constantes.EMAIL_PATTERN));
     }
 
     @Override

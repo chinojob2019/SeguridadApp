@@ -40,8 +40,8 @@ public class AuthCloudDataStore implements AuthDataStore {
     }
 
     @Override
-    public Single<Boolean> saveDataInfo(String direccion, String telefono) {
-        return restApi.saveDataInfo(direccion, telefono);
+    public Single<Boolean> saveDataInfo(String direccion, String telefono, String email) {
+        return restApi.saveDataInfo(direccion, telefono, email);
     }
 
     @Override

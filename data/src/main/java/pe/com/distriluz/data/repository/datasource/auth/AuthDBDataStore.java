@@ -43,7 +43,7 @@ public class AuthDBDataStore implements AuthDataStore {
     }
 
     @Override
-    public Single<Boolean> saveDataInfo(String direccion, String telefono) {
+    public Single<Boolean> saveDataInfo(String direccion, String telefono, String email) {
         return null;
     }
 

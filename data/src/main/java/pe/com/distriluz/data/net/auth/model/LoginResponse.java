@@ -6,6 +6,8 @@ public class LoginResponse{
 
 	@SerializedName("usuario")
 	private Usuario usuario;
+	@SerializedName("refreshToken")
+	private String refreshToken;
 
 	public Usuario getUsuario() {
 		return usuario;
@@ -13,6 +15,14 @@ public class LoginResponse{
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public String getrefreshToken() {
+		return refreshToken;
+	}
+
+	public void setrefreshToken(String refreshToken) {
+		this.refreshToken = refreshToken;
 	}
 
 	public static class Usuario{

@@ -48,17 +48,17 @@ public class AuthDataRepository implements AuthRepository {
     }
 
     @Override
-    public Single<Boolean> saveDataInfo(String direccion, String telefono, String photo) {
+    public Single<Boolean> saveDataInfo(String direccion, String telefono, String photo, String email) {
         AuthDataStore dataStore = this.factory.createCloudDataStore();
         Single<Boolean> savePhoto = null;
         if(!photo.isEmpty()){
             savePhoto =  dataStore.savePhoto(photo);
         }
         Single<Boolean> saveData = null;
-        if(direccion.isEmpty() && telefono.isEmpty()){
+        if(direccion.isEmpty() && telefono.isEmpty() && email.isEmpty()){
 
         }else {
-            saveData = dataStore.saveDataInfo(direccion, telefono);
+            saveData = dataStore.saveDataInfo(direccion, telefono, email);
         }
 
         if(savePhoto== null){

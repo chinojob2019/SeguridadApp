@@ -81,7 +81,7 @@ public class AppsResponse{
 		private String descripcion;
 
 		@SerializedName("esLanzador")
-		private int esLanzador;
+		private Boolean esLanzador;
 
 		@SerializedName("url")
 		private String url;
@@ -92,26 +92,26 @@ public class AppsResponse{
 		@SerializedName("code")
 		private String code;
 
-		@SerializedName("idtipoaplicacion")
+		@SerializedName("idTipoAplicacion")
 		private int idTipo;
 
-		@SerializedName("idestado")
+		@SerializedName("idEstado")
 		private int idEstado;
 
-		@SerializedName("imagenurl")
+		@SerializedName("imagenUrl")
 		private String imagenUrl;
 
 		@SerializedName("destacadas")
 		private int destacadas;
 
-		@SerializedName("vistausuario")
+		@SerializedName("vistaUsuario")
 		private int vistaUsuario;
 
-		@SerializedName("vistageneral")
+		@SerializedName("vistaGeneral")
 		private int vistaGeneral;
 
-		@SerializedName("lanzamiento")
-		private int lanzamiento;
+		@SerializedName("esAppLanzamiento")
+		private boolean esapplanzamiento;
 
 
 		public void setDescripcion(String descripcion){
@@ -179,11 +179,11 @@ public class AppsResponse{
 			return imagenUrl;
 		}
 
-		public void setEsLanzador(int esLanzador){
+		public void setEsLanzador(Boolean esLanzador){
 			this.esLanzador = esLanzador;
 		}
 
-		public int getEsLanzador(){
+		public Boolean getEsLanzador(){
 			return esLanzador;
 		}
 
@@ -203,12 +203,12 @@ public class AppsResponse{
 			return idTipo;
 		}
 
-		public void setLanzamiento(int lanzamiento){
-			this.lanzamiento = lanzamiento;
+		public void setEsapplanzamiento(boolean esapplanzamiento){
+			this.esapplanzamiento = esapplanzamiento;
 		}
 
-		public int getLanzamiento(){
-			return lanzamiento;
+		public boolean getEsapplanzamiento(){
+			return esapplanzamiento;
 		}
 
 		public void setId(int id){

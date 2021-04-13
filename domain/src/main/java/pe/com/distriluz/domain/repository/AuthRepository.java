@@ -12,5 +12,5 @@ public interface AuthRepository {
     Single<Boolean> verificaCodigo(String idUser, String codigo);
 
     Single<Boolean> restablecePass(String idUser, String clave);
-    Single<Boolean> saveDataInfo(String direccion, String telefono, String photo);
+    Single<Boolean> saveDataInfo(String direccion, String telefono, String photo, String email);
 }
