@@ -101,6 +101,7 @@
     <string name="lista_client_subtitle">¡Aún no tienes clientes registrados!</string>
     <string name="lista_client_subtitle2"> Para empezar a registrar a tus clientes da tab en el boton "+"</string>
 
+    <string name="lista_apps_url_noconfigurada">No se encontró URL configurada</string>
 
 
 

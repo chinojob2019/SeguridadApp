@@ -89,27 +89,35 @@ private Context context;
                 bt.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent i = new Intent(Intent.ACTION_VIEW);
-                        i.setData(Uri.parse(v.getTag().toString()));
-                        navigator.startActivity(i);
-                        showLoading();
-                        addContadorUseCase.execute(new DisposableSingleObserver<Boolean>() {
-                            @Override
-                            public void onSuccess(Boolean aBoolean) {
-                                hideLoading();
-                                getView().reloadApps();
-                            }
 
-                            @Override
-                            public void onError(Throwable e) {
-                                validateErrorToken(e);
-                                hideLoading();
-                                e.printStackTrace();
-                                showError(e);
-                            }
-                        }, AddContadorUseCase.Params.datos(getModel().getId() + ""));
 
-                        snackbar.dismiss();
+                        if(v.getTag()==null || v.getTag().toString().trim().equals("")){
+                            Toast.makeText(context,context.getString(R.string.lista_apps_url_noconfigurada), Toast.LENGTH_LONG).show();
+                        }
+                        else {
+                            Intent i = new Intent(Intent.ACTION_VIEW);
+                            i.setData(Uri.parse(v.getTag().toString()));
+                            navigator.startActivity(i);
+                            showLoading();
+                            addContadorUseCase.execute(new DisposableSingleObserver<Boolean>() {
+                                @Override
+                                public void onSuccess(Boolean aBoolean) {
+                                    hideLoading();
+                                    getView().reloadApps();
+                                }
+
+                                @Override
+                                public void onError(Throwable e) {
+                                    validateErrorToken(e);
+                                    hideLoading();
+                                    e.printStackTrace();
+                                    showError(e);
+                                }
+                            }, AddContadorUseCase.Params.datos(getModel().getId() + ""));
+
+                            snackbar.dismiss();
+
+                        }
                     }
                 });
                 ly.addView(bt);
@@ -123,25 +131,30 @@ private Context context;
         else
         {
 
-            Intent i = new Intent(Intent.ACTION_VIEW);
-            i.setData(Uri.parse(getModel().getUrl()));
-            navigator.startActivity(i);
-            showLoading();
-            addContadorUseCase.execute(new DisposableSingleObserver<Boolean>() {
-                @Override
-                public void onSuccess(Boolean aBoolean) {
-                    hideLoading();
-                    getView().reloadApps();
-                }
+            if(getModel().getUrl()==null || getModel().getUrl().equals("")){
+                Toast.makeText(context, context.getString(R.string.lista_apps_url_noconfigurada), Toast.LENGTH_LONG).show();
+            }
+            else {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(getModel().getUrl()));
+                navigator.startActivity(i);
+                showLoading();
+                addContadorUseCase.execute(new DisposableSingleObserver<Boolean>() {
+                    @Override
+                    public void onSuccess(Boolean aBoolean) {
+                        hideLoading();
+                        getView().reloadApps();
+                    }
 
-                @Override
-                public void onError(Throwable e) {
-                    validateErrorToken(e);
-                    hideLoading();
-                    e.printStackTrace();
-                    showError(e);
-                }
-            },AddContadorUseCase.Params.datos(getModel().getId()+""));
+                    @Override
+                    public void onError(Throwable e) {
+                        validateErrorToken(e);
+                        hideLoading();
+                        e.printStackTrace();
+                        showError(e);
+                    }
+                }, AddContadorUseCase.Params.datos(getModel().getId() + ""));
+            }
         }
     }
 
