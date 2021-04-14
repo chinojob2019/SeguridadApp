@@ -64,56 +64,85 @@ private Context context;
 
     @Override
     public void onClickApp(View v) {
-        Snackbar snackbar = Snackbar.make(v,"",Snackbar.LENGTH_LONG);
-        LinearLayout ly = new LinearLayout(context);
-        ly.setOrientation(LinearLayout.VERTICAL);
-        ly.setGravity(Gravity.LEFT);
-        ly.setPadding(0,32,0,32);
 
-        for( int i=0; i<getModel().getDespliegues().size(); i++){
-            TextView bt= new TextView(context);
-            bt.setText(getModel().getDespliegues().get(i).getNombreEmpresa().toUpperCase());
-            bt.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-            bt.setPadding(64,32,64,32);
 
-            bt.setTextColor(Color.BLACK);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                bt.setTypeface(context.getResources().getFont(R.font.roboto_mediun),Typeface.BOLD);
-            }
-            bt.setGravity(Gravity.LEFT);
-            bt.setTag(getModel().getDespliegues().get(i).getUrlEmpresa());
-            bt.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(Intent.ACTION_VIEW);
-                    i.setData(Uri.parse(v.getTag().toString()));
-                    navigator.startActivity(i);
-                    showLoading();
-                    addContadorUseCase.execute(new DisposableSingleObserver<Boolean>() {
-                        @Override
-                        public void onSuccess(Boolean aBoolean) {
-                            hideLoading();
-                            getView().reloadApps();
-                        }
-                        @Override
-                        public void onError(Throwable e) {
-                            validateErrorToken(e);
-                            hideLoading();
-                            e.printStackTrace();
-                            showError(e);
-                        }
-                    },AddContadorUseCase.Params.datos(getModel().getId()+""));
+        if(getModel().getDespliegues().size()>0) {
 
-                    snackbar.dismiss();
+            Snackbar snackbar = Snackbar.make(v, "", Snackbar.LENGTH_LONG);
+            LinearLayout ly = new LinearLayout(context);
+            ly.setOrientation(LinearLayout.VERTICAL);
+            ly.setGravity(Gravity.LEFT);
+            ly.setPadding(0, 32, 0, 32);
+
+            for (int i = 0; i < getModel().getDespliegues().size(); i++) {
+                TextView bt = new TextView(context);
+                bt.setText(getModel().getDespliegues().get(i).getNombreEmpresa().toUpperCase());
+                bt.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+                bt.setPadding(64, 32, 64, 32);
+
+                bt.setTextColor(Color.BLACK);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    bt.setTypeface(context.getResources().getFont(R.font.roboto_mediun), Typeface.BOLD);
                 }
-            });
-            ly.addView(bt);
+                bt.setGravity(Gravity.LEFT);
+                bt.setTag(getModel().getDespliegues().get(i).getUrlEmpresa());
+                bt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(Intent.ACTION_VIEW);
+                        i.setData(Uri.parse(v.getTag().toString()));
+                        navigator.startActivity(i);
+                        showLoading();
+                        addContadorUseCase.execute(new DisposableSingleObserver<Boolean>() {
+                            @Override
+                            public void onSuccess(Boolean aBoolean) {
+                                hideLoading();
+                                getView().reloadApps();
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                validateErrorToken(e);
+                                hideLoading();
+                                e.printStackTrace();
+                                showError(e);
+                            }
+                        }, AddContadorUseCase.Params.datos(getModel().getId() + ""));
+
+                        snackbar.dismiss();
+                    }
+                });
+                ly.addView(bt);
+            }
+            snackbar.getView().setBackgroundColor(Color.WHITE);
+            Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) snackbar.getView();
+            snackbarLayout.setPadding(16, 24, 16, 24);
+            snackbarLayout.addView(ly, 0);
+            snackbar.show();
         }
-        snackbar.getView().setBackgroundColor(Color.WHITE);
-        Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) snackbar.getView();
-        snackbarLayout.setPadding(16,24,16,24);
-        snackbarLayout.addView(ly,0);
-        snackbar.show();
+        else
+        {
+
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(getModel().getUrl()));
+            navigator.startActivity(i);
+            showLoading();
+            addContadorUseCase.execute(new DisposableSingleObserver<Boolean>() {
+                @Override
+                public void onSuccess(Boolean aBoolean) {
+                    hideLoading();
+                    getView().reloadApps();
+                }
+
+                @Override
+                public void onError(Throwable e) {
+                    validateErrorToken(e);
+                    hideLoading();
+                    e.printStackTrace();
+                    showError(e);
+                }
+            },AddContadorUseCase.Params.datos(getModel().getId()+""));
+        }
     }
 
     @Override
