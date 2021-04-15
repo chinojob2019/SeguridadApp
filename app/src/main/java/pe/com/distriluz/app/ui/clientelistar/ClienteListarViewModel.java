@@ -46,7 +46,7 @@ private Context context;
     //  additemsMenu();
         getAllOpciones();
 
-        iniciarFragmentHome();
+
     }
 
 
@@ -59,7 +59,15 @@ private Context context;
                 mapper.mapperOpcionesMenu(model,opciones);
                 additemsMenu();
                 model.notifyChange();
-               // getView().updateAdapter();
+                getView().updateAdapter();
+
+                if(model.getListItemsMenu().size()>0 && model.getListItemsMenu().get(0).type != Constantes.MENU_ITEM_CERRAR_SESSION){
+
+                    onClickItemMenu(model.getListItemsMenu().get(0).type);
+
+                }
+
+                iniciarFragmentHome();
             }
 
             @Override
@@ -68,6 +76,7 @@ private Context context;
                 hideLoading();
                 e.printStackTrace();
                 showError(e);
+                additemsMenu();
             }
         },null);
     }
@@ -76,12 +85,13 @@ private Context context;
     @Override
     public void attachView(ClienteListarMvvm.View mvvmView, @Nullable Bundle savedInstanceState) {
         super.attachView(mvvmView, savedInstanceState);
-        navigator.inflateFragment(R.id.box_fragment, new AppListaFragment(model),null);
+      //  navigator.inflateFragment(R.id.box_fragment, new AppListaFragment(model),null);
         navigator.hideKeyboard();
     }
 
     private void iniciarFragmentHome() {
         getModel().setItemSelectPos(0);
+
     }
 
     private void additemsMenu() {
@@ -152,7 +162,7 @@ private Context context;
                 navigator.inflateFragment(R.id.box_fragment, new PreguntasFragment(),null);
                 break;
             default:
-                Toast.makeText(context,"No se encuentra la vista", Toast.LENGTH_LONG).show();
+                Toast.makeText(context,"No se encuentra vista asociada", Toast.LENGTH_LONG).show();
                 break;
         }
 

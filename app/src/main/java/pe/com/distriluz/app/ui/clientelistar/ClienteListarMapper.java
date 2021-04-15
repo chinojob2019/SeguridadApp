@@ -33,16 +33,36 @@ public class ClienteListarMapper {
             ClienteListarObservableModel.NavigationItems navigationItems = new ClienteListarObservableModel.NavigationItems();
 
 
+
+            switch (item.getImagen())
+            {
+                case "ic_menu_home":
+                    navigationItems.icon = ApplicationContext.getInstance().getResources().getDrawable(R.drawable.ic_menu_home);
+                    break;
+                case "ic_menu_questions":
+                    navigationItems.icon = ApplicationContext.getInstance().getResources().getDrawable(R.drawable.ic_menu_questions);
+                    break;
+                case "ic_menu_servicio":
+                    navigationItems.icon = ApplicationContext.getInstance().getResources().getDrawable(R.drawable.ic_mesa_servicio);
+                    break;
+                default:
+                    navigationItems.icon = ApplicationContext.getInstance().getResources().getDrawable(R.drawable.ic_menu_default);
+                    break;
+
+            }
+
+
+
             switch (item.getVista().getEnsamblado()) {
                 case "AppListaFragment":
-                    navigationItems.icon = ApplicationContext.getInstance().getResources().getDrawable(R.drawable.ic_menu_home);
+                   // navigationItems.icon = ApplicationContext.getInstance().getResources().getDrawable(R.drawable.ic_menu_home);
                     navigationItems.title = item.getVista().getNombre();
                     navigationItems.subtitle = item.getVista().getDescripcion();
                     navigationItems.type = Constantes.MENU_ITEM_LISTA_INICIO;
                     opciones.add(navigationItems);
                     break;
                 case "PreguntasFragment":
-                    navigationItems.icon = ApplicationContext.getInstance().getResources().getDrawable(R.drawable.ic_menu_questions);
+                //    navigationItems.icon = ApplicationContext.getInstance().getResources().getDrawable(R.drawable.ic_menu_questions);
                     navigationItems.title = item.getVista().getNombre();
                     navigationItems.subtitle = item.getVista().getDescripcion();
                     navigationItems.type = Constantes.MENU_ITEM_PREGUNTAS;
@@ -50,7 +70,7 @@ public class ClienteListarMapper {
                     break;
 
                 case "MesaServicio":
-                   navigationItems.icon = ApplicationContext.getInstance().getResources().getDrawable(R.drawable.ic_mesa_servicio);
+                 //  navigationItems.icon = ApplicationContext.getInstance().getResources().getDrawable(R.drawable.ic_mesa_servicio);
                     navigationItems.title = item.getVista().getNombre();
                     navigationItems.subtitle = item.getVista().getDescripcion();
                     navigationItems.type = Constantes.MENU_ITEM_MESA_SERVICIO;
@@ -58,7 +78,7 @@ public class ClienteListarMapper {
                     break;
 
                 default:
-                    navigationItems.icon = ApplicationContext.getInstance().getResources().getDrawable(R.drawable.ic_menu_questions);
+
                     navigationItems.title = item.getVista().getNombre();
                     navigationItems.subtitle = item.getVista().getDescripcion();
                     navigationItems.type = Constantes.MENU_ITEM_NO_DEFINIDO;
