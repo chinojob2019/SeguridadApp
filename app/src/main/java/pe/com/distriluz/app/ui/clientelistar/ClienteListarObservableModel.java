@@ -100,6 +100,10 @@ public class ClienteListarObservableModel extends BaseObservable {
             this.type = type;
         }
 
+        public NavigationItems() {
+
+        }
+
         @Bindable
         public String getTitle() {
             return title;

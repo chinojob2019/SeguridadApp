@@ -11,7 +11,9 @@ public class Constantes {
 
     public static final String HOST_API_SEGURIDAD = BuildConfig.HOST_API_SEGURIDAD;
     public static final String HOST_API_D4 = BuildConfig.HOST_API_D4;
+    public static final String HOST_API_AUTENTICACION = BuildConfig.HOST_API_AUTENTICACION;
     public static final String HOST_API_ACCESO = BuildConfig.HOST_API_ACCESO;
+
     public static final String X_APPCODE = BuildConfig.X_APPCODE;
     public static final String X_APPKEY = BuildConfig.X_APPKEY;
     public static final String ERROR_CONEXION_INTERNET = "El Servidor no responde o no se encuentra disponible";

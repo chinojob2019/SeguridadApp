@@ -11,12 +11,18 @@ import dagger.Provides;
 import pe.com.distriluz.app.UIThread;
 import pe.com.distriluz.app.injection.qualifier.AppContext;
 import pe.com.distriluz.data.executor.JobExecutor;
+import pe.com.distriluz.data.net.acceso.AccesoRestApiImpl;
 import pe.com.distriluz.data.net.apps.AppsRestApiImpl;
 import pe.com.distriluz.data.net.auth.AuthRestApiImpl;
 import pe.com.distriluz.data.net.auth.ChangePasswordRestApiImpl;
+import pe.com.distriluz.data.repository.AccesoDataRepository;
 import pe.com.distriluz.data.repository.AppsDataRepository;
 import pe.com.distriluz.data.repository.AuthDataRepository;
 import pe.com.distriluz.data.repository.ChangePasswordDataRepository;
+import pe.com.distriluz.data.repository.datasource.acceso.AccesoCloudDataStore;
+import pe.com.distriluz.data.repository.datasource.acceso.AccesoDBDataStore;
+import pe.com.distriluz.data.repository.datasource.acceso.AccesoDataMapper;
+import pe.com.distriluz.data.repository.datasource.acceso.AccesoDataStoreFactory;
 import pe.com.distriluz.data.repository.datasource.apps.AppsCloudDataStore;
 import pe.com.distriluz.data.repository.datasource.apps.AppsDBDataStore;
 import pe.com.distriluz.data.repository.datasource.apps.AppsDataMapper;
@@ -31,6 +37,7 @@ import pe.com.distriluz.data.repository.datasource.changepassword.ChangePassword
 import pe.com.distriluz.data.repository.datasource.changepassword.ChangePasswordDataStoreFactory;
 import pe.com.distriluz.domain.executor.PostExecutionThread;
 import pe.com.distriluz.domain.executor.ThreadExecutor;
+import pe.com.distriluz.domain.repository.AccesoRepository;
 import pe.com.distriluz.domain.repository.AppsRepository;
 import pe.com.distriluz.domain.repository.AuthRepository;
 import pe.com.distriluz.domain.repository.ChangePasswordRepository;
@@ -189,5 +196,46 @@ public class AppModule {
     AppsDataStoreFactory provideAppsDataStoreFactory(AppsDBDataStore dBDataStore, AppsCloudDataStore cloudDataStore){
         return new AppsDataStoreFactory(dBDataStore, cloudDataStore);
     }
+
+
+    /**Modulo Acceso**/
+    @Provides
+    @Singleton
+    AccesoRepository provideAccesoRepository(AccesoDataRepository dataRepository) {
+        return dataRepository;
+    }
+    @Provides
+    @Singleton
+    AccesoDBDataStore provideAccesoDBDataStore(AccesoDataMapper mapper){
+        return new AccesoDBDataStore(mapper);
+    }
+    @Provides
+    @Singleton
+    AccesoDataMapper provideAccesoDataMapper(){
+        return new AccesoDataMapper();
+    }
+    @Provides
+    @Singleton
+    AccesoCloudDataStore provideAccesoCloudDataStore(AccesoRestApiImpl restApi, AccesoDataMapper mapper){
+        return new AccesoCloudDataStore(restApi,mapper);
+    }
+    @Provides
+    @Singleton
+    AccesoRestApiImpl provideAccesoRestApiImpl(){
+        return new AccesoRestApiImpl(mApp);
+    }
+    @Provides
+    @Singleton
+    AccesoDataRepository provideAccesoDataRepository(AccesoDataStoreFactory factory, AccesoDataMapper mapper){
+        return new AccesoDataRepository(factory,mapper);
+    }
+    @Provides
+    @Singleton
+    AccesoDataStoreFactory provideAccesoDataStoreFactory(AccesoDBDataStore dBDataStore, AccesoCloudDataStore cloudDataStore){
+        return new AccesoDataStoreFactory(dBDataStore, cloudDataStore);
+    }
+
+
+
 
 }

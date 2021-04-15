@@ -8,12 +8,18 @@ import javax.inject.Singleton;
 import dagger.Component;
 import pe.com.distriluz.app.injection.modules.AppModule;
 import pe.com.distriluz.app.injection.qualifier.AppContext;
+import pe.com.distriluz.data.net.acceso.AccesoRestApiImpl;
 import pe.com.distriluz.data.net.apps.AppsRestApiImpl;
 import pe.com.distriluz.data.net.auth.AuthRestApiImpl;
 import pe.com.distriluz.data.net.auth.ChangePasswordRestApiImpl;
+import pe.com.distriluz.data.repository.AccesoDataRepository;
 import pe.com.distriluz.data.repository.AppsDataRepository;
 import pe.com.distriluz.data.repository.AuthDataRepository;
 import pe.com.distriluz.data.repository.ChangePasswordDataRepository;
+import pe.com.distriluz.data.repository.datasource.acceso.AccesoCloudDataStore;
+import pe.com.distriluz.data.repository.datasource.acceso.AccesoDBDataStore;
+import pe.com.distriluz.data.repository.datasource.acceso.AccesoDataMapper;
+import pe.com.distriluz.data.repository.datasource.acceso.AccesoDataStoreFactory;
 import pe.com.distriluz.data.repository.datasource.apps.AppsCloudDataStore;
 import pe.com.distriluz.data.repository.datasource.apps.AppsDBDataStore;
 import pe.com.distriluz.data.repository.datasource.apps.AppsDataMapper;
@@ -28,6 +34,7 @@ import pe.com.distriluz.data.repository.datasource.changepassword.ChangePassword
 import pe.com.distriluz.data.repository.datasource.changepassword.ChangePasswordDataStoreFactory;
 import pe.com.distriluz.domain.executor.PostExecutionThread;
 import pe.com.distriluz.domain.executor.ThreadExecutor;
+import pe.com.distriluz.domain.repository.AccesoRepository;
 import pe.com.distriluz.domain.repository.AppsRepository;
 import pe.com.distriluz.domain.repository.AuthRepository;
 import pe.com.distriluz.domain.repository.ChangePasswordRepository;
@@ -73,4 +80,14 @@ public interface AppComponent {
     AppsRestApiImpl appsRestApi();
     AppsDataRepository appsDataRepository();
     AppsDataStoreFactory appsDataStoreFactory();
+
+
+    /**Modulo Acceso**/
+    AccesoRepository accesoRepository();
+    AccesoDBDataStore accesoDbDataStore();
+    AccesoDataMapper accesoDataMapper();
+    AccesoCloudDataStore accesoCloudDataStore();
+    AccesoRestApiImpl accesoRestApi();
+    AccesoDataRepository accesoDataRepository();
+    AccesoDataStoreFactory accesoDataStoreFactory();
 }

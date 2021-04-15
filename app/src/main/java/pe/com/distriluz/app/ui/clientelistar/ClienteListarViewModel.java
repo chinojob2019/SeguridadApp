@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -15,26 +16,62 @@ import pe.com.distriluz.app.R;
 import pe.com.distriluz.app.injection.qualifier.AppContext;
 import pe.com.distriluz.app.injection.scopes.PerActivity;
 import pe.com.distriluz.app.ui.appslista.AppListaFragment;
+import pe.com.distriluz.app.ui.appslista.AppsListaMapper;
 import pe.com.distriluz.app.ui.base.navigator.Navigator;
 import pe.com.distriluz.app.ui.base.viewmodel.BaseActivityViewModel;
 import pe.com.distriluz.app.ui.preguntas.PreguntasFragment;
 import pe.com.distriluz.app.ui.profile.ProfileFragment;
 import pe.com.distriluz.app.utils.Constantes;
+import pe.com.distriluz.domain.interactor.GetAppsUseCase;
+import pe.com.distriluz.domain.interactor.GetMenuUseCase;
+import pe.com.distriluz.domain.interactor.baseinteractors.DefaultObserverSingle;
+import pe.com.distriluz.domain.model.Apps;
+import pe.com.distriluz.domain.model.OpcionesMenu;
 
 @PerActivity
 public class ClienteListarViewModel extends BaseActivityViewModel<ClienteListarMvvm.View> implements ClienteListarMvvm.ViewModel {
     private final Resources resources;
+    private GetMenuUseCase getMenuUseCase;
+    private ClienteListarMapper mapper;
     private ClienteListarObservableModel model = new ClienteListarObservableModel();
 private Context context;
     // TODO falta crear obserbale string
     @Inject
-    public ClienteListarViewModel(@AppContext Context appContext, Navigator navigator, Resources resources) {
+    public ClienteListarViewModel(@AppContext Context appContext, Navigator navigator, Resources resources, GetMenuUseCase getMenuUseCase, ClienteListarMapper mapper) {
         super(appContext, navigator);
         this.resources = resources;
         this.context=appContext;
-        additemsMenu();
+        this.getMenuUseCase = getMenuUseCase;
+        this.mapper = mapper;
+    //  additemsMenu();
+        getAllOpciones();
+
         iniciarFragmentHome();
     }
+
+
+    public void getAllOpciones() {
+        showLoading();
+        getMenuUseCase.execute(new DefaultObserverSingle<OpcionesMenu>(){
+            @Override
+            public void onSuccess(OpcionesMenu opciones) {
+                hideLoading();
+                mapper.mapperOpcionesMenu(model,opciones);
+                additemsMenu();
+                model.notifyChange();
+               // getView().updateAdapter();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                validateErrorToken(e);
+                hideLoading();
+                e.printStackTrace();
+                showError(e);
+            }
+        },null);
+    }
+
 
     @Override
     public void attachView(ClienteListarMvvm.View mvvmView, @Nullable Bundle savedInstanceState) {
@@ -48,6 +85,7 @@ private Context context;
     }
 
     private void additemsMenu() {
+        /*
         model.getListItemsMenu().add(
                 new ClienteListarObservableModel.NavigationItems(
                         "Inicio",
@@ -65,7 +103,7 @@ private Context context;
                         "Mesa de servicio",
                         "Descripción corta para este item",
                         resources.getDrawable(R.drawable.ic_mesa_servicio),
-                        Constantes.MENU_ITEM_MESA_SERVICIO));
+                        Constantes.MENU_ITEM_MESA_SERVICIO));*/
         model.getListItemsMenu().add(
                 new ClienteListarObservableModel.NavigationItems(
                         "Cerrar sesión",
@@ -113,7 +151,9 @@ private Context context;
                 navigator.closeDrawer();
                 navigator.inflateFragment(R.id.box_fragment, new PreguntasFragment(),null);
                 break;
-            default:break;
+            default:
+                Toast.makeText(context,"No se encuentra la vista", Toast.LENGTH_LONG).show();
+                break;
         }
 
     }

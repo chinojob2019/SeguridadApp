@@ -29,4 +29,6 @@ public interface ChangePasswordRestApi {
 
     @GET("/api/users/{idUser}")
     Observable<Response<DetailUserResponse2>> getDetail(@Path("idUser") int idUser);
+
+
 }
