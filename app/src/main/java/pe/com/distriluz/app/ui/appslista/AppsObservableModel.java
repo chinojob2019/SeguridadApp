@@ -7,6 +7,10 @@ import androidx.databinding.ObservableArrayList;
 import androidx.databinding.ObservableField;
 import androidx.databinding.ObservableList;
 
+import java.util.List;
+
+import pe.com.distriluz.domain.model.App;
+
 /**
  * Created by pedro.zevallos on 9/07/2017.
  */
@@ -107,6 +111,17 @@ public class AppsObservableModel extends BaseObservable {
         private int id;
         private String browserDefault;
         private String key;
+        private List<DesplieguesApp> despliegues;
+
+
+        public void setDespliegues(List<DesplieguesApp> despliegues){
+            this.despliegues = despliegues;
+            notifyPropertyChanged(pe.com.distriluz.app.BR.despliegues);
+        }
+        @Bindable
+        public List<DesplieguesApp> getDespliegues(){
+            return despliegues;
+        }
 
         @Bindable
         public String getDescripcion() {
@@ -313,6 +328,35 @@ public class AppsObservableModel extends BaseObservable {
         public void setKey(String key) {
             this.key = key;
             notifyPropertyChanged(pe.com.distriluz.app.BR.key);
+        }
+
+    }
+    public static class DesplieguesApp{
+
+
+        private String urlEmpresa;
+
+        private String nombreEmpresa;
+
+        public DesplieguesApp(String urlEmpresa, String nombreEmpresa) {
+            this.urlEmpresa = urlEmpresa;
+            this.nombreEmpresa = nombreEmpresa;
+        }
+
+        public void setUrlEmpresa(String urlEmpresa){
+            this.urlEmpresa = urlEmpresa;
+        }
+
+        public String getUrlEmpresa(){
+            return urlEmpresa;
+        }
+
+        public void setNombreEmpresa(String nombreEmpresa){
+            this.nombreEmpresa = nombreEmpresa;
+        }
+
+        public String getNombreEmpresa(){
+            return nombreEmpresa;
         }
 
     }

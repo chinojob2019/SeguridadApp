@@ -51,6 +51,7 @@ public class AppsDataMapper {
 
     private App mapper(AppsResponse.Appitem item) {
         App result= new App();
+        List<App.DesplieguesItem> listaDespliegue = new ArrayList<>();
         result.setDescripcion(item.getDescripcion());
         result.setTipo("");
         result.setCode(item.getCode());
@@ -71,6 +72,12 @@ public class AppsDataMapper {
         result.setId(item.getId());
         result.setBrowserDefault("");
         result.setKey(item.getKey());
+
+        for(AppsResponse.DesplieguesItem itemDespliegue : item.getDespliegues()){
+            listaDespliegue.add(mapperDespliegue(itemDespliegue));
+        }
+        result.setDespliegues(listaDespliegue);
+
         return result;
     }
 
@@ -81,6 +88,12 @@ public class AppsDataMapper {
         }
         return result;
     }
+
+
+    public App.DesplieguesItem mapperDespliegue(AppsResponse.DesplieguesItem itemDes){
+        return new App.DesplieguesItem(itemDes.getUrlEmpresa(), itemDes.getNombreEmpresa());
+    }
+
 
     private Preguntasfrecuentes mapper(PreguntasResponse.PreguntasfrecuentesItem item) {
         return new Preguntasfrecuentes(item.getOrden(), item.getRespuesta(), item.getPregunta());

@@ -102,7 +102,7 @@ public class BaseNet extends BaseRestApiImpl {
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constantes.HOST_API_ACCESO)
+                .baseUrl(Constantes.HOST_API_AUTENTICACION)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(client)
@@ -140,7 +140,7 @@ public class BaseNet extends BaseRestApiImpl {
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constantes.HOST_API_ACCESO)
+                .baseUrl(Constantes.HOST_API_AUTENTICACION)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(client)

@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 @Generated("com.robohorse.robopojogenerator")
 public class PreguntasResponse{
 
-	@SerializedName("preguntasfrecuentes")
+	@SerializedName("preguntasFrecuentes")
 	private List<PreguntasfrecuentesItem> preguntasfrecuentes;
 
 	public void setPreguntasfrecuentes(List<PreguntasfrecuentesItem> preguntasfrecuentes){

@@ -4,9 +4,13 @@ package pe.com.distriluz.app.ui.appslista;
 import androidx.databinding.ObservableArrayList;
 import androidx.databinding.ObservableList;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import pe.com.distriluz.data.net.apps.model.AppsResponse;
 import pe.com.distriluz.domain.model.App;
 import pe.com.distriluz.domain.model.Apps;
 
@@ -68,6 +72,17 @@ public class AppsListaMapper {
         result.setId(item.getId());
         result.setBrowserDefault(item.getBrowserDefault());
         result.setKey(item.getKey());
+        List<AppsObservableModel.DesplieguesApp> listaDespliegue = new ArrayList<>();
+        for(App.DesplieguesItem itemDespliegue : item.getDespliegues()){
+            listaDespliegue.add(mapperDespliegue(itemDespliegue));
+        }
+        result.setDespliegues(listaDespliegue);
+
         return result;
     }
+
+    public AppsObservableModel.DesplieguesApp mapperDespliegue(App.DesplieguesItem itemDes){
+        return new AppsObservableModel.DesplieguesApp(itemDes.getUrlEmpresa(), itemDes.getNombreEmpresa());
+    }
+
 }

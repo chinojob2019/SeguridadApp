@@ -117,6 +117,7 @@ public class ClienteListarActivity extends BaseActivity<ClienteListaActivityBind
 
     @Override
     public void updateAdapter(){
+       // adapter.setData(viewModel.getModel());
         adapter.notifyDataSetChanged();
     }
 }

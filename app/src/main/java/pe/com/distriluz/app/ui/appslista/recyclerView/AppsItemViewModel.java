@@ -4,13 +4,24 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.ColorFilter;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import javax.inject.Inject;
 
@@ -35,12 +46,13 @@ public class AppsItemViewModel extends BaseViewHolderViewModel<AppsItemMvvm.View
     private AppsObservableModel.AppObservable app;
     private SetDestacadoUseCase setDestacadoUseCase;
     private AlertLoadingDialog dialog;
-
+private Context context;
     @Inject
     public AppsItemViewModel(@AppContext Context context, Navigator navigator, SetDestacadoUseCase setDestacadoUseCase, AddContadorUseCase addContadorUseCase) {
         super(context, navigator);
         this.setDestacadoUseCase = setDestacadoUseCase;
         this.addContadorUseCase = addContadorUseCase;
+        this.context=context;
     }
 
     @Override
@@ -52,25 +64,98 @@ public class AppsItemViewModel extends BaseViewHolderViewModel<AppsItemMvvm.View
 
     @Override
     public void onClickApp(View v) {
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse(getModel().getUrl()));
-        navigator.startActivity(i);
-        showLoading();
-        addContadorUseCase.execute(new DisposableSingleObserver<Boolean>() {
-            @Override
-            public void onSuccess(Boolean aBoolean) {
-                hideLoading();
-                getView().reloadApps();
-            }
 
-            @Override
-            public void onError(Throwable e) {
-                validateErrorToken(e);
-                hideLoading();
-                e.printStackTrace();
-                showError(e);
+
+        if(getModel().getDespliegues().size()>0) {
+
+            Snackbar snackbar = Snackbar.make(v, "", Snackbar.LENGTH_LONG);
+            LinearLayout ly = new LinearLayout(context);
+            ly.setOrientation(LinearLayout.VERTICAL);
+            ly.setGravity(Gravity.LEFT);
+            ly.setPadding(0, 32, 0, 32);
+
+            for (int i = 0; i < getModel().getDespliegues().size(); i++) {
+                TextView bt = new TextView(context);
+                bt.setText(getModel().getDespliegues().get(i).getNombreEmpresa().toUpperCase());
+                bt.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+                bt.setPadding(64, 32, 64, 32);
+
+                bt.setTextColor(Color.BLACK);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    bt.setTypeface(context.getResources().getFont(R.font.roboto_mediun), Typeface.BOLD);
+                }
+                bt.setGravity(Gravity.LEFT);
+                bt.setTag(getModel().getDespliegues().get(i).getUrlEmpresa());
+                bt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+
+                        if(v.getTag()==null || v.getTag().toString().trim().equals("")){
+                            Toast.makeText(context,context.getString(R.string.lista_apps_url_noconfigurada), Toast.LENGTH_LONG).show();
+                        }
+                        else {
+                            Intent i = new Intent(Intent.ACTION_VIEW);
+                            i.setData(Uri.parse(v.getTag().toString()));
+                            navigator.startActivity(i);
+                            showLoading();
+                            addContadorUseCase.execute(new DisposableSingleObserver<Boolean>() {
+                                @Override
+                                public void onSuccess(Boolean aBoolean) {
+                                    hideLoading();
+                                    getView().reloadApps();
+                                }
+
+                                @Override
+                                public void onError(Throwable e) {
+                                    validateErrorToken(e);
+                                    hideLoading();
+                                    e.printStackTrace();
+                                    showError(e);
+                                }
+                            }, AddContadorUseCase.Params.datos(getModel().getId() + ""));
+
+                            snackbar.dismiss();
+
+                        }
+                    }
+                });
+                ly.addView(bt);
             }
-        },AddContadorUseCase.Params.datos(getModel().getId()+""));
+            snackbar.getView().setBackgroundColor(Color.WHITE);
+            Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) snackbar.getView();
+            snackbarLayout.setPadding(16, 24, 16, 24);
+            snackbarLayout.addView(ly, 0);
+            snackbar.show();
+        }
+        else
+        {
+
+            if(getModel().getUrl()==null || getModel().getUrl().equals("")){
+                Toast.makeText(context, context.getString(R.string.lista_apps_url_noconfigurada), Toast.LENGTH_LONG).show();
+            }
+            else {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(getModel().getUrl()));
+                navigator.startActivity(i);
+                showLoading();
+                addContadorUseCase.execute(new DisposableSingleObserver<Boolean>() {
+                    @Override
+                    public void onSuccess(Boolean aBoolean) {
+                        hideLoading();
+                        getView().reloadApps();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        validateErrorToken(e);
+                        hideLoading();
+                        e.printStackTrace();
+                        showError(e);
+                    }
+                }, AddContadorUseCase.Params.datos(getModel().getId() + ""));
+            }
+        }
     }
 
     @Override

@@ -23,6 +23,7 @@ import pe.com.distriluz.app.ui.okrestorepass.OkRestorePassActivity;
 import pe.com.distriluz.app.ui.restorepassword.RestorePasswordActivity;
 import pe.com.distriluz.app.ui.validatecode.ValidateCodeActivity;
 import pe.com.distriluz.domain.interactor.ChangePasswordUseCase;
+import pe.com.distriluz.domain.interactor.GetMenuUseCase;
 import pe.com.distriluz.domain.interactor.LoginUseCase;
 
 
@@ -53,6 +54,7 @@ public interface ActivityComponent extends AppComponent {
     //UseCase
     LoginUseCase loginUseCase();
     ChangePasswordUseCase changePassword();
+    GetMenuUseCase getMenu();
 
     void inject(CodeConfirmActivity codeConfirmActivity);
 
