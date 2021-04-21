@@ -81,9 +81,9 @@ public class AppsDataMapper {
         return result;
     }
 
-    public List<Preguntasfrecuentes> mapperQuestions(List<PreguntasResponse.PreguntasfrecuentesItem> items) {
+    public List<Preguntasfrecuentes> mapperQuestions(PreguntasResponse items) {
         List<Preguntasfrecuentes> result = new ArrayList<>();
-        for(PreguntasResponse.PreguntasfrecuentesItem item : items){
+        for(PreguntasResponse.PreguntasFrecuentesItem item : items.getPreguntasFrecuentes()){
             result.add(mapper(item));
         }
         return result;
@@ -95,7 +95,18 @@ public class AppsDataMapper {
     }
 
 
-    private Preguntasfrecuentes mapper(PreguntasResponse.PreguntasfrecuentesItem item) {
-        return new Preguntasfrecuentes(item.getOrden(), item.getRespuesta(), item.getPregunta());
+    private Preguntasfrecuentes mapper(PreguntasResponse.PreguntasFrecuentesItem item) {
+        List<Preguntasfrecuentes.RespuestasItem> respuestas = new ArrayList<>();
+        for(PreguntasResponse.RespuestasItem resp : item.getRespuestas()){
+            Preguntasfrecuentes.RespuestasItem itemRespuesta = new Preguntasfrecuentes.RespuestasItem();
+            itemRespuesta.setIdEstado(resp.getIdEstado());
+            itemRespuesta.setIdRespuesta(resp.getIdRespuesta());
+            itemRespuesta.setOrden(resp.getOrden());
+            itemRespuesta.setRespuesta(resp.getRespuesta());
+        respuestas.add(itemRespuesta);
+        }
+
+
+        return new Preguntasfrecuentes(item.getIdEstado(), respuestas,item.getOrden(),item.getIdPregunta(), item.getPregunta());
     }
 }
