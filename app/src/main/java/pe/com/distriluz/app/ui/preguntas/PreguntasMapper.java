@@ -2,6 +2,8 @@ package pe.com.distriluz.app.ui.preguntas;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -21,6 +23,18 @@ public class PreguntasMapper {
     }
 
     public void mapperPreguntas(PreguntasObservableModel model, List<Preguntasfrecuentes> items) {
+
+        Collections.sort(items, new Comparator<Preguntasfrecuentes>() {
+            @Override
+            public int compare(Preguntasfrecuentes p1, Preguntasfrecuentes p2) {
+                // Aqui esta el truco, ahora comparamos p2 con p1 y no al reves como antes
+                return new Integer(p1.getOrden()).compareTo(new Integer(p2.getOrden()));
+            }
+        });
+
+
+
+
         for (Preguntasfrecuentes item : items) {
             model.getPreguntas().add(mapper(item));
         }
@@ -35,7 +49,20 @@ public class PreguntasMapper {
         result.setIdPregunta(item.getIdPregunta());
 
         List<PreguntasObservableModel.PreguntasfrecuentesObservable.RespuestasItem> respuestas = new ArrayList<>();
-        for (Preguntasfrecuentes.RespuestasItem resp : item.getRespuestas()) {
+
+        List<Preguntasfrecuentes.RespuestasItem> respuestasItemList = new ArrayList<>();
+        respuestasItemList.addAll(item.getRespuestas());
+
+        Collections.sort(respuestasItemList, new Comparator<Preguntasfrecuentes.RespuestasItem>() {
+            @Override
+            public int compare(Preguntasfrecuentes.RespuestasItem p1, Preguntasfrecuentes.RespuestasItem p2) {
+                // Aqui esta el truco, ahora comparamos p2 con p1 y no al reves como antes
+                return new Integer(p1.getOrden()).compareTo(new Integer(p2.getOrden()));
+            }
+        });
+
+        
+        for (Preguntasfrecuentes.RespuestasItem resp : respuestasItemList) {
             PreguntasObservableModel.PreguntasfrecuentesObservable.RespuestasItem itemRespuesta = new PreguntasObservableModel.PreguntasfrecuentesObservable.RespuestasItem();
             itemRespuesta.setIdEstado(resp.getIdEstado());
             itemRespuesta.setIdRespuesta(resp.getIdRespuesta());

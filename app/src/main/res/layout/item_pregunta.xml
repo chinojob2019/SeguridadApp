@@ -36,6 +36,7 @@
                 android:layout_marginEnd="6dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                android:src="@{vm.model.idEstado==0 ? @drawable/ic_estado_rojo : @drawable/ic_estado_verde}"
                 app:srcCompat="@drawable/ic_estado_verde">
 
             </ImageView>
