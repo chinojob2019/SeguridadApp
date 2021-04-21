@@ -15,5 +15,5 @@ public interface AppsDataStore {
     Single<Apps> getApps();
     Single<Boolean> setDestacado(String idApp, String value);
     Single<Boolean> addContador(String idApp);
-    Single<List<PreguntasResponse.PreguntasfrecuentesItem>> getPreguntasFrecuentes();
+    Single<PreguntasResponse> getPreguntasFrecuentes();
 }

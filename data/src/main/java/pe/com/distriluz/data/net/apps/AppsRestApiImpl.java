@@ -151,7 +151,7 @@ public class AppsRestApiImpl extends BaseRestApiImpl {
     }
 
 
-    public Single<List<PreguntasResponse.PreguntasfrecuentesItem>> getPreguntasFrecuentes() {
+    public Single<PreguntasResponse> getPreguntasFrecuentes() {
         return Single.create(emitter -> {
             if (isThereInternetConnection()) {
                 CompositeDisposable disposable = new CompositeDisposable();
@@ -160,7 +160,7 @@ public class AppsRestApiImpl extends BaseRestApiImpl {
                         serverResponse -> {
                             if (serverResponse != null) {
                                 if(serverResponse.isSuccessful() && serverResponse.body() != null){
-                                    emitter.onSuccess(serverResponse.body().getPreguntasfrecuentes());
+                                    emitter.onSuccess(serverResponse.body());
                                 }else{
                                     ErrorResponse response =new Gson().fromJson(serverResponse.errorBody().charStream(), ErrorResponse.class);
                                     int code = serverResponse.code();

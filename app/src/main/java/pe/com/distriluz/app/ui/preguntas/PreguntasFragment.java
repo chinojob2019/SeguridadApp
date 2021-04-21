@@ -41,7 +41,7 @@ public class PreguntasFragment extends BaseFragment<FragmentPreguntasBinding, Pr
     }
 
     private void configRecycler() {
-        adapter.setData(viewModel.getModel());
+        adapter.setData(viewModel.getModel(),getContext());
         binding.rvRecycler.setHasFixedSize(true);
         binding.rvRecycler.setLayoutManager(new GridLayoutManager(getBaseActivity(),1));
         binding.rvRecycler.setAdapter(adapter);

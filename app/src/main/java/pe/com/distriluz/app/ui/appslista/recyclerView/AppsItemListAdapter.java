@@ -41,6 +41,7 @@ public class AppsItemListAdapter extends RecyclerView.Adapter<AppsListViewHolder
                 }
             }
         });
+
     }
 
 

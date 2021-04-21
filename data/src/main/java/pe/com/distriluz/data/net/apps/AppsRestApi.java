@@ -1,6 +1,8 @@
 package pe.com.distriluz.data.net.apps;
 
 
+import java.util.List;
+
 import io.reactivex.Observable;
 import pe.com.distriluz.data.net.apps.model.AppsResponse;
 import pe.com.distriluz.data.net.apps.model.PreguntasResponse;
@@ -25,6 +27,13 @@ public interface AppsRestApi {
 
     @GET("preguntasfrecuentes")
     Observable<Response<PreguntasResponse>> getPreguntasFrecuentes();
+
+
+
+
+
+
+
 
 
 }

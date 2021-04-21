@@ -37,7 +37,10 @@ public class AppsDBDataStore implements AppsDataStore {
     }
 
     @Override
-    public Single<List<PreguntasResponse.PreguntasfrecuentesItem>> getPreguntasFrecuentes() {
+    public Single<PreguntasResponse> getPreguntasFrecuentes() {
+        return Utils.defaultErrorBDSingle();
+
+        /*
         return Single.create(emmiter -> {
             List<PreguntasResponse.PreguntasfrecuentesItem> result = new ArrayList<>();
             result.add(new PreguntasResponse.PreguntasfrecuentesItem(1,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras laoreet viverra massa dignissim porta. Nullam vel euismod ligula. Morbi sit amet tempus lorem, ac pulvinar est. Sed et nisl risus. Morbi ac sapien non nisl porttitor pharetra at eu libero. In magna dui, volutpat vitae mi ut, aliquet euismod risus. Sed pretium leo sit amet erat pharetra, sit amet vulputate tortor ultricies. Quisque sed congue mauris. Aenean euismod justo sit amet ligula lacinia porta. Mauris tortor ligula, tristique at condimentum ut, consectetur ac lorem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras consectetur, erat id fermentum feugiat, ligula elit semper nisi, quis dictum odio eros convallis nunc. Morbi magna metus, congue non ultricies nec, pretium id dui. Vestibulum ullamcorper, massa nec convallis sagittis, mi quam consequat est, vel pretium turpis dolor eget ligula.","Pregunta 01"));
@@ -52,5 +55,8 @@ public class AppsDBDataStore implements AppsDataStore {
             result.add(new PreguntasResponse.PreguntasfrecuentesItem(3,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras laoreet viverra massa dignissim porta. Nullam vel euismod ligula. Morbi sit amet tempus lorem, ac pulvinar est. Sed et nisl risus. Morbi ac sapien non nisl porttitor pharetra at eu libero. In magna dui, volutpat vitae mi ut, aliquet euismod risus. Sed pretium leo sit amet erat pharetra, sit amet vulputate tortor ultricies. Quisque sed congue mauris. Aenean euismod justo sit amet ligula lacinia porta. Mauris tortor ligula, tristique at condimentum ut, consectetur ac lorem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras consectetur, erat id fermentum feugiat, ligula elit semper nisi, quis dictum odio eros convallis nunc. Morbi magna metus, congue non ultricies nec, pretium id dui. Vestibulum ullamcorper, massa nec convallis sagittis, mi quam consequat est, vel pretium turpis dolor eget ligula.","Pregunta 10"));
             emmiter.onSuccess(result);
         });
+
+       */
+
     }
 }

@@ -17,6 +17,7 @@ public class AppsListViewHolder extends BaseViewHolder<ItemListAppBinding, AppsI
         viewHolderComponent().inject(this);
         bindContentView(v);
         this.viewModel = viewModel;
+
     }
 
     @Override

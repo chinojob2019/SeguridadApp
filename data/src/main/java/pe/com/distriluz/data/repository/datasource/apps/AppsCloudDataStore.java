@@ -34,7 +34,7 @@ public class AppsCloudDataStore implements AppsDataStore {
     }
 
     @Override
-    public Single<List<PreguntasResponse.PreguntasfrecuentesItem>> getPreguntasFrecuentes() {
+    public Single<PreguntasResponse> getPreguntasFrecuentes() {
         return restApi.getPreguntasFrecuentes();
     }
 }
