@@ -9,6 +9,7 @@ import pe.com.distriluz.app.ui.appslista.recyclerView.AppsListViewHolder;
 import pe.com.distriluz.app.ui.appslista.recyclerView.AppsViewHolder;
 import pe.com.distriluz.app.ui.clientelistar.navigatoritems.NavigatorItemViewHolder;
 import pe.com.distriluz.app.ui.preguntas.recyclerview.PreguntaItemViewHolder;
+import pe.com.distriluz.app.ui.preguntaslectura.recyclerview.PreguntaLecturaItemViewHolder;
 
 
 @PerViewHolder
@@ -21,6 +22,8 @@ public interface ViewHolderComponent {
     void inject(AppsListViewHolder appsListViewHolder);
 
     void inject(PreguntaItemViewHolder preguntaItemViewHolder);
+
+    void inject(PreguntaLecturaItemViewHolder preguntaLecturaItemViewHolder);
 
 
     // create inject methods for your ViewHolders here

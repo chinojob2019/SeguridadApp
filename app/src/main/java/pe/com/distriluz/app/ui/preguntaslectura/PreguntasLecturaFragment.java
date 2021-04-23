@@ -1,6 +1,5 @@
-package pe.com.distriluz.app.ui.preguntas;
+package pe.com.distriluz.app.ui.preguntaslectura;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,15 +13,16 @@ import javax.inject.Inject;
 
 import pe.com.distriluz.app.R;
 import pe.com.distriluz.app.databinding.FragmentPreguntasBinding;
+import pe.com.distriluz.app.databinding.FragmentPreguntasLecturaBinding;
 import pe.com.distriluz.app.ui.base.BaseFragment;
-import pe.com.distriluz.app.ui.clientelistar.ClienteListarObservableModel;
-import pe.com.distriluz.app.ui.preguntas.recyclerview.PreguntaItemAdapter;
 
-public class PreguntasFragment extends BaseFragment<FragmentPreguntasBinding, PreguntasMvvm.ViewModel>
-        implements PreguntasMvvm.View {
+import pe.com.distriluz.app.ui.preguntaslectura.recyclerview.PreguntaLecturaItemAdapter;
+
+public class PreguntasLecturaFragment extends BaseFragment<FragmentPreguntasLecturaBinding, PreguntasLecturaMvvm.ViewModel>
+        implements PreguntasLecturaMvvm.View {
 
     @Inject
-    PreguntaItemAdapter adapter;
+    PreguntaLecturaItemAdapter adapter;
 
 
     @Override
@@ -34,7 +34,7 @@ public class PreguntasFragment extends BaseFragment<FragmentPreguntasBinding, Pr
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return setAndBindContentView(inflater, container, savedInstanceState, R.layout.fragment_preguntas);
+        return setAndBindContentView(inflater, container, savedInstanceState, R.layout.fragment_preguntas_lectura);
     }
 
     @Override
@@ -50,11 +50,5 @@ public class PreguntasFragment extends BaseFragment<FragmentPreguntasBinding, Pr
         binding.rvRecycler.setLayoutManager(new GridLayoutManager(getBaseActivity(),1));
         binding.rvRecycler.setAdapter(adapter);
         binding.rvRecycler.setItemAnimator(new DefaultItemAnimator());
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        viewModel.onActivityResult(requestCode, resultCode, data);
     }
 }

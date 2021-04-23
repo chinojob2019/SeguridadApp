@@ -10,6 +10,9 @@ import pe.com.distriluz.app.injection.scopes.PerFragment;
 import pe.com.distriluz.app.ui.appslista.AppListaFragment;
 import pe.com.distriluz.app.ui.preguntas.PreguntasFragment;
 import pe.com.distriluz.app.ui.preguntas.PreguntasMapper;
+
+import pe.com.distriluz.app.ui.preguntaslectura.PreguntasLecturaFragment;
+import pe.com.distriluz.app.ui.preguntaslectura.PreguntasLecturaMapper;
 import pe.com.distriluz.app.ui.profile.ProfileFragment;
 import pe.com.distriluz.app.ui.profile.ProfileMapper;
 
@@ -24,9 +27,14 @@ public interface FragmentComponent {
 
     void inject(PreguntasFragment preguntasFragment);
 
+    void inject(PreguntasLecturaFragment preguntasLecturaFragment);
+
     void inject(ProfileFragment profileFragment);
+
 
     ProfileMapper profileMapper();
 
     PreguntasMapper preguntasMapper();
+
+    PreguntasLecturaMapper preguntasLecturaMapper();
 }

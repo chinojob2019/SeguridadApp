@@ -20,10 +20,12 @@ import pe.com.distriluz.app.ui.codeconfirm.CodeConfirmMapper;
 import pe.com.distriluz.app.ui.login.LoginMapper;
 import pe.com.distriluz.domain.executor.PostExecutionThread;
 import pe.com.distriluz.domain.executor.ThreadExecutor;
+import pe.com.distriluz.domain.interactor.AddPreguntaUseCase;
 import pe.com.distriluz.domain.interactor.ChangePasswordUseCase;
 import pe.com.distriluz.domain.interactor.GetMenuUseCase;
 import pe.com.distriluz.domain.interactor.LoginUseCase;
 import pe.com.distriluz.domain.repository.AccesoRepository;
+import pe.com.distriluz.domain.repository.AppsRepository;
 import pe.com.distriluz.domain.repository.AuthRepository;
 
 
@@ -103,6 +105,13 @@ public class ActivityModule {
     GetMenuUseCase provideGetMenuUseCase(AccesoRepository repository, ThreadExecutor threadExecutor,
                                                 PostExecutionThread postExecutionThread) {
         return new GetMenuUseCase(repository, threadExecutor, postExecutionThread);
+    }
+
+    @Provides
+    @Named("AddPreguntaUseCase")
+    AddPreguntaUseCase provideAddPreguntaUseCase(AppsRepository repository, ThreadExecutor threadExecutor,
+                                                 PostExecutionThread postExecutionThread) {
+        return new AddPreguntaUseCase(repository, threadExecutor, postExecutionThread);
     }
 
 }

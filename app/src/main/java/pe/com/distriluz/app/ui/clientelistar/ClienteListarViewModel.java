@@ -20,6 +20,7 @@ import pe.com.distriluz.app.ui.appslista.AppsListaMapper;
 import pe.com.distriluz.app.ui.base.navigator.Navigator;
 import pe.com.distriluz.app.ui.base.viewmodel.BaseActivityViewModel;
 import pe.com.distriluz.app.ui.preguntas.PreguntasFragment;
+import pe.com.distriluz.app.ui.preguntaslectura.PreguntasLecturaFragment;
 import pe.com.distriluz.app.ui.profile.ProfileFragment;
 import pe.com.distriluz.app.utils.Constantes;
 import pe.com.distriluz.domain.interactor.GetAppsUseCase;

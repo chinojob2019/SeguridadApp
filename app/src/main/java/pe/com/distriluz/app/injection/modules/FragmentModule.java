@@ -12,6 +12,7 @@ import pe.com.distriluz.app.ui.appslista.AppsListaMapper;
 import pe.com.distriluz.app.ui.base.navigator.ChildFragmentNavigator;
 import pe.com.distriluz.app.ui.base.navigator.FragmentNavigator;
 import pe.com.distriluz.app.ui.preguntas.PreguntasMapper;
+import pe.com.distriluz.app.ui.preguntaslectura.PreguntasLecturaMapper;
 import pe.com.distriluz.app.ui.profile.ProfileMapper;
 
 @Module
@@ -47,6 +48,12 @@ public class FragmentModule {
     @PerFragment
     PreguntasMapper providePreguntasMapper() {
         return new PreguntasMapper();
+    }
+
+    @Provides
+    @PerFragment
+    PreguntasLecturaMapper providePreguntasLecturaMapper() {
+        return new PreguntasLecturaMapper();
     }
 
 }

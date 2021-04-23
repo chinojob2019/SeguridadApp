@@ -1,11 +1,8 @@
-package pe.com.distriluz.app.ui.preguntas;
+package pe.com.distriluz.app.ui.preguntaslectura;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.annotation.Nullable;
 
@@ -14,31 +11,28 @@ import java.util.List;
 import javax.inject.Inject;
 
 import pe.com.distriluz.app.injection.scopes.PerFragment;
-import pe.com.distriluz.app.ui.addpregunta.AddPreguntaActivity;
 import pe.com.distriluz.app.ui.base.navigator.FragmentNavigator;
 import pe.com.distriluz.app.ui.base.viewmodel.BaseFragmentViewModel;
-import pe.com.distriluz.app.ui.editprofile.EditProfileActivity;
-import pe.com.distriluz.app.ui.profile.ProfileObservableModel;
 import pe.com.distriluz.domain.interactor.GetPreguntasCase;
 import pe.com.distriluz.domain.interactor.baseinteractors.DefaultObserverSingle;
 import pe.com.distriluz.domain.model.Preguntasfrecuentes;
 
 
 @PerFragment
-public class PreguntasViewModel extends BaseFragmentViewModel<PreguntasMvvm.View> implements PreguntasMvvm, PreguntasMvvm.ViewModel {
+public class PreguntasLecturaViewModel extends BaseFragmentViewModel<PreguntasLecturaMvvm.View> implements PreguntasLecturaMvvm, PreguntasLecturaMvvm.ViewModel {
 
     private final GetPreguntasCase getPreguntasCase;
-    private final PreguntasMapper mapper;
+    private final PreguntasLecturaMapper mapper;
     private Resources res;
-    private PreguntasObservableModel model = new PreguntasObservableModel();
+    private PreguntasLecturaObservableModel model = new PreguntasLecturaObservableModel();
 
     @Inject
-    public PreguntasViewModel(
+    public PreguntasLecturaViewModel(
             Context context,
             FragmentNavigator navigator,
             Resources res,
             GetPreguntasCase getPreguntasCase,
-            PreguntasMapper mapper
+            PreguntasLecturaMapper mapper
     ) {
         super(context,navigator);
         this.res = res;
@@ -68,7 +62,7 @@ public class PreguntasViewModel extends BaseFragmentViewModel<PreguntasMvvm.View
     }
 
     @Override
-    public PreguntasObservableModel getModel() {
+    public PreguntasLecturaObservableModel getModel() {
         return model;
     }
 
@@ -76,19 +70,5 @@ public class PreguntasViewModel extends BaseFragmentViewModel<PreguntasMvvm.View
     public void onClickOpenDrawer(android.view.View view) {
         navigator.openDrawer();
     }
-
-    @Override
-    public void onClickAddPregunta(android.view.View view) {
-        navigator.startActivityForResultFromFragment(AddPreguntaActivity.class, 0, AddPreguntaActivity.REQUEST_CODE);
-    }
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == AddPreguntaActivity.REQUEST_CODE && resultCode == Activity.RESULT_OK){
-           // this.model = new ProfileObservableModel();
-         //   notifyChange();
-          //  getView().changeGlobal();
-        }
-    }
-
 
 }

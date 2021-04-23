@@ -1,4 +1,4 @@
-package pe.com.distriluz.app.ui.preguntas;
+package pe.com.distriluz.app.ui.preguntaslectura;
 
 
 import androidx.databinding.BaseObservable;
@@ -8,30 +8,17 @@ import androidx.databinding.ObservableList;
 
 import java.util.List;
 
-import pe.com.distriluz.app.ApplicationContext;
 import pe.com.distriluz.app.BR;
-import pe.com.distriluz.data.net.apps.model.PreguntasResponse;
-import pe.com.distriluz.data.utiles.Utils;
 
 /**
  * Created by pedro.zevallos on 9/07/2017.
  */
 
-public class PreguntasObservableModel extends BaseObservable {
+public class PreguntasLecturaObservableModel extends BaseObservable {
 
     private ObservableList<PreguntasfrecuentesObservable> preguntas = new ObservableArrayList<>();
     private int agregar=1;
 
-
-    @Bindable
-    public int getAgregar() {
-        return agregar;
-    }
-
-    public void setAgregar(int agregar) {
-        this.agregar = agregar;
-        notifyPropertyChanged(pe.com.distriluz.app.BR.agregar);
-    }
 
 
 
@@ -42,7 +29,7 @@ public class PreguntasObservableModel extends BaseObservable {
 
     public void setPreguntas(ObservableList<PreguntasfrecuentesObservable> preguntas) {
         this.preguntas = preguntas;
-        notifyPropertyChanged(pe.com.distriluz.app.BR.preguntas);
+        notifyPropertyChanged(BR.preguntas);
     }
 
     public static class PreguntasfrecuentesObservable extends BaseObservable{
@@ -60,7 +47,7 @@ public class PreguntasObservableModel extends BaseObservable {
 
         public void setOpen(Boolean open) {
             this.open = open;
-            notifyPropertyChanged(pe.com.distriluz.app.BR.open);
+            notifyPropertyChanged(BR.open);
         }
 
         @Bindable
@@ -70,7 +57,7 @@ public class PreguntasObservableModel extends BaseObservable {
 
         public void setOrden(int orden) {
             this.orden = orden;
-            notifyPropertyChanged(pe.com.distriluz.app.BR.orden);
+            notifyPropertyChanged(BR.orden);
         }
 
 
@@ -81,7 +68,7 @@ public class PreguntasObservableModel extends BaseObservable {
 
         public void setPregunta(String pregunta) {
             this.pregunta = pregunta;
-            notifyPropertyChanged(pe.com.distriluz.app.BR.pregunta);
+            notifyPropertyChanged(BR.pregunta);
         }
         @Bindable
         public int getIdPregunta() {
@@ -90,7 +77,7 @@ public class PreguntasObservableModel extends BaseObservable {
 
         public void setIdPregunta(int idPregunta) {
             this.idPregunta = idPregunta;
-            notifyPropertyChanged(pe.com.distriluz.app.BR.idPregunta);
+            notifyPropertyChanged(BR.idPregunta);
         }
         @Bindable
         public int getIdEstado() {
@@ -99,7 +86,7 @@ public class PreguntasObservableModel extends BaseObservable {
 
         public void setIdEstado(int idEstado) {
             this.idEstado = idEstado;
-            notifyPropertyChanged(pe.com.distriluz.app.BR.idEstado);
+            notifyPropertyChanged(BR.idEstado);
         }
         @Bindable
         public List<RespuestasItem> getRespuestas() {
@@ -108,7 +95,7 @@ public class PreguntasObservableModel extends BaseObservable {
 
         public void setRespuestas(List<RespuestasItem> respuestas) {
             this.respuestas = respuestas;
-            notifyPropertyChanged(pe.com.distriluz.app.BR.respuestas);
+            notifyPropertyChanged(BR.respuestas);
         }
 
         public static class RespuestasItem{
