@@ -11,6 +11,7 @@ import pe.com.distriluz.app.ui.clientelistar.ClienteListarObservableModel;
 
 public interface PreguntasMvvm {
     interface View extends MvvmView {
+        void changeGlobal();
     }
 
     interface ViewModel extends IViewModel<View> {

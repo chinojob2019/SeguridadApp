@@ -162,6 +162,10 @@ private Context context;
                 navigator.closeDrawer();
                 navigator.inflateFragment(R.id.box_fragment, new PreguntasFragment(),null);
                 break;
+            case Constantes.MENU_ITEM_PREGUNTAS_LECTURA:
+                navigator.closeDrawer();
+                navigator.inflateFragment(R.id.box_fragment, new PreguntasLecturaFragment(),null);
+                break;
             default:
                 Toast.makeText(context,"No se encuentra vista asociada", Toast.LENGTH_LONG).show();
                 break;

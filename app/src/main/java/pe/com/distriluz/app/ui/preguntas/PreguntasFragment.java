@@ -57,4 +57,8 @@ public class PreguntasFragment extends BaseFragment<FragmentPreguntasBinding, Pr
         super.onActivityResult(requestCode, resultCode, data);
         viewModel.onActivityResult(requestCode, resultCode, data);
     }
+    @Override
+    public void changeGlobal() {
+        configRecycler();
+    }
 }

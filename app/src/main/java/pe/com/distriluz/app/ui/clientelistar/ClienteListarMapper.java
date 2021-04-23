@@ -69,6 +69,14 @@ public class ClienteListarMapper {
                     opciones.add(navigationItems);
                     break;
 
+                case "PreguntasLecturaFragment":
+                    //    navigationItems.icon = ApplicationContext.getInstance().getResources().getDrawable(R.drawable.ic_menu_questions);
+                    navigationItems.title = item.getVista().getNombre();
+                    navigationItems.subtitle = item.getVista().getDescripcion();
+                    navigationItems.type = Constantes.MENU_ITEM_PREGUNTAS_LECTURA;
+                    opciones.add(navigationItems);
+                    break;
+
                 case "MesaServicio":
                  //  navigationItems.icon = ApplicationContext.getInstance().getResources().getDrawable(R.drawable.ic_mesa_servicio);
                     navigationItems.title = item.getVista().getNombre();

@@ -55,6 +55,7 @@ public class PreguntasViewModel extends BaseFragmentViewModel<PreguntasMvvm.View
             public void onSuccess(List<Preguntasfrecuentes> preguntasfrecuentes) {
                 hideLoading();
                 mapper.mapperPreguntas(model, preguntasfrecuentes);
+
             }
 
             @Override
@@ -85,8 +86,26 @@ public class PreguntasViewModel extends BaseFragmentViewModel<PreguntasMvvm.View
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == AddPreguntaActivity.REQUEST_CODE && resultCode == Activity.RESULT_OK){
            // this.model = new ProfileObservableModel();
-         //   notifyChange();
-          //  getView().changeGlobal();
+            showLoading();
+            getPreguntasCase.execute(new DefaultObserverSingle<List<Preguntasfrecuentes>>(){
+                @Override
+                public void onSuccess(List<Preguntasfrecuentes> preguntasfrecuentes) {
+                    hideLoading();
+                    mapper.mapperPreguntas(model, preguntasfrecuentes);
+                    getView().changeGlobal();
+                }
+
+                @Override
+                public void onError(Throwable e) {
+                    hideLoading();
+                    validateErrorToken(e);
+                    toast(e.getMessage());
+                    showError(e);
+                }
+            }, null);
+
+            notifyChange();
+            getView().changeGlobal();
         }
     }
 
