@@ -2,6 +2,7 @@ package pe.com.distriluz.app.ui.preguntas.recyclerview;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.CompoundButton;
 
 import javax.inject.Inject;
 
@@ -23,8 +24,15 @@ public class PreguntaItemViewModel extends BaseViewHolderViewModel<PreguntaItemM
     }
 
     @Override
-    public void onClickItem(View v) {
-        model.setOpen(!model.getOpen());
+    public void onClickItem(CompoundButton buttonView, boolean isChecked) {
+        model.setSeleccionado(isChecked);
+
+       // model.setOpen(!model.getOpen());
+    }
+
+    @Override
+    public void updateSelecionado(int indice) {
+      //  model.setSeleccionado(true);
     }
 
     @Override

@@ -2,7 +2,9 @@ package pe.com.distriluz.app.ui.addpregunta;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
+import android.widget.CompoundButton;
 
 import com.miguelbcr.ui.rx_paparazzo2.RxPaparazzo;
 import com.miguelbcr.ui.rx_paparazzo2.entities.FileData;
@@ -38,7 +40,7 @@ public class AddPreguntaViewModel extends BaseActivityViewModel<AddPreguntaMvvm.
     public AddPreguntaViewModel(@AppContext Context appContext, Navigator navigator, AddPreguntaUseCase saveInfoUserUseCase) {
         super(appContext, navigator);
         this.model = new AddPreguntaObservableModel(
-             "","",1);
+             "","",1,true,"");
         this.addPreguntaUseCase  = saveInfoUserUseCase;
     }
 
@@ -78,11 +80,37 @@ public class AddPreguntaViewModel extends BaseActivityViewModel<AddPreguntaMvvm.
         }
     }
 
+    @Override
+    public void rememberMeChanged(CompoundButton buttonView, Boolean isChecked) {
+if(isChecked)
+{
+    model.setIdEstado(1);
+    //model.setRememberMe(true);
+
+}else
+{
+    model.setIdEstado(0);
+   // model.setRememberMe(false);
+}
+
+
+
+        Log.d("Logeando",  String.valueOf(isChecked));
+
+    }
+
 
     private boolean validateSendinfo() {
         String vacio = "";
+        boolean resultado=true;
+        if( !model.getDescripcion().equals(vacio) && !model.getOrden().equals(vacio)){
+            resultado=true;
+        }else{
+            resultado=false;
+        toast("Ingresar Descripción y Orden");
+        }
 
-        return (!model.getDescripcion().equals(vacio) && !model.equals(vacio));
+        return (resultado);
     }
 
     @Override

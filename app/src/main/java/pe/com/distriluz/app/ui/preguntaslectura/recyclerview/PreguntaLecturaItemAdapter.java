@@ -27,6 +27,8 @@ public class PreguntaLecturaItemAdapter extends RecyclerView.Adapter<PreguntaLec
 
     }
 
+
+
     public void setData(PreguntasLecturaObservableModel model, Context context){
         this.model=model;
         this.context= context;

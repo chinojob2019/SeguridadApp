@@ -1,6 +1,8 @@
 package pe.com.distriluz.app.ui.addpregunta;
 
 
+import android.widget.CompoundButton;
+
 import androidx.databinding.ObservableBoolean;
 
 import pe.com.distriluz.app.ui.base.view.MvvmView;
@@ -22,6 +24,8 @@ public interface AddPreguntaMvvm {
         AddPreguntaObservableModel getModel();
 
         void onClickGuardar(android.view.View view);
+        void rememberMeChanged(CompoundButton buttonView,  Boolean isChecked) ;
+
         void onClickClose(android.view.View view);
 
     }

@@ -24,6 +24,8 @@ public interface PreguntasMvvm {
         void onClickOpenDrawer(android.view.View view);
 
         void onClickAddPregunta(android.view.View view);
+        void onClickBackEditar(android.view.View view);
+
         void onActivityResult(int requestCode, int resultCode, Intent data);
 
     }

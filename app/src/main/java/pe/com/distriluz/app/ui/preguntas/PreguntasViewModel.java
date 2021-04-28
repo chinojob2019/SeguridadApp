@@ -82,6 +82,21 @@ public class PreguntasViewModel extends BaseFragmentViewModel<PreguntasMvvm.View
     public void onClickAddPregunta(android.view.View view) {
         navigator.startActivityForResultFromFragment(AddPreguntaActivity.class, 0, AddPreguntaActivity.REQUEST_CODE);
     }
+
+    @Override
+    public void onClickBackEditar(android.view.View view) {
+        getModel().setEditar(0);
+
+        for(int i=0; i<getModel().getPreguntas().size(); i++){
+            getModel().getPreguntas().get(i).setEditarItem(0);
+        }
+
+
+        notifyChange();
+        getView().changeGlobal();
+
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == AddPreguntaActivity.REQUEST_CODE && resultCode == Activity.RESULT_OK){
