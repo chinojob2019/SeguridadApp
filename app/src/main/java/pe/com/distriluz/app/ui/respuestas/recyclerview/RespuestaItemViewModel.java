@@ -1,4 +1,4 @@
-package pe.com.distriluz.app.ui.preguntas.recyclerview;
+package pe.com.distriluz.app.ui.respuestas.recyclerview;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,16 +11,17 @@ import pe.com.distriluz.app.injection.qualifier.AppContext;
 import pe.com.distriluz.app.injection.scopes.PerViewHolder;
 import pe.com.distriluz.app.ui.base.navigator.Navigator;
 import pe.com.distriluz.app.ui.base.viewmodel.BaseViewHolderViewModel;
-import pe.com.distriluz.app.ui.preguntas.PreguntasObservableModel;
+import pe.com.distriluz.app.ui.respuestas.RespuestasObservableModel;
+import pe.com.distriluz.app.ui.respuestas.recyclerview.RespuestaItemMvvm;
 
 
 @PerViewHolder
-public class PreguntaItemViewModel extends BaseViewHolderViewModel<PreguntaItemMvvm.View> implements PreguntaItemMvvm.ViewModel {
+public class RespuestaItemViewModel extends BaseViewHolderViewModel<RespuestaItemMvvm.View> implements RespuestaItemMvvm.ViewModel {
 
-    private PreguntasObservableModel.PreguntasfrecuentesObservable model;
+    private RespuestasObservableModel.RespuestasItem model;
 
     @Inject
-    public PreguntaItemViewModel(@AppContext Context context, Navigator navigator) {
+    public RespuestaItemViewModel(@AppContext Context context, Navigator navigator) {
         super(context, navigator);
     }
 
@@ -33,7 +34,6 @@ public class PreguntaItemViewModel extends BaseViewHolderViewModel<PreguntaItemM
 
     @Override
     public void onClickListarRespuesta(View view) {
-        getView().onclickListaRespuestas();
 
     }
 
@@ -43,13 +43,13 @@ public class PreguntaItemViewModel extends BaseViewHolderViewModel<PreguntaItemM
     }
 
     @Override
-    public void update(PreguntasObservableModel.PreguntasfrecuentesObservable model) {
+    public void update(RespuestasObservableModel.RespuestasItem model) {
         this.model=model;
         notifyChange();
     }
 
     @Override
-    public PreguntasObservableModel.PreguntasfrecuentesObservable getModel() {
+    public RespuestasObservableModel.RespuestasItem getModel() {
         return model;
     }
 }

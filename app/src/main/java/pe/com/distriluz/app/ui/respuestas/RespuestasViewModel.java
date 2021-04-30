@@ -1,11 +1,10 @@
-package pe.com.distriluz.app.ui.preguntas;
+package pe.com.distriluz.app.ui.respuestas;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.annotation.Nullable;
 
@@ -15,40 +14,44 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.observers.DisposableSingleObserver;
-import pe.com.distriluz.app.R;
 import pe.com.distriluz.app.injection.scopes.PerFragment;
-import pe.com.distriluz.app.ui.addpregunta.AddPreguntaActivity;
+
+import pe.com.distriluz.app.ui.addrepuesta.AddRespuestaActivity;
 import pe.com.distriluz.app.ui.base.navigator.FragmentNavigator;
 import pe.com.distriluz.app.ui.base.viewmodel.BaseFragmentViewModel;
-import pe.com.distriluz.app.ui.respuestas.RespuestasFragment;
+import pe.com.distriluz.app.ui.respuestas.RespuestasMapper;
+import pe.com.distriluz.app.ui.respuestas.RespuestasMvvm;
+import pe.com.distriluz.app.ui.respuestas.RespuestasObservableModel;
 import pe.com.distriluz.domain.interactor.GetPreguntasCase;
-import pe.com.distriluz.domain.interactor.SaveInfoUserUseCase;
+
 import pe.com.distriluz.domain.interactor.UpdateMasivoPreguntasUseCase;
+
 import pe.com.distriluz.domain.interactor.baseinteractors.DefaultObserverSingle;
 import pe.com.distriluz.domain.model.Preguntasfrecuentes;
 
 
-@PerFragment
-public class PreguntasViewModel extends BaseFragmentViewModel<PreguntasMvvm.View> implements PreguntasMvvm, PreguntasMvvm.ViewModel {
 
-    private final GetPreguntasCase getPreguntasCase;
-    private final UpdateMasivoPreguntasUseCase updateMasivoPreguntasUseCase;
-    private final PreguntasMapper mapper;
+@PerFragment
+public class RespuestasViewModel extends BaseFragmentViewModel<RespuestasMvvm.View> implements RespuestasMvvm, RespuestasMvvm.ViewModel {
+
+    private final GetPreguntasCase getRespuestasCase;
+    private final UpdateMasivoPreguntasUseCase updateMasivoRespuestasUseCase;
+    private final RespuestasMapper mapper;
     private Resources res;
-    private PreguntasObservableModel model = new PreguntasObservableModel();
+    private RespuestasObservableModel model = new RespuestasObservableModel();
 
     @Inject
-    public PreguntasViewModel(
+    public RespuestasViewModel(
             Context context,
             FragmentNavigator navigator,
-            UpdateMasivoPreguntasUseCase updateMasivoPreguntasUseCase, Resources res,
-            GetPreguntasCase getPreguntasCase,
-            PreguntasMapper mapper
+            UpdateMasivoPreguntasUseCase updateMasivoRespuestasUseCase, Resources res,
+            GetPreguntasCase getRespuestasCase,
+            RespuestasMapper mapper
     ) {
         super(context, navigator);
-        this.updateMasivoPreguntasUseCase = updateMasivoPreguntasUseCase;
+        this.updateMasivoRespuestasUseCase = updateMasivoRespuestasUseCase;
         this.res = res;
-        this.getPreguntasCase = getPreguntasCase;
+        this.getRespuestasCase = getRespuestasCase;
         this.mapper = mapper;
     }
 
@@ -56,11 +59,11 @@ public class PreguntasViewModel extends BaseFragmentViewModel<PreguntasMvvm.View
     public void attachView(View mvvmView, @Nullable Bundle savedInstanceState) {
         super.attachView(mvvmView, savedInstanceState);
         showLoading();
-        getPreguntasCase.execute(new DefaultObserverSingle<List<Preguntasfrecuentes>>() {
+        getRespuestasCase.execute(new DefaultObserverSingle<List<Preguntasfrecuentes>>() {
             @Override
-            public void onSuccess(List<Preguntasfrecuentes> preguntasfrecuentes) {
+            public void onSuccess(List<Preguntasfrecuentes> Respuestasfrecuentes) {
                 hideLoading();
-                mapper.mapperPreguntas(model, preguntasfrecuentes);
+               // mapper.mapperPreguntas(model, Respuestasfrecuentes);
 
             }
 
@@ -75,19 +78,13 @@ public class PreguntasViewModel extends BaseFragmentViewModel<PreguntasMvvm.View
     }
 
     @Override
-    public PreguntasObservableModel getModel() {
+    public RespuestasObservableModel getModel() {
         return model;
     }
 
     @Override
-    public void onClickListadoRespuestas(PreguntasObservableModel.PreguntasfrecuentesObservable item) {
-
-
-
-
-
-        navigator.replaceFragment(R.id.box_fragment, new RespuestasFragment(),null);
-     //   navigator.startActivityForResultFromFragment(AddPreguntaActivity.class, 0, 666);
+    public void onClickListadoRespuestas(RespuestasObservableModel.RespuestasItem item) {
+        navigator.startActivityForResultFromFragment(AddRespuestaActivity.class, 0, 666);
     }
 
     @Override
@@ -96,16 +93,16 @@ public class PreguntasViewModel extends BaseFragmentViewModel<PreguntasMvvm.View
     }
 
     @Override
-    public void onClickAddPregunta(android.view.View view) {
-        navigator.startActivityForResultFromFragment(AddPreguntaActivity.class, 0, AddPreguntaActivity.REQUEST_CODE);
+    public void onClickAddRespuesta(android.view.View view) {
+        navigator.startActivityForResultFromFragment(AddRespuestaActivity.class, 0, AddRespuestaActivity.REQUEST_CODE);
     }
 
     @Override
     public void onClickBackEditar(android.view.View view) {
-        getModel().setEditar(0);
+        getModel().setEditarItem(0);
 
-        for (int i = 0; i < getModel().getPreguntas().size(); i++) {
-            getModel().getPreguntas().get(i).setEditarItem(0);
+        for (int i = 0; i < getModel().getRespuestas().size(); i++) {
+            getModel().getRespuestas().get(i).setEditarItem(0);
         }
 
 
@@ -119,27 +116,28 @@ public class PreguntasViewModel extends BaseFragmentViewModel<PreguntasMvvm.View
         showLoading();
         List<Integer> integerList = new ArrayList<>();
 
-        for (int i = 0; i < getModel().getPreguntas().size(); i++) {
-            if (getModel().getPreguntas().get(i).getSeleccionado()) {
-                integerList.add(getModel().getPreguntas().get(i).getIdPregunta());
+        for (int i = 0; i < getModel().getRespuestas().size(); i++) {
+            if (getModel().getRespuestas().get(i).getSeleccionado()) {
+                integerList.add(getModel().getRespuestas().get(i).getIdRespuesta());
             }
 
         }
         if (integerList.size() > 0) {
-            this.updateMasivoPreguntasUseCase.execute(new DisposableSingleObserver<Boolean>() {
+            /*
+            this.updateMasivoRespuestasUseCase.execute(new DisposableSingleObserver<Boolean>() {
                 @Override
                 public void onSuccess(Boolean aBoolean) {
 
-                    model = new PreguntasObservableModel();
-                    getPreguntasCase.execute(new DefaultObserverSingle<List<Preguntasfrecuentes>>() {
+                    model = new RespuestasObservableModel();
+                    getRespuestasCase.execute(new DefaultObserverSingle<List<Respuestasfrecuentes>>() {
                         @Override
-                        public void onSuccess(List<Preguntasfrecuentes> preguntasfrecuentes) {
+                        public void onSuccess(List<Respuestasfrecuentes> Respuestasfrecuentes) {
                             hideLoading();
-                            mapper.mapperPreguntas(model, preguntasfrecuentes);
+                            mapper.mapperRespuestas(model, Respuestasfrecuentes);
 
                             getModel().setEditar(0);
-                            for (int i = 0; i < getModel().getPreguntas().size(); i++) {
-                                getModel().getPreguntas().get(i).setEditarItem(0);
+                            for (int i = 0; i < getModel().getRespuestas().size(); i++) {
+                                getModel().getRespuestas().get(i).setEditarItem(0);
                             }
 
                             notifyChange();
@@ -166,8 +164,9 @@ public class PreguntasViewModel extends BaseFragmentViewModel<PreguntasMvvm.View
                     showError(e);
                 }
             }, UpdateMasivoPreguntasUseCase.Params.datos(1, 1, integerList));
+       */
         } else {
-            toast("Seleccione al menos una pregunta");
+            toast("Seleccione al menos una Respuesta");
         }
     }
 
@@ -177,27 +176,27 @@ public class PreguntasViewModel extends BaseFragmentViewModel<PreguntasMvvm.View
         showLoading();
         List<Integer> integerList = new ArrayList<>();
 
-        for (int i = 0; i < getModel().getPreguntas().size(); i++) {
-            if (getModel().getPreguntas().get(i).getSeleccionado()) {
-                integerList.add(getModel().getPreguntas().get(i).getIdPregunta());
+        for (int i = 0; i < getModel().getRespuestas().size(); i++) {
+            if (getModel().getRespuestas().get(i).getSeleccionado()) {
+                integerList.add(getModel().getRespuestas().get(i).getIdRespuesta());
             }
 
         }
-        if (integerList.size() > 0) {
-            this.updateMasivoPreguntasUseCase.execute(new DisposableSingleObserver<Boolean>() {
+        if (integerList.size() > 0) {/*
+            this.updateMasivoRespuestasUseCase.execute(new DisposableSingleObserver<Boolean>() {
                 @Override
                 public void onSuccess(Boolean aBoolean) {
 
-                    model = new PreguntasObservableModel();
-                    getPreguntasCase.execute(new DefaultObserverSingle<List<Preguntasfrecuentes>>() {
+                    model = new RespuestasObservableModel();
+                    getRespuestasCase.execute(new DefaultObserverSingle<List<Respuestasfrecuentes>>() {
                         @Override
-                        public void onSuccess(List<Preguntasfrecuentes> preguntasfrecuentes) {
+                        public void onSuccess(List<Respuestasfrecuentes> Respuestasfrecuentes) {
                             hideLoading();
-                            mapper.mapperPreguntas(model, preguntasfrecuentes);
+                            mapper.mapperRespuestas(model, Respuestasfrecuentes);
 
                             getModel().setEditar(0);
-                            for (int i = 0; i < getModel().getPreguntas().size(); i++) {
-                                getModel().getPreguntas().get(i).setEditarItem(0);
+                            for (int i = 0; i < getModel().getRespuestas().size(); i++) {
+                                getModel().getRespuestas().get(i).setEditarItem(0);
                             }
 
                             notifyChange();
@@ -225,29 +224,24 @@ public class PreguntasViewModel extends BaseFragmentViewModel<PreguntasMvvm.View
                     showError(e);
                     getView().habilitarbotones(true);
                 }
-            }, UpdateMasivoPreguntasUseCase.Params.datos(1, 0, integerList));
-        } else {
-            toast("Seleccione al menos una pregunta");
+            }, UpdateMasivoRespuestasUseCase.Params.datos(1, 0, integerList));
+      */  } else {
+            toast("Seleccione al menos una Respuesta");
             getView().habilitarbotones(true);
         }
     }
 
     @Override
-    public void onClickIrListadoRespuestas() {
-        navigator.replaceFragment(R.id.box_fragment, new RespuestasFragment(),null);
-    }
-
-    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == AddPreguntaActivity.REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+        if (requestCode == AddRespuestaActivity.REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             // this.model = new ProfileObservableModel();
             showLoading();
-            this.model= new PreguntasObservableModel();
-            getPreguntasCase.execute(new DefaultObserverSingle<List<Preguntasfrecuentes>>() {
+            this.model= new RespuestasObservableModel();/*
+            getRespuestasCase.execute(new DefaultObserverSingle<List<Respuestasfrecuentes>>() {
                 @Override
-                public void onSuccess(List<Preguntasfrecuentes> preguntasfrecuentes) {
+                public void onSuccess(List<Respuestasfrecuentes> Respuestasfrecuentes) {
                     hideLoading();
-                    mapper.mapperPreguntas(model, preguntasfrecuentes);
+                    mapper.mapperRespuestas(model, Respuestasfrecuentes);
                     getView().changeGlobal();
                 }
 
@@ -259,7 +253,7 @@ public class PreguntasViewModel extends BaseFragmentViewModel<PreguntasMvvm.View
                     showError(e);
                 }
             }, null);
-
+*/
             notifyChange();
             getView().changeGlobal();
         }

@@ -1,4 +1,4 @@
-package pe.com.distriluz.app.ui.preguntas.recyclerview;
+package pe.com.distriluz.app.ui.respuestas.recyclerview;
 
 
 import android.widget.CompoundButton;
@@ -6,13 +6,12 @@ import android.widget.CompoundButton;
 import pe.com.distriluz.app.ui.base.view.MvvmView;
 import pe.com.distriluz.app.ui.base.viewmodel.IViewModel;
 import pe.com.distriluz.app.ui.preguntas.PreguntasObservableModel;
+import pe.com.distriluz.app.ui.respuestas.RespuestasObservableModel;
 
 
-public interface PreguntaItemMvvm {
+public interface RespuestaItemMvvm {
 
     interface View extends MvvmView {
-        void onclickListaRespuestas();
-
     }
 
     interface ViewModel extends IViewModel<View> {
@@ -20,7 +19,7 @@ public interface PreguntaItemMvvm {
         void onClickItem(CompoundButton buttonView, boolean isChecked);
         void onClickListarRespuesta(android.view.View view);
         void updateSelecionado(int indice);
-        void update(PreguntasObservableModel.PreguntasfrecuentesObservable model);
-        PreguntasObservableModel.PreguntasfrecuentesObservable getModel();
+        void update(RespuestasObservableModel.RespuestasItem model);
+        RespuestasObservableModel.RespuestasItem getModel();
     }
 }

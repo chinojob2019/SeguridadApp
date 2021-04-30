@@ -31,6 +31,10 @@ import pe.com.distriluz.app.ui.preguntaslectura.recyclerview.PreguntaLecturaItem
 import pe.com.distriluz.app.ui.preguntaslectura.recyclerview.PreguntaLecturaItemViewModel;
 import pe.com.distriluz.app.ui.profile.ProfileMvvm;
 import pe.com.distriluz.app.ui.profile.ProfileViewModel;
+import pe.com.distriluz.app.ui.respuestas.RespuestasMvvm;
+import pe.com.distriluz.app.ui.respuestas.RespuestasViewModel;
+import pe.com.distriluz.app.ui.respuestas.recyclerview.RespuestaItemMvvm;
+import pe.com.distriluz.app.ui.respuestas.recyclerview.RespuestaItemViewModel;
 import pe.com.distriluz.app.ui.restorepassword.RestorePasswordMvvm;
 import pe.com.distriluz.app.ui.restorepassword.RestorePasswordViewModel;
 import pe.com.distriluz.app.ui.validatecode.ValidateCodeMvvm;
@@ -58,6 +62,9 @@ public abstract class ViewModelModule {
     @Binds
     abstract PreguntasLecturaMvvm.ViewModel bindPreguntasLecturaViewModel(PreguntasLecturaViewModel viewModel);
     @Binds
+    abstract RespuestasMvvm.ViewModel bindRespuestasViewModel(RespuestasViewModel viewModel);
+
+    @Binds
     abstract AppListaMvvm.ViewModel bindAppListaViewModel(AppListaViewModel viewModel);
     @Binds
     abstract AppsItemMvvm.ViewModel bindAppsItemViewModel(AppsItemViewModel viewModel);
@@ -67,6 +74,8 @@ public abstract class ViewModelModule {
     abstract EditProfileMvvm.ViewModel bindEditProfileViewModel(EditProfileViewModel viewModel);
     @Binds
     abstract PreguntaItemMvvm.ViewModel bindPreguntaItemViewModel(PreguntaItemViewModel viewModel);
+    @Binds
+    abstract RespuestaItemMvvm.ViewModel bindRespuestaItemViewModel(RespuestaItemViewModel viewModel);
     @Binds
     abstract PreguntaLecturaItemMvvm.ViewModel bindPreguntaLecturaItemViewModel(PreguntaLecturaItemViewModel viewModel);
     @Binds

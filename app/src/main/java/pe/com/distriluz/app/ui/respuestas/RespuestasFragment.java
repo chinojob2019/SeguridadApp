@@ -1,4 +1,4 @@
-package pe.com.distriluz.app.ui.preguntas;
+package pe.com.distriluz.app.ui.respuestas;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,10 +15,10 @@ import javax.inject.Inject;
 import pe.com.distriluz.app.R;
 import pe.com.distriluz.app.databinding.FragmentPreguntasBinding;
 import pe.com.distriluz.app.ui.base.BaseFragment;
-import pe.com.distriluz.app.ui.clientelistar.ClienteListarObservableModel;
+import pe.com.distriluz.app.ui.preguntas.PreguntasMvvm;
 import pe.com.distriluz.app.ui.preguntas.recyclerview.PreguntaItemAdapter;
 
-public class PreguntasFragment extends BaseFragment<FragmentPreguntasBinding, PreguntasMvvm.ViewModel>
+public class RespuestasFragment extends BaseFragment<FragmentPreguntasBinding, PreguntasMvvm.ViewModel>
         implements PreguntasMvvm.View {
 
     @Inject
@@ -34,7 +34,7 @@ public class PreguntasFragment extends BaseFragment<FragmentPreguntasBinding, Pr
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return setAndBindContentView(inflater, container, savedInstanceState, R.layout.fragment_preguntas);
+        return setAndBindContentView(inflater, container, savedInstanceState, R.layout.fragment_respuestas);
     }
 
     @Override

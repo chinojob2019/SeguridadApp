@@ -1,15 +1,14 @@
-package pe.com.distriluz.app.ui.preguntas;
+package pe.com.distriluz.app.ui.respuestas;
 
 import android.content.Intent;
-import android.view.View;
 
 import androidx.databinding.ObservableBoolean;
 
 import pe.com.distriluz.app.ui.base.view.MvvmView;
 import pe.com.distriluz.app.ui.base.viewmodel.IViewModel;
-import pe.com.distriluz.app.ui.clientelistar.ClienteListarObservableModel;
+import pe.com.distriluz.app.ui.respuestas.RespuestasObservableModel;
 
-public interface PreguntasMvvm {
+public interface RespuestasMvvm {
     interface View extends MvvmView {
         void changeGlobal();
         void habilitarbotones(Boolean valor);
@@ -21,16 +20,16 @@ public interface PreguntasMvvm {
         @Override
         ObservableBoolean isLoaded();
 
-        PreguntasObservableModel getModel();
-        void onClickListadoRespuestas(PreguntasObservableModel.PreguntasfrecuentesObservable item);
+        RespuestasObservableModel getModel();
+        void onClickListadoRespuestas(RespuestasObservableModel.RespuestasItem item);
 
         void onClickOpenDrawer(android.view.View view);
 
-        void onClickAddPregunta(android.view.View view);
+        void onClickAddRespuesta(android.view.View view);
         void onClickBackEditar(android.view.View view);
         void onClickMasivoActivar(android.view.View view);
         void onClickMasivoEliminar(android.view.View view);
-void onClickIrListadoRespuestas();
+
 
         void onActivityResult(int requestCode, int resultCode, Intent data);
 

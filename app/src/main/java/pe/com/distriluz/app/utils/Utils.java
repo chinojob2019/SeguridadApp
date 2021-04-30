@@ -29,6 +29,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.gson.Gson;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -46,7 +47,8 @@ import javax.inject.Singleton;
 import pe.com.distriluz.app.ApplicationContext;
 import pe.com.distriluz.app.R;
 import pe.com.distriluz.app.ui.base.exceptions.ErrorException;
-
+import pe.com.distriluz.app.ui.respuestas.RespuestasObservableModel;
+import pe.com.distriluz.data.net.auth.model.DetailUserResponse;
 
 
 /**
@@ -392,5 +394,16 @@ public class Utils {
         return new  ColorStateList(states, colorserror);
     }
 
+    public static void savePregunta(Context context, RespuestasObservableModel body) {
 
+        context.getSharedPreferences(Constantes.PREFERENCES, Context.MODE_PRIVATE).edit().putString(Constantes.PREF_DATAPREGUNTA, new Gson().toJson(body)).apply();
+    }
+
+    public static RespuestasObservableModel getPRegunta(Context context) {
+        return new Gson().fromJson(
+                context.getSharedPreferences(Constantes.PREFERENCES, Context.MODE_PRIVATE)
+                        .getString(Constantes.PREF_DATAPREGUNTA, ""),
+                RespuestasObservableModel.class
+        );
+    }
 }

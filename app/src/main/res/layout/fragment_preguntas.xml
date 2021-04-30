@@ -94,7 +94,8 @@
                         android:layout_marginBottom="8dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:srcCompat="@drawable/ic_delete" />
+                        android:onClick="@{vm::onClickMasivoEliminar}"
+                        app:srcCompat="@drawable/ic_desactivado" />
 
                     <ImageView
                         android:id="@+id/imageView9"
@@ -102,9 +103,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="8dp"
+                        android:onClick="@{vm::onClickMasivoActivar}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/imageView8"
-                        app:srcCompat="@drawable/ic_enable" />
+                        app:srcCompat="@drawable/ic_activado" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

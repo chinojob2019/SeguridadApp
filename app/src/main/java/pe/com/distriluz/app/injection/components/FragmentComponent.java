@@ -15,6 +15,8 @@ import pe.com.distriluz.app.ui.preguntaslectura.PreguntasLecturaFragment;
 import pe.com.distriluz.app.ui.preguntaslectura.PreguntasLecturaMapper;
 import pe.com.distriluz.app.ui.profile.ProfileFragment;
 import pe.com.distriluz.app.ui.profile.ProfileMapper;
+import pe.com.distriluz.app.ui.respuestas.RespuestasFragment;
+import pe.com.distriluz.app.ui.respuestas.RespuestasMapper;
 
 @PerFragment
 @Component(dependencies = ActivityComponent.class, modules = {FragmentModule.class, ViewModelModule.class})
@@ -31,10 +33,14 @@ public interface FragmentComponent {
 
     void inject(ProfileFragment profileFragment);
 
-
+    void inject(RespuestasFragment respuestasFragment);
     ProfileMapper profileMapper();
 
     PreguntasMapper preguntasMapper();
 
     PreguntasLecturaMapper preguntasLecturaMapper();
+
+    RespuestasMapper respuestasMapper();
+
+
 }

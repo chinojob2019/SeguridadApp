@@ -11,6 +11,7 @@ import pe.com.distriluz.app.injection.qualifier.ActivityContext;
 import pe.com.distriluz.app.injection.qualifier.ActivityFragmentManager;
 import pe.com.distriluz.app.injection.scopes.PerActivity;
 import pe.com.distriluz.app.ui.addpregunta.AddPreguntaActivity;
+import pe.com.distriluz.app.ui.addrepuesta.AddRespuestaActivity;
 import pe.com.distriluz.app.ui.appslista.AppsListaMapper;
 import pe.com.distriluz.app.ui.base.navigator.Navigator;
 import pe.com.distriluz.app.ui.changepassword.ChangePasswordActivity;
@@ -24,6 +25,7 @@ import pe.com.distriluz.app.ui.okrestorepass.OkRestorePassActivity;
 import pe.com.distriluz.app.ui.restorepassword.RestorePasswordActivity;
 import pe.com.distriluz.app.ui.validatecode.ValidateCodeActivity;
 import pe.com.distriluz.domain.interactor.AddPreguntaUseCase;
+import pe.com.distriluz.domain.interactor.AddRespuestaUseCase;
 import pe.com.distriluz.domain.interactor.ChangePasswordUseCase;
 import pe.com.distriluz.domain.interactor.GetMenuUseCase;
 import pe.com.distriluz.domain.interactor.LoginUseCase;
@@ -71,4 +73,8 @@ public interface ActivityComponent extends AppComponent {
     void inject(AddPreguntaActivity addPreguntaActivity);
 
     AddPreguntaUseCase addPregunta();
+
+
+    void inject(AddRespuestaActivity addRespuestaActivity);
+    AddRespuestaUseCase addRespuesta();
 }

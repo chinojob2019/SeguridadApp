@@ -48,5 +48,20 @@ public class AppsCloudDataStore implements AppsDataStore {
         return restApi.updatePregunta(idPregunta,descripcion,orden,idEstado);
     }
 
+    @Override
+    public Single<Boolean> updateMasivoPreguntas(int tipo, int idEstado, List<Integer> data) {
+        return restApi.updateMasivoPreguntas(tipo,idEstado,data);
+    }
+
+    @Override
+    public Single<Boolean> addRespuesta(String descripcion, int orden, int idEstado, int idPregunta) {
+        return restApi.addRespuesta(descripcion,orden,idEstado,idPregunta);
+    }
+
+    @Override
+    public Single<Boolean> updateRespuesta(int idPregunta, String descripcion, int orden, int idEstado, int idRespuesta) {
+        return restApi.updateRespuesta(idPregunta,descripcion,orden,idEstado,idRespuesta);
+    }
+
 
 }

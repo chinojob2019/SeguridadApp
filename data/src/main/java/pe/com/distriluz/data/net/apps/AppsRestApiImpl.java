@@ -20,14 +20,18 @@ import pe.com.distriluz.data.exception.TokenException;
 import pe.com.distriluz.data.net.BaseNet;
 import pe.com.distriluz.data.net.BaseRestApiImpl;
 import pe.com.distriluz.data.net.apps.model.ActualizarPreguntaRequest;
+import pe.com.distriluz.data.net.apps.model.ActualizarRespuestaRequest;
 import pe.com.distriluz.data.net.apps.model.AppsResponse;
 import pe.com.distriluz.data.net.apps.model.NuevaPreguntaRequest;
+import pe.com.distriluz.data.net.apps.model.NuevaRespuestaRequest;
 import pe.com.distriluz.data.net.apps.model.PreguntasResponse;
 import pe.com.distriluz.data.net.auth.AuthRestApi;
 import pe.com.distriluz.data.net.auth.model.EditProfileRequest;
 import pe.com.distriluz.data.net.model.ErrorResponse;
 import pe.com.distriluz.data.utiles.Constantes;
 import pe.com.distriluz.data.utiles.Utils;
+import retrofit2.http.Body;
+import retrofit2.http.Query;
 
 
 @Singleton
@@ -287,6 +291,139 @@ public class AppsRestApiImpl extends BaseRestApiImpl {
         });
     }
 
+    public Single<Boolean> updateMasivoPreguntas(int tipo, int idEstado  ,  List<Integer> data) {
 
+
+
+        return Single.create(emitter -> {
+            if (isThereInternetConnection()) {
+                CompositeDisposable disposable = new CompositeDisposable();
+                AppsRestApi restApi = new BaseNet().create(Constantes.HOST_API_D4,AppsRestApi.class, getToken(), this.context);
+
+                disposable.add(restApi.updateMasivoPreguntas( tipo, idEstado,data ).subscribe(
+                        serverResponse -> {
+                            if (serverResponse != null) {
+                                if(serverResponse.isSuccessful()){
+                                    emitter.onSuccess(true);
+                                }else{
+                                    ErrorResponse response =new Gson().fromJson(serverResponse.errorBody().charStream(), ErrorResponse.class);
+                                    int code = serverResponse.code();
+                                    if(code == Constantes.TYPE_ERROR_CODE_TOKEN){
+                                        emitter.onError(new TokenException(response.getError().getTitulo()));
+                                    }else {
+                                        emitter.onError(new ErrorException(response.getError().getMensaje()));
+                                    }
+                                }
+                            } else {
+                                emitter.onError(new ErrorException("Datos Nulos"));
+                            }
+                        }
+                        , error -> {
+                            if(error instanceof SocketTimeoutException){
+                                emitter.onError(new NetworkConnectionException());
+                            }else{
+
+                                emitter.onError(error);
+                            }
+                        }
+                ));
+            } else {
+                emitter.onError(new NetworkConnectionException());
+            }
+        });
+    }
+
+
+    public Single<Boolean> addRespuesta(String descripcion, int orden , int idEstado, int idPregunta) {
+
+        NuevaRespuestaRequest nuevaRespuestaRequest = new NuevaRespuestaRequest();
+        nuevaRespuestaRequest.setIdRespuesta(0);
+        nuevaRespuestaRequest.setDescripcion(descripcion);
+        nuevaRespuestaRequest.setIdEstado(idEstado);
+        nuevaRespuestaRequest.setOrden(orden);
+
+        return Single.create(emitter -> {
+            if (isThereInternetConnection()) {
+                CompositeDisposable disposable = new CompositeDisposable();
+                AppsRestApi restApi = new BaseNet().create(Constantes.HOST_API_D4,AppsRestApi.class, getToken(), this.context);
+
+                disposable.add(restApi.addRespuesta(idPregunta,nuevaRespuestaRequest ).subscribe(
+                        serverResponse -> {
+                            if (serverResponse != null) {
+                                if(serverResponse.isSuccessful()){
+                                    emitter.onSuccess(true);
+                                }else{
+                                    ErrorResponse response =new Gson().fromJson(serverResponse.errorBody().charStream(), ErrorResponse.class);
+                                    int code = serverResponse.code();
+                                    if(code == Constantes.TYPE_ERROR_CODE_TOKEN){
+                                        emitter.onError(new TokenException(response.getError().getTitulo()));
+                                    }else {
+                                        emitter.onError(new ErrorException(response.getError().getMensaje()));
+                                    }
+                                }
+                            } else {
+                                emitter.onError(new ErrorException("Datos Nulos"));
+                            }
+                        }
+                        , error -> {
+                            if(error instanceof SocketTimeoutException){
+                                emitter.onError(new NetworkConnectionException());
+                            }else{
+
+                                emitter.onError(error);
+                            }
+                        }
+                ));
+            } else {
+                emitter.onError(new NetworkConnectionException());
+            }
+        });
+    }
+
+    public Single<Boolean> updateRespuesta(int idPregunta, String descripcion, int orden , int idEstado, int idRespuesta) {
+
+        ActualizarRespuestaRequest actualizarRespuestaRequest = new ActualizarRespuestaRequest();
+        actualizarRespuestaRequest.setIdRespuesta(idRespuesta);
+        actualizarRespuestaRequest.setDescripcion(descripcion);
+        actualizarRespuestaRequest.setIdEstado(idEstado);
+        actualizarRespuestaRequest.setOrden(orden);
+
+        return Single.create(emitter -> {
+            if (isThereInternetConnection()) {
+                CompositeDisposable disposable = new CompositeDisposable();
+                AppsRestApi restApi = new BaseNet().create(Constantes.HOST_API_D4,AppsRestApi.class, getToken(), this.context);
+
+                disposable.add(restApi.updateRespuesta( idPregunta,idRespuesta, actualizarRespuestaRequest ).subscribe(
+                        serverResponse -> {
+                            if (serverResponse != null) {
+                                if(serverResponse.isSuccessful()){
+                                    emitter.onSuccess(true);
+                                }else{
+                                    ErrorResponse response =new Gson().fromJson(serverResponse.errorBody().charStream(), ErrorResponse.class);
+                                    int code = serverResponse.code();
+                                    if(code == Constantes.TYPE_ERROR_CODE_TOKEN){
+                                        emitter.onError(new TokenException(response.getError().getTitulo()));
+                                    }else {
+                                        emitter.onError(new ErrorException(response.getError().getMensaje()));
+                                    }
+                                }
+                            } else {
+                                emitter.onError(new ErrorException("Datos Nulos"));
+                            }
+                        }
+                        , error -> {
+                            if(error instanceof SocketTimeoutException){
+                                emitter.onError(new NetworkConnectionException());
+                            }else{
+
+                                emitter.onError(error);
+                            }
+                        }
+                ));
+            } else {
+                emitter.onError(new NetworkConnectionException());
+            }
+        });
+    }
 
 }

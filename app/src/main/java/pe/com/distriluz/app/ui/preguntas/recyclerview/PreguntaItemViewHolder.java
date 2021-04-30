@@ -39,4 +39,11 @@ private final PreguntasMvvm.ViewModel viewModel;
     public CheckBox getCheckSelecionar(){
         return binding.checkBox;
     }
+
+    @Override
+    public void onclickListaRespuestas() {
+
+
+        this.viewModel.onClickIrListadoRespuestas();
+    }
 }
