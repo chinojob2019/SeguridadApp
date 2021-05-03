@@ -107,6 +107,7 @@
                 android:paddingEnd="8dp"
                 android:paddingBottom="24dp"
                 android:text="@={vm.model.direccion}"
+                android:maxLength="100"
                 android:textAlignment="textStart"
                 android:textSize="18dp"
 
@@ -147,6 +148,7 @@
                 android:paddingEnd="8dp"
                 android:paddingBottom="24dp"
                 android:text="@={vm.model.telefono}"
+                android:maxLength="20"
                 android:textAlignment="textStart"
                 android:textSize="18dp"
 
@@ -187,6 +189,7 @@
                 android:paddingEnd="8dp"
                 android:paddingBottom="24dp"
                 android:text="@={vm.model.email}"
+                android:maxLength="128"
                 android:textAlignment="textStart"
                 android:textSize="18dp"
 
