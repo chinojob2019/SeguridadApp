@@ -20,6 +20,7 @@ import pe.com.distriluz.app.ui.appslista.AppsListaMapper;
 import pe.com.distriluz.app.ui.base.navigator.Navigator;
 import pe.com.distriluz.app.ui.base.viewmodel.BaseActivityViewModel;
 import pe.com.distriluz.app.ui.preguntas.PreguntasFragment;
+import pe.com.distriluz.app.ui.preguntaslectura.PreguntasLecturaFragment;
 import pe.com.distriluz.app.ui.profile.ProfileFragment;
 import pe.com.distriluz.app.utils.Constantes;
 import pe.com.distriluz.domain.interactor.GetAppsUseCase;
@@ -160,6 +161,10 @@ private Context context;
             case Constantes.MENU_ITEM_PREGUNTAS:
                 navigator.closeDrawer();
                 navigator.inflateFragment(R.id.box_fragment, new PreguntasFragment(),null);
+                break;
+            case Constantes.MENU_ITEM_PREGUNTAS_LECTURA:
+                navigator.closeDrawer();
+                navigator.inflateFragment(R.id.box_fragment, new PreguntasLecturaFragment(),null);
                 break;
             default:
                 Toast.makeText(context,"No se encuentra vista asociada", Toast.LENGTH_LONG).show();

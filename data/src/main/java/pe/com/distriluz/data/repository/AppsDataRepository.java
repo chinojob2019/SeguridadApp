@@ -49,4 +49,34 @@ public class AppsDataRepository implements AppsRepository {
         AppsDataStore dataStore = this.factory.createCloudDataStore();
         return dataStore.getPreguntasFrecuentes().map(mapper::mapperQuestions);
     }
+
+    @Override
+    public Single<Boolean> addPregunta(String descripcion, int orden, int idEstado) {
+        AppsDataStore dataStore = this.factory.createCloudDataStore();
+        return dataStore.addPregunta(descripcion,orden,idEstado);
+    }
+
+    @Override
+    public Single<Boolean> updatePregunta(int idPregunta, String descripcion, int orden, int idEstado) {
+        AppsDataStore dataStore = this.factory.createCloudDataStore();
+        return dataStore.updatePregunta(idPregunta,descripcion,orden,idEstado);
+    }
+
+    @Override
+    public Single<Boolean> updateMasivoPreguntas(int tipo, int idEstado, List<Integer> data) {
+        AppsDataStore dataStore = this.factory.createCloudDataStore();
+        return dataStore.updateMasivoPreguntas(tipo,idEstado,data);
+    }
+
+    @Override
+    public Single<Boolean> addRespuesta(String descripcion, int orden, int idEstado, int idPregunta) {
+        AppsDataStore dataStore = this.factory.createCloudDataStore();
+        return dataStore.addRespuesta(descripcion,orden,idEstado,idPregunta);
+    }
+
+    @Override
+    public Single<Boolean> updateRespuesta(int idPregunta, String descripcion, int orden, int idEstado, int idRespuesta) {
+        AppsDataStore dataStore = this.factory.createCloudDataStore();
+        return dataStore.updateRespuesta(idPregunta,descripcion,orden,idEstado,idRespuesta);
+    }
 }

@@ -16,4 +16,10 @@ public interface AppsDataStore {
     Single<Boolean> setDestacado(String idApp, String value);
     Single<Boolean> addContador(String idApp);
     Single<PreguntasResponse> getPreguntasFrecuentes();
+    Single<Boolean> addPregunta(String descripcion, int orden , int idEstado);
+    Single<Boolean> updatePregunta(int idPregunta, String descripcion, int orden , int idEstado);
+    Single<Boolean> updateMasivoPreguntas(int tipo, int idEstado  ,  List<Integer> data);
+    Single<Boolean> addRespuesta(String descripcion, int orden , int idEstado, int idPregunta);
+    Single<Boolean> updateRespuesta(int idPregunta, String descripcion, int orden , int idEstado, int idRespuesta);
+
 }

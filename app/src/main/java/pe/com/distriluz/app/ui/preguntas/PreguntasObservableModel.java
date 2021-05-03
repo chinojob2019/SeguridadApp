@@ -20,6 +20,32 @@ import pe.com.distriluz.data.utiles.Utils;
 public class PreguntasObservableModel extends BaseObservable {
 
     private ObservableList<PreguntasfrecuentesObservable> preguntas = new ObservableArrayList<>();
+    private int editar=0;
+    private String cantidadSeleccionada="";
+
+    @Bindable
+    public int getEditar() {
+        return editar;
+    }
+
+    public void setEditar(int editar) {
+        this.editar = editar;
+        notifyPropertyChanged(pe.com.distriluz.app.BR.editar);
+    }
+
+
+
+
+
+    @Bindable
+    public String getCantidadSeleccionada() {
+        return cantidadSeleccionada;
+    }
+
+    public void setCantidadSeleccionada(String cantidadSeleccionada) {
+        this.cantidadSeleccionada = cantidadSeleccionada;
+        notifyPropertyChanged(pe.com.distriluz.app.BR.cantidadSeleccionada);
+    }
 
     @Bindable
     public ObservableList<PreguntasfrecuentesObservable> getPreguntas() {
@@ -38,6 +64,27 @@ public class PreguntasObservableModel extends BaseObservable {
         private List<RespuestasItem> respuestas;
         private String pregunta = "";
         private Boolean open = false;
+        private int editarItem=0;
+        private Boolean seleccionado=false;
+        @Bindable
+        public Boolean getSeleccionado() {
+            return seleccionado;
+        }
+
+        public void setSeleccionado(Boolean seleccionado) {
+            this.seleccionado = seleccionado;
+            notifyPropertyChanged(pe.com.distriluz.app.BR.seleccionado);
+        }
+
+        @Bindable
+        public int getEditarItem() {
+            return editarItem;
+        }
+
+        public void setEditarItem(int editarItem) {
+            this.editarItem = editarItem;
+            notifyPropertyChanged(pe.com.distriluz.app.BR.editarItem);
+        }
 
         @Bindable
         public Boolean getOpen() {

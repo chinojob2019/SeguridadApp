@@ -28,7 +28,7 @@
                 android:paddingStart="16dp"
                 android:paddingTop="22dp"
                 android:paddingEnd="16dp"
-                android:paddingBottom="40dp"
+                android:paddingBottom="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -44,6 +44,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="23dp"
+                    android:visibility="@{vm.model.editar==1? View.GONE :View.VISIBLE}"
                     android:fontFamily="@font/sourcesansprosemibold"
                     android:text="Preguntas frecuentes"
                     android:textColor="@color/white"
@@ -52,8 +53,62 @@
                 <LinearLayout
                     android:layout_width="24dp"
                     android:layout_height="3dp"
+                    android:layout_marginBottom="40dp"
                     android:layout_marginTop="5dp"
+                    android:visibility="@{vm.model.editar==1? View.GONE :View.VISIBLE}"
                     android:background="@drawable/bg_resalt" />
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:visibility="@{vm.model.editar==1? View.VISIBLE :View.GONE}"
+                    android:layout_height="100dp">
+
+
+                    <ImageView
+                        android:id="@+id/imageView7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:onClick="@{vm::onClickBackEditar}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:srcCompat="@drawable/ic_back_reguntas_frecuentes" />
+
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:text="@{vm.model.cantidadSeleccionada.equals(``) ? `0 Items seleccionados`: vm.model.cantidadSeleccionada +  ` Items seleccionados`}"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageView7" />
+
+                    <ImageView
+                        android:id="@+id/imageView8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:onClick="@{vm::onClickMasivoEliminar}"
+                        app:srcCompat="@drawable/ic_desactivado" />
+
+                    <ImageView
+                        android:id="@+id/imageView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="8dp"
+                        android:onClick="@{vm::onClickMasivoActivar}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/imageView8"
+                        app:srcCompat="@drawable/ic_activado" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             </LinearLayout>
 
@@ -66,6 +121,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:orientation="horizontal"
+                android:visibility="@{vm.model.editar==1? View.GONE :View.VISIBLE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout8">
@@ -111,12 +167,13 @@
                 android:id="@+id/btnadd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:layout_marginEnd="32dp"
                 android:layout_marginBottom="32dp"
+                android:onClick="@{vm::onClickAddPregunta}"
+
                 android:src="@drawable/ic_agregar_pregunta"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"></com.google.android.material.floatingactionbutton.FloatingActionButton>
+                app:layout_constraintEnd_toEndOf="parent" />
 
 <!--            <ImageView-->
 <!--                android:id="@+id/imageView7"-->

@@ -59,4 +59,29 @@ public class AppsDBDataStore implements AppsDataStore {
        */
 
     }
+
+    @Override
+    public Single<Boolean> addPregunta(String descripcion, int orden, int idEstado) {
+        return Utils.defaultErrorBDSingle();
+    }
+
+    @Override
+    public Single<Boolean> updatePregunta(int idPregunta, String descripcion, int orden, int idEstado) {
+        return Utils.defaultErrorBDSingle();
+    }
+
+    @Override
+    public Single<Boolean> updateMasivoPreguntas(int tipo, int idEstado, List<Integer> data) {
+        return Utils.defaultErrorBDSingle();
+    }
+
+    @Override
+    public Single<Boolean> addRespuesta(String descripcion, int orden, int idEstado, int idPregunta) {
+        return Utils.defaultErrorBDSingle();
+    }
+
+    @Override
+    public Single<Boolean> updateRespuesta(int idPregunta, String descripcion, int orden, int idEstado, int idRespuesta) {
+        return Utils.defaultErrorBDSingle();
+    }
 }

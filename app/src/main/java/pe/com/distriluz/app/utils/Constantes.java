@@ -18,6 +18,8 @@ public class Constantes {
     public static final String PREF_USERPASSWORD  = "pref_userPassword ";
     public static final String PREF_USERROLES  = "pref_userRoles ";
     public static final String PREF_USERTYPE  = "pref_userType ";
+    public static final String PREF_DATAPREGUNTA  = "pref_pregunta";
+
     public static final String EMAIL_PATTERN = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
     public static final float maxWidth = 720.0f;
@@ -63,8 +65,9 @@ public class Constantes {
 
     public static final int MENU_ITEM_LISTA_INICIO=1;
     public static final int MENU_ITEM_PREGUNTAS=2;
-    public static final int MENU_ITEM_MESA_SERVICIO =3;
-    public static final int MENU_ITEM_CERRAR_SESSION =4;
-    public static final int MENU_ITEM_NO_DEFINIDO =5;
+    public static final int MENU_ITEM_PREGUNTAS_LECTURA=3;
+    public static final int MENU_ITEM_MESA_SERVICIO =4;
+    public static final int MENU_ITEM_CERRAR_SESSION =5;
+    public static final int MENU_ITEM_NO_DEFINIDO =6;
 
 }
