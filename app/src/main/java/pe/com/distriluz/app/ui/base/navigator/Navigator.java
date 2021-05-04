@@ -25,6 +25,13 @@ public interface Navigator {
     public static final String EXTRA_ARG_3 = "_args_3";
     public static final String EXTRA_LAT_ARG = "_lat_args";
     public static final String EXTRA_LON_ARG = "_lon_args";
+    public static final String EXTRA_ORDEN_ARG = "_orden_args";
+    public static final String EXTRA_DESCRIPCION_ARG = "_descripcion_args";
+    public static final String EXTRA_IDPREGUNTA_ARG = "_idpregunta_args";
+    public static final String EXTRA_IDESTADO_ARG = "_idestado_args";
+
+
+
 
     View inflate(int resource, ViewGroup root);
 

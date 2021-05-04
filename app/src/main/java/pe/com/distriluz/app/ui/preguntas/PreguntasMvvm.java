@@ -22,7 +22,6 @@ public interface PreguntasMvvm {
         ObservableBoolean isLoaded();
 
         PreguntasObservableModel getModel();
-        void onClickListadoRespuestas(PreguntasObservableModel.PreguntasfrecuentesObservable item);
 
         void onClickOpenDrawer(android.view.View view);
 
@@ -30,7 +29,7 @@ public interface PreguntasMvvm {
         void onClickBackEditar(android.view.View view);
         void onClickMasivoActivar(android.view.View view);
         void onClickMasivoEliminar(android.view.View view);
-void onClickIrListadoRespuestas();
+void onClickIrListadoRespuestas(PreguntasObservableModel.PreguntasfrecuentesObservable item);
 
         void onActivityResult(int requestCode, int resultCode, Intent data);
 

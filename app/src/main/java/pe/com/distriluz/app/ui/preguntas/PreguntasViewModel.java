@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.databinding.ObservableArrayList;
+import androidx.databinding.ObservableList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +23,10 @@ import pe.com.distriluz.app.ui.addpregunta.AddPreguntaActivity;
 import pe.com.distriluz.app.ui.base.navigator.FragmentNavigator;
 import pe.com.distriluz.app.ui.base.viewmodel.BaseFragmentViewModel;
 import pe.com.distriluz.app.ui.respuestas.RespuestasFragment;
+import pe.com.distriluz.app.ui.respuestas.RespuestasObservableModel;
+
+import pe.com.distriluz.data.net.apps.model.ItemPreguntaResponse;
+import pe.com.distriluz.data.utiles.Utils;
 import pe.com.distriluz.domain.interactor.GetPreguntasCase;
 import pe.com.distriluz.domain.interactor.SaveInfoUserUseCase;
 import pe.com.distriluz.domain.interactor.UpdateMasivoPreguntasUseCase;
@@ -79,16 +85,6 @@ public class PreguntasViewModel extends BaseFragmentViewModel<PreguntasMvvm.View
         return model;
     }
 
-    @Override
-    public void onClickListadoRespuestas(PreguntasObservableModel.PreguntasfrecuentesObservable item) {
-
-
-
-
-
-        navigator.replaceFragment(R.id.box_fragment, new RespuestasFragment(),null);
-     //   navigator.startActivityForResultFromFragment(AddPreguntaActivity.class, 0, 666);
-    }
 
     @Override
     public void onClickOpenDrawer(android.view.View view) {
@@ -97,7 +93,17 @@ public class PreguntasViewModel extends BaseFragmentViewModel<PreguntasMvvm.View
 
     @Override
     public void onClickAddPregunta(android.view.View view) {
-        navigator.startActivityForResultFromFragment(AddPreguntaActivity.class, 0, AddPreguntaActivity.REQUEST_CODE);
+
+        int maximo_valor=0;
+        for(PreguntasObservableModel.PreguntasfrecuentesObservable item: model.getPreguntas()){
+           if(item.getOrden()>maximo_valor){
+               maximo_valor=item.getOrden();
+           }
+        }
+        maximo_valor= maximo_valor+1;
+
+
+        navigator.startActivityForResultFromFragment(AddPreguntaActivity.class, maximo_valor, AddPreguntaActivity.REQUEST_CODE);
     }
 
     @Override
@@ -106,6 +112,7 @@ public class PreguntasViewModel extends BaseFragmentViewModel<PreguntasMvvm.View
 
         for (int i = 0; i < getModel().getPreguntas().size(); i++) {
             getModel().getPreguntas().get(i).setEditarItem(0);
+            getModel().getPreguntas().get(i).setSeleccionado(false);
         }
 
 
@@ -233,7 +240,31 @@ public class PreguntasViewModel extends BaseFragmentViewModel<PreguntasMvvm.View
     }
 
     @Override
-    public void onClickIrListadoRespuestas() {
+    public void onClickIrListadoRespuestas(PreguntasObservableModel.PreguntasfrecuentesObservable item) {
+
+        ItemPreguntaResponse pregunta = new ItemPreguntaResponse();
+        pregunta.setEditarItem(0);
+        pregunta.setCantidadSeleccionada("0");
+        pregunta.setOrden(item.getOrden());
+        pregunta.setIdPregunta(item.getIdPregunta());
+        pregunta.setIdEstado(item.getIdEstado());
+        pregunta.setPregunta(item.getPregunta());
+        //    pregunta.setRespuestas(item.getRespuestas() );
+// hacer el for para las respuestas........
+        List<ItemPreguntaResponse.RespuestasItem> respuestasItemList = new ArrayList<>();
+        for (PreguntasObservableModel.PreguntasfrecuentesObservable.RespuestasItem itemrespre : item.getRespuestas()) {
+            ItemPreguntaResponse.RespuestasItem respuestasItem = new ItemPreguntaResponse.RespuestasItem();
+            respuestasItem.setEditarItem(0);
+            respuestasItem.setSeleccionado(false);
+            respuestasItem.setIdEstado(itemrespre.getIdEstado());
+            respuestasItem.setIdRespuesta(itemrespre.getIdRespuesta());
+            respuestasItem.setOrden(itemrespre.getOrden());
+            respuestasItem.setRespuesta(itemrespre.getRespuesta());
+            respuestasItemList.add(respuestasItem);
+        }
+        pregunta.setRespuestas(respuestasItemList);
+          Utils.savePregunta(con,pregunta);
+
         navigator.replaceFragment(R.id.box_fragment, new RespuestasFragment(),null);
     }
 

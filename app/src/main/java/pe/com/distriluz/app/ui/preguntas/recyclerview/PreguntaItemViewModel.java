@@ -33,7 +33,7 @@ public class PreguntaItemViewModel extends BaseViewHolderViewModel<PreguntaItemM
 
     @Override
     public void onClickListarRespuesta(View view) {
-        getView().onclickListaRespuestas();
+        getView().onclickListaRespuestas(model);
 
     }
 

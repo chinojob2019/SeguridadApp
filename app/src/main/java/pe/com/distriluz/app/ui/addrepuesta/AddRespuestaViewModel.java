@@ -29,8 +29,8 @@ public class AddRespuestaViewModel extends BaseActivityViewModel<AddPreguntaMvvm
     public AddRespuestaViewModel(@AppContext Context appContext, Navigator navigator, AddPreguntaUseCase saveInfoUserUseCase) {
         super(appContext, navigator);
         this.model = new AddPreguntaObservableModel(
-             "","",1,true,"");
-        this.addPreguntaUseCase  = saveInfoUserUseCase;
+                "", "", 1, true, "");
+        this.addPreguntaUseCase = saveInfoUserUseCase;
     }
 
     @Override
@@ -47,7 +47,7 @@ public class AddRespuestaViewModel extends BaseActivityViewModel<AddPreguntaMvvm
 
     @Override
     public void onClickGuardar(View view) {
-        if(validateSendinfo()){
+        if (validateSendinfo()) {
             showLoading();
             this.addPreguntaUseCase.execute(new DisposableSingleObserver<Boolean>() {
                 @Override
@@ -65,38 +65,32 @@ public class AddRespuestaViewModel extends BaseActivityViewModel<AddPreguntaMvvm
                     showError(e);
 
                 }
-            }, AddPreguntaUseCase.Params.datos(model.getDescripcion(), Integer.parseInt(model.getOrden()),model.getIdEstado()));
+            }, AddPreguntaUseCase.Params.datos(model.getDescripcion(), Integer.parseInt(model.getOrden()), model.getIdEstado()));
         }
     }
 
     @Override
     public void rememberMeChanged(CompoundButton buttonView, Boolean isChecked) {
-if(isChecked)
-{
-    model.setIdEstado(1);
-    //model.setRememberMe(true);
-
-}else
-{
-    model.setIdEstado(0);
-   // model.setRememberMe(false);
-}
-
-
-
-        Log.d("Logeando",  String.valueOf(isChecked));
+        if (isChecked) {
+            model.setIdEstado(1);
+            //model.setRememberMe(true);
+        } else {
+            model.setIdEstado(0);
+            // model.setRememberMe(false);
+        }
+        Log.d("Logeando", String.valueOf(isChecked));
 
     }
 
 
     private boolean validateSendinfo() {
         String vacio = "";
-        boolean resultado=true;
-        if( !model.getDescripcion().equals(vacio) && !model.getOrden().equals(vacio)){
-            resultado=true;
-        }else{
-            resultado=false;
-        toast("Ingresar Descripción y Orden");
+        boolean resultado = true;
+        if (!model.getDescripcion().equals(vacio) && !model.getOrden().equals(vacio)) {
+            resultado = true;
+        } else {
+            resultado = false;
+            toast("Ingresar Descripción y Orden");
         }
 
         return (resultado);
@@ -108,12 +102,10 @@ if(isChecked)
     }
 
 
-
-
     @Override
     protected void showLoading() {
         super.showLoading();
-        if(dialog==null) {
+        if (dialog == null) {
             dialog = new AlertLoadingDialog();
             navigator.startDialog(dialog);
         }
@@ -121,9 +113,9 @@ if(isChecked)
 
     @Override
     protected void hideLoading() {
-        if(dialog!=null) {
+        if (dialog != null) {
             dialog.dismissAllowingStateLoss();
-            dialog=null;
+            dialog = null;
         }
     }
 }

@@ -9,10 +9,11 @@ import androidx.core.content.res.ResourcesCompat;
 
 import pe.com.distriluz.app.R;
 import pe.com.distriluz.app.databinding.AddPreguntaActivityBinding;
+import pe.com.distriluz.app.databinding.AddRespuestaActivityBinding;
 import pe.com.distriluz.app.ui.addpregunta.AddPreguntaMvvm;
 import pe.com.distriluz.app.ui.base.BaseActivity;
 
-public class AddRespuestaActivity extends BaseActivity<AddPreguntaActivityBinding, AddPreguntaMvvm.ViewModel> implements AddPreguntaMvvm.View {
+public class AddRespuestaActivity extends BaseActivity<AddRespuestaActivityBinding, AddPreguntaMvvm.ViewModel> implements AddPreguntaMvvm.View {
 
     public static final int REQUEST_CODE = 656;
 
@@ -23,7 +24,7 @@ public class AddRespuestaActivity extends BaseActivity<AddPreguntaActivityBindin
         activityComponent().inject(this);
         setAndBindContentView(savedInstanceState, R.layout.add_respuesta_activity);
 
-        binding.etDireccion.addTextChangedListener(new TextWatcher() {
+        binding.etDescripcion.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -64,12 +65,12 @@ public class AddRespuestaActivity extends BaseActivity<AddPreguntaActivityBindin
                     myList = new  ColorStateList(states, colors);
 
                 }
-                binding.tilDireccion.setEndIconTintList(myList);
+                binding.tilDescripcion.setEndIconTintList(myList);
 
             }
         });
 
-        binding.etTelefono.addTextChangedListener(new TextWatcher() {
+        binding.etOrden.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -110,7 +111,7 @@ public class AddRespuestaActivity extends BaseActivity<AddPreguntaActivityBindin
                     myList = new  ColorStateList(states, colors);
 
                 }
-                binding.tilTelefono.setEndIconTintList(myList);
+                binding.tilOrden.setEndIconTintList(myList);
             }
         });
 

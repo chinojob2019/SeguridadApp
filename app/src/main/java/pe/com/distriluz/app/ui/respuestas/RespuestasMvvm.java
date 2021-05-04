@@ -29,6 +29,8 @@ public interface RespuestasMvvm {
         void onClickBackEditar(android.view.View view);
         void onClickMasivoActivar(android.view.View view);
         void onClickMasivoEliminar(android.view.View view);
+        void onClickEditarPregunta(android.view.View view);
+
 
 
         void onActivityResult(int requestCode, int resultCode, Intent data);

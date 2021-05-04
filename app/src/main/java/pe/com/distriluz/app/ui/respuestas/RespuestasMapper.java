@@ -22,6 +22,13 @@ public class RespuestasMapper {
     public RespuestasMapper() {
     }
 
+
+
+
+
+
+
+
     public void mapperPreguntas(RespuestasObservableModel model, List<Preguntasfrecuentes> items, int filtro) {
 
 

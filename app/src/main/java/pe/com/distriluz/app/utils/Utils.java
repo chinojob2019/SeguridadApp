@@ -394,16 +394,5 @@ public class Utils {
         return new  ColorStateList(states, colorserror);
     }
 
-    public static void savePregunta(Context context, RespuestasObservableModel body) {
 
-        context.getSharedPreferences(Constantes.PREFERENCES, Context.MODE_PRIVATE).edit().putString(Constantes.PREF_DATAPREGUNTA, new Gson().toJson(body)).apply();
-    }
-
-    public static RespuestasObservableModel getPRegunta(Context context) {
-        return new Gson().fromJson(
-                context.getSharedPreferences(Constantes.PREFERENCES, Context.MODE_PRIVATE)
-                        .getString(Constantes.PREF_DATAPREGUNTA, ""),
-                RespuestasObservableModel.class
-        );
-    }
 }

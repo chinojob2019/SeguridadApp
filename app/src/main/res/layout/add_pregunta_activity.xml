@@ -45,7 +45,7 @@
         </LinearLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_direccion"
+            android:id="@+id/til_descripcion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="100dp"
@@ -57,7 +57,7 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
 
             <EditText
-                android:id="@+id/et_direccion"
+                android:id="@+id/et_descripcion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
@@ -83,7 +83,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_telefono"
+            android:id="@+id/til_orden"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -92,10 +92,10 @@
             app:endIconTintMode="src_in"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/til_direccion">
+            app:layout_constraintTop_toBottomOf="@+id/til_descripcion">
 
             <EditText
-                android:id="@+id/et_telefono"
+                android:id="@+id/et_orden"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
@@ -169,7 +169,7 @@
             android:checked="@{vm.model.rememberMe}"
             android:onCheckedChanged="@{vm::rememberMeChanged}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/til_telefono" />
+            app:layout_constraintTop_toBottomOf="@+id/til_orden" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

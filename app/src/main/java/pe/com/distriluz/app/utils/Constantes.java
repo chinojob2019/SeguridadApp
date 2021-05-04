@@ -18,7 +18,6 @@ public class Constantes {
     public static final String PREF_USERPASSWORD  = "pref_userPassword ";
     public static final String PREF_USERROLES  = "pref_userRoles ";
     public static final String PREF_USERTYPE  = "pref_userType ";
-    public static final String PREF_DATAPREGUNTA  = "pref_pregunta";
 
     public static final String EMAIL_PATTERN = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 

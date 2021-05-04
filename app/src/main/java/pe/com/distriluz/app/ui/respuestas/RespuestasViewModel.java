@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 
@@ -14,14 +15,21 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.observers.DisposableSingleObserver;
+import pe.com.distriluz.app.R;
 import pe.com.distriluz.app.injection.scopes.PerFragment;
 
+import pe.com.distriluz.app.ui.addpregunta.AddPreguntaActivity;
 import pe.com.distriluz.app.ui.addrepuesta.AddRespuestaActivity;
 import pe.com.distriluz.app.ui.base.navigator.FragmentNavigator;
 import pe.com.distriluz.app.ui.base.viewmodel.BaseFragmentViewModel;
+import pe.com.distriluz.app.ui.preguntas.PreguntasFragment;
 import pe.com.distriluz.app.ui.respuestas.RespuestasMapper;
 import pe.com.distriluz.app.ui.respuestas.RespuestasMvvm;
 import pe.com.distriluz.app.ui.respuestas.RespuestasObservableModel;
+
+import pe.com.distriluz.app.ui.updatepregunta.UpdatePreguntaActivity;
+import pe.com.distriluz.data.net.apps.model.ItemPreguntaResponse;
+import pe.com.distriluz.data.utiles.Utils;
 import pe.com.distriluz.domain.interactor.GetPreguntasCase;
 
 import pe.com.distriluz.domain.interactor.UpdateMasivoPreguntasUseCase;
@@ -58,8 +66,24 @@ public class RespuestasViewModel extends BaseFragmentViewModel<RespuestasMvvm.Vi
     @Override
     public void attachView(View mvvmView, @Nullable Bundle savedInstanceState) {
         super.attachView(mvvmView, savedInstanceState);
-        showLoading();
-        getRespuestasCase.execute(new DefaultObserverSingle<List<Preguntasfrecuentes>>() {
+       model.setEditarItem(0);
+       model.setOrden( Utils.getPRegunta(con).getOrden());
+        model.setPregunta(Utils.getPRegunta(con).getPregunta());
+        model.setIdEstado(Utils.getPRegunta(con).getIdEstado());
+        model.setIdPregunta(Utils.getPRegunta(con).getIdPregunta());
+        for (ItemPreguntaResponse.RespuestasItem resp : Utils.getPRegunta(con).getRespuestas()) {
+            RespuestasObservableModel.RespuestasItem item= new RespuestasObservableModel.RespuestasItem();
+            item.setRespuesta(resp.getRespuesta());
+            item.setOrden(resp.getOrden());
+            item.setIdRespuesta(resp.getIdRespuesta());
+            item.setIdEstado(resp.getIdEstado());
+            item.setEditarItem(resp.getEditarItem());
+            model.getRespuestas().add(item);
+        }
+        model.notifyChange();
+
+       // showLoading();
+       /* getRespuestasCase.execute(new DefaultObserverSingle<List<Preguntasfrecuentes>>() {
             @Override
             public void onSuccess(List<Preguntasfrecuentes> Respuestasfrecuentes) {
                 hideLoading();
@@ -74,7 +98,7 @@ public class RespuestasViewModel extends BaseFragmentViewModel<RespuestasMvvm.Vi
                 toast(e.getMessage());
                 showError(e);
             }
-        }, null);
+        }, null);*/
     }
 
     @Override
@@ -89,7 +113,7 @@ public class RespuestasViewModel extends BaseFragmentViewModel<RespuestasMvvm.Vi
 
     @Override
     public void onClickOpenDrawer(android.view.View view) {
-        navigator.openDrawer();
+        navigator.replaceFragment(R.id.box_fragment, new PreguntasFragment(),null);
     }
 
     @Override
@@ -104,7 +128,6 @@ public class RespuestasViewModel extends BaseFragmentViewModel<RespuestasMvvm.Vi
         for (int i = 0; i < getModel().getRespuestas().size(); i++) {
             getModel().getRespuestas().get(i).setEditarItem(0);
         }
-
 
         notifyChange();
         getView().changeGlobal();
@@ -232,11 +255,18 @@ public class RespuestasViewModel extends BaseFragmentViewModel<RespuestasMvvm.Vi
     }
 
     @Override
+    public void onClickEditarPregunta(android.view.View view) {
+        navigator.startActivityForResultFromFragment(UpdatePreguntaActivity.class, this.model.getOrden(),this.model.getIdPregunta(),this.model.getPregunta(),this.model.getIdEstado(),  UpdatePreguntaActivity.REQUEST_CODE);
+    }
+
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == AddRespuestaActivity.REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             // this.model = new ProfileObservableModel();
-            showLoading();
-            this.model= new RespuestasObservableModel();/*
+           model.setPregunta(data.getStringExtra("pregunta"));
+            // showLoading();
+            //this.model= new RespuestasObservableModel();
+            /*
             getRespuestasCase.execute(new DefaultObserverSingle<List<Respuestasfrecuentes>>() {
                 @Override
                 public void onSuccess(List<Respuestasfrecuentes> Respuestasfrecuentes) {

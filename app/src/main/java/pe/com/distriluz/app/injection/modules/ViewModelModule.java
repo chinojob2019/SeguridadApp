@@ -37,6 +37,8 @@ import pe.com.distriluz.app.ui.respuestas.recyclerview.RespuestaItemMvvm;
 import pe.com.distriluz.app.ui.respuestas.recyclerview.RespuestaItemViewModel;
 import pe.com.distriluz.app.ui.restorepassword.RestorePasswordMvvm;
 import pe.com.distriluz.app.ui.restorepassword.RestorePasswordViewModel;
+import pe.com.distriluz.app.ui.updatepregunta.UpdatePreguntaMvvm;
+import pe.com.distriluz.app.ui.updatepregunta.UpdatePreguntaViewModel;
 import pe.com.distriluz.app.ui.validatecode.ValidateCodeMvvm;
 import pe.com.distriluz.app.ui.validatecode.ValidateCodeViewModel;
 
@@ -80,6 +82,9 @@ public abstract class ViewModelModule {
     abstract PreguntaLecturaItemMvvm.ViewModel bindPreguntaLecturaItemViewModel(PreguntaLecturaItemViewModel viewModel);
     @Binds
     abstract AddPreguntaMvvm.ViewModel bindAddPreguntaViewModel(AddPreguntaViewModel viewModel);
+    @Binds
+    abstract UpdatePreguntaMvvm.ViewModel bindUpdatePreguntaViewModel(UpdatePreguntaViewModel viewModel);
+
 
 
 
