@@ -1,62 +1,59 @@
-package pe.com.distriluz.app.ui.addpregunta;
+package pe.com.distriluz.app.ui.updatepregunta;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
 
-import com.miguelbcr.ui.rx_paparazzo2.RxPaparazzo;
-import com.miguelbcr.ui.rx_paparazzo2.entities.FileData;
-import com.miguelbcr.ui.rx_paparazzo2.entities.Response;
-
 import javax.inject.Inject;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableSingleObserver;
-import io.reactivex.schedulers.Schedulers;
-import pe.com.distriluz.app.ApplicationContext;
 import pe.com.distriluz.app.injection.qualifier.AppContext;
 import pe.com.distriluz.app.injection.scopes.PerActivity;
 import pe.com.distriluz.app.ui.alerts.AlertLoadingDialog;
-import pe.com.distriluz.app.ui.alerts.AlertSelectPhotoDialog;
-import pe.com.distriluz.app.ui.base.BaseActivity;
 import pe.com.distriluz.app.ui.base.navigator.Navigator;
 import pe.com.distriluz.app.ui.base.viewmodel.BaseActivityViewModel;
-import pe.com.distriluz.app.utils.Constantes;
-import pe.com.distriluz.data.utiles.Utils;
-import pe.com.distriluz.domain.interactor.AddPreguntaUseCase;
-import pe.com.distriluz.domain.interactor.SaveInfoUserUseCase;
-import pe.com.distriluz.domain.interactor.baseinteractors.DefaultObserverObservable;
+
+import pe.com.distriluz.domain.interactor.UpdatePreguntaUseCase;
 
 @PerActivity
-public class AddPreguntaViewModel extends BaseActivityViewModel<AddPreguntaMvvm.View> implements AddPreguntaMvvm.ViewModel {
+public class UpdatePreguntaViewModel extends BaseActivityViewModel<UpdatePreguntaMvvm.View> implements UpdatePreguntaMvvm.ViewModel {
 
-    AddPreguntaObservableModel model;
-    private AddPreguntaUseCase addPreguntaUseCase;
+    UpdatePreguntaObservableModel model;
+    private UpdatePreguntaUseCase updatePreguntaUseCase;
     private AlertLoadingDialog dialog;
-private int maximoOrden;
+private String descripcion;
+private int idestado;
+private int idpregunta;
+private int orden;
+
     @Inject
-    public AddPreguntaViewModel(@AppContext Context appContext, Navigator navigator, AddPreguntaUseCase saveInfoUserUseCase) {
+    public UpdatePreguntaViewModel(@AppContext Context appContext, Navigator navigator, UpdatePreguntaUseCase saveInfoUserUseCase) {
         super(appContext, navigator);
 
-        this.maximoOrden = navigator.getIntent().getIntExtra(Navigator.EXTRA_ARG,1);
+        this.orden = navigator.getIntent().getIntExtra(Navigator.EXTRA_ORDEN_ARG,1);
+        this.idestado = navigator.getIntent().getIntExtra(Navigator.EXTRA_IDESTADO_ARG,1);
+        this.idpregunta = navigator.getIntent().getIntExtra(Navigator.EXTRA_IDPREGUNTA_ARG,1);
+        this.descripcion = navigator.getIntent().getStringExtra(Navigator.EXTRA_DESCRIPCION_ARG);
 
-        this.model = new AddPreguntaObservableModel(
-             "", String.valueOf(maximoOrden) ,1,true,"");
-        this.addPreguntaUseCase  = saveInfoUserUseCase;
+
+        this.model = new UpdatePreguntaObservableModel(
+             descripcion, String.valueOf(orden) ,idestado, idestado == 1,"", idpregunta);
+        this.updatePreguntaUseCase  = saveInfoUserUseCase;
 
     }
 
     @Override
-    public AddPreguntaObservableModel getModel() {
+    public UpdatePreguntaObservableModel getModel() {
         return model;
     }
 
 
     @Override
     public void detachView() {
-        addPreguntaUseCase.dispose();
+        updatePreguntaUseCase.dispose();
         super.detachView();
     }
 
@@ -64,12 +61,15 @@ private int maximoOrden;
     public void onClickGuardar(View view) {
         if(validateSendinfo()){
             showLoading();
-            this.addPreguntaUseCase.execute(new DisposableSingleObserver<Boolean>() {
+            this.updatePreguntaUseCase.execute(new DisposableSingleObserver<Boolean>() {
                 @Override
                 public void onSuccess(Boolean aBoolean) {
                     hideLoading();
                     toast("Tus cambios se han guardado.");
-                    navigator.setResult(Activity.RESULT_OK, null);
+                    Intent resultIntent = new Intent();
+
+                    resultIntent.putExtra("pregunta", model.getDescripcion());
+                    navigator.setResult(Activity.RESULT_OK, resultIntent);
                     navigator.finishActivity();
                 }
 
@@ -80,7 +80,7 @@ private int maximoOrden;
                     showError(e);
 
                 }
-            }, AddPreguntaUseCase.Params.datos(model.getDescripcion(), Integer.parseInt(model.getOrden()),model.getIdEstado()));
+            }, UpdatePreguntaUseCase.Params.datos(model.getIdPregunta(),model.getDescripcion(), Integer.parseInt(model.getOrden()),model.getIdEstado()));
         }
     }
 

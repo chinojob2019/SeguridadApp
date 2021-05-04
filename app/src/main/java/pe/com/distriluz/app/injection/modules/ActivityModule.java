@@ -25,6 +25,7 @@ import pe.com.distriluz.domain.interactor.AddRespuestaUseCase;
 import pe.com.distriluz.domain.interactor.ChangePasswordUseCase;
 import pe.com.distriluz.domain.interactor.GetMenuUseCase;
 import pe.com.distriluz.domain.interactor.LoginUseCase;
+import pe.com.distriluz.domain.interactor.UpdatePreguntaUseCase;
 import pe.com.distriluz.domain.repository.AccesoRepository;
 import pe.com.distriluz.domain.repository.AppsRepository;
 import pe.com.distriluz.domain.repository.AuthRepository;
@@ -113,6 +114,13 @@ public class ActivityModule {
     AddPreguntaUseCase provideAddPreguntaUseCase(AppsRepository repository, ThreadExecutor threadExecutor,
                                                  PostExecutionThread postExecutionThread) {
         return new AddPreguntaUseCase(repository, threadExecutor, postExecutionThread);
+    }
+
+    @Provides
+    @Named("UpdatePreguntaUseCase")
+    UpdatePreguntaUseCase provideUpdatePreguntaUseCase(AppsRepository repository, ThreadExecutor threadExecutor,
+                                                    PostExecutionThread postExecutionThread) {
+        return new UpdatePreguntaUseCase(repository, threadExecutor, postExecutionThread);
     }
 
     @Named("AddRespuestaUseCase")

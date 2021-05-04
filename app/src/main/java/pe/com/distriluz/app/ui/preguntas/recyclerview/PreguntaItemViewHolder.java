@@ -9,6 +9,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import pe.com.distriluz.app.databinding.ItemPreguntaBinding;
 import pe.com.distriluz.app.ui.base.BaseViewHolder;
 import pe.com.distriluz.app.ui.preguntas.PreguntasMvvm;
+import pe.com.distriluz.app.ui.preguntas.PreguntasObservableModel;
 
 
 public class PreguntaItemViewHolder extends BaseViewHolder<ItemPreguntaBinding, PreguntaItemMvvm.ViewModel> implements PreguntaItemMvvm.View {
@@ -41,9 +42,9 @@ private final PreguntasMvvm.ViewModel viewModel;
     }
 
     @Override
-    public void onclickListaRespuestas() {
+    public void onclickListaRespuestas(PreguntasObservableModel.PreguntasfrecuentesObservable item) {
 
 
-        this.viewModel.onClickIrListadoRespuestas();
+        this.viewModel.onClickIrListadoRespuestas(item);
     }
 }

@@ -113,6 +113,7 @@ viewHolder.viewModel().updateSelecionado(position);
             @Override
             public boolean onLongClick(View v) {
                 model.getPreguntas().get(position).setEditarItem(1);
+                model.getPreguntas().get(position).setSeleccionado(true);
 //model.getPreguntas().get(position).setSeleccionado(true);
                 for (int i = 0; i < model.getPreguntas().size(); i++) {
                     model.getPreguntas().get(i).setEditarItem(1);

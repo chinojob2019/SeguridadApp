@@ -11,7 +11,7 @@ import pe.com.distriluz.app.ui.preguntas.PreguntasObservableModel;
 public interface PreguntaItemMvvm {
 
     interface View extends MvvmView {
-        void onclickListaRespuestas();
+        void onclickListaRespuestas(PreguntasObservableModel.PreguntasfrecuentesObservable item);
 
     }
 

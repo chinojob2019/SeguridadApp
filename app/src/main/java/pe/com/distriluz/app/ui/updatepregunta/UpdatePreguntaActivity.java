@@ -1,4 +1,4 @@
-package pe.com.distriluz.app.ui.addpregunta;
+package pe.com.distriluz.app.ui.updatepregunta;
 
 import android.content.res.ColorStateList;
 import android.os.Bundle;
@@ -9,11 +9,10 @@ import androidx.core.content.res.ResourcesCompat;
 
 import pe.com.distriluz.app.R;
 import pe.com.distriluz.app.databinding.AddPreguntaActivityBinding;
-import pe.com.distriluz.app.databinding.EditProfileActivityBinding;
+import pe.com.distriluz.app.databinding.UpdatePreguntaActivityBinding;
 import pe.com.distriluz.app.ui.base.BaseActivity;
-import pe.com.distriluz.app.utils.Constantes;
 
-public class AddPreguntaActivity extends BaseActivity<AddPreguntaActivityBinding, AddPreguntaMvvm.ViewModel> implements AddPreguntaMvvm.View {
+public class UpdatePreguntaActivity extends BaseActivity<UpdatePreguntaActivityBinding, UpdatePreguntaMvvm.ViewModel> implements UpdatePreguntaMvvm.View {
 
     public static final int REQUEST_CODE = 656;
 
@@ -22,7 +21,7 @@ public class AddPreguntaActivity extends BaseActivity<AddPreguntaActivityBinding
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityComponent().inject(this);
-        setAndBindContentView(savedInstanceState, R.layout.add_pregunta_activity);
+        setAndBindContentView(savedInstanceState, R.layout.update_pregunta_activity);
 
         binding.etDescripcion.addTextChangedListener(new TextWatcher() {
             @Override

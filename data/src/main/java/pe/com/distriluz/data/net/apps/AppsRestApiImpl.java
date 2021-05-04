@@ -70,7 +70,6 @@ public class AppsRestApiImpl extends BaseRestApiImpl {
                                 if(error instanceof SocketTimeoutException){
                                     emitter.onError(new NetworkConnectionException());
                                 }else{
-
                                     emitter.onError(error);
                                 }
                             }

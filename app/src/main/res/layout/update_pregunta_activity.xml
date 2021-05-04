@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="pe.com.distriluz.app.ui.addpregunta.AddPreguntaMvvm.ViewModel" />
+            type="pe.com.distriluz.app.ui.updatepregunta.UpdatePreguntaMvvm.ViewModel" />
 
         <import type="android.view.View" />
     </data>
@@ -40,7 +40,7 @@
                 android:fontFamily="@font/roboto_mediun"
                 android:paddingStart="24dp"
                 android:paddingEnd="24dp"
-                android:text="Nueva Respuesta "
+                android:text="Actualizar Pregunta "
                 android:textSize="20dp" />
         </LinearLayout>
 

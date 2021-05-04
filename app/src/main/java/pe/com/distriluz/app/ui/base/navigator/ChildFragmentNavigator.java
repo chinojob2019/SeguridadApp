@@ -52,6 +52,16 @@ public class ChildFragmentNavigator extends ActivityNavigator implements Fragmen
         startActivityInternal(activityClass, intent -> intent.putExtra(EXTRA_ARG, arg), requestCode);
     }
 
+    @Override
+    public void startActivityForResultFromFragment(@NonNull Class<? extends Activity> activityClass, int orden, int idpregunta, String descripcion, int idestado, int requestCode) {
+        startActivityInternal(activityClass, intent -> {
+            intent.putExtra(EXTRA_ORDEN_ARG, orden);
+            intent.putExtra(EXTRA_IDPREGUNTA_ARG, idpregunta);
+            intent.putExtra(EXTRA_DESCRIPCION_ARG, descripcion);
+            intent.putExtra(EXTRA_IDESTADO_ARG, idestado);
+        }, requestCode);
+    }
+
     private void startActivityInternal(Class<? extends Activity> activityClass, PlainConsumer<Intent> setArgsAction, Integer requestCode) {
         Intent intent = new Intent(fragment.getContext(), activityClass);
         if (setArgsAction != null) {

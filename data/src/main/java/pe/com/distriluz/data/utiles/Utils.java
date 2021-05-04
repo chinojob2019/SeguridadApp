@@ -17,6 +17,7 @@ import java.util.Date;
 import io.reactivex.Observable;
 import io.reactivex.Single;
 import pe.com.distriluz.data.exception.ErrorException;
+import pe.com.distriluz.data.net.apps.model.ItemPreguntaResponse;
 import pe.com.distriluz.data.net.auth.model.DetailUserResponse;
 import pe.com.distriluz.data.net.auth.model.LoginResponse;
 import pe.com.distriluz.domain.model.DetailUser;
@@ -230,6 +231,20 @@ public class Utils {
                 context.getSharedPreferences(Constantes.PREFERENCES, Context.MODE_PRIVATE)
                         .getString(Constantes.PREF_INFOR_USER, ""),
                 DetailUserResponse.class
+        );
+    }
+
+
+    public static void savePregunta(Context context, ItemPreguntaResponse body) {
+
+        context.getSharedPreferences(Constantes.PREFERENCES, Context.MODE_PRIVATE).edit().putString(Constantes.PREF_DATAPREGUNTA, new Gson().toJson(body)).apply();
+    }
+
+    public static ItemPreguntaResponse getPRegunta(Context context) {
+        return new Gson().fromJson(
+                context.getSharedPreferences(Constantes.PREFERENCES, Context.MODE_PRIVATE)
+                        .getString(Constantes.PREF_DATAPREGUNTA, ""),
+                ItemPreguntaResponse.class
         );
     }
 }

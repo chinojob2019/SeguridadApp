@@ -5,7 +5,7 @@ import android.widget.CompoundButton;
 
 import pe.com.distriluz.app.ui.base.view.MvvmView;
 import pe.com.distriluz.app.ui.base.viewmodel.IViewModel;
-import pe.com.distriluz.app.ui.preguntas.PreguntasObservableModel;
+
 import pe.com.distriluz.app.ui.respuestas.RespuestasObservableModel;
 
 

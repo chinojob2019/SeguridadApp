@@ -20,5 +20,7 @@ public interface FragmentNavigator extends Navigator {
 
     void startActivityForResultFromFragment(@NonNull Class<? extends Activity> activityClass, int arg, int requestCode);
 
+    void startActivityForResultFromFragment(@NonNull Class<? extends Activity> activityClass, int orden, int idpregunta, String Descripcion, int idestado,int requestCode);
+
     void reloadListApp();
 }

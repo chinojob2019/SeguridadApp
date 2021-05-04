@@ -14,15 +14,17 @@ import javax.inject.Inject;
 
 import pe.com.distriluz.app.R;
 import pe.com.distriluz.app.databinding.FragmentPreguntasBinding;
+import pe.com.distriluz.app.databinding.FragmentRespuestasBinding;
 import pe.com.distriluz.app.ui.base.BaseFragment;
 import pe.com.distriluz.app.ui.preguntas.PreguntasMvvm;
 import pe.com.distriluz.app.ui.preguntas.recyclerview.PreguntaItemAdapter;
+import pe.com.distriluz.app.ui.respuestas.recyclerview.RespuestaItemAdapter;
 
-public class RespuestasFragment extends BaseFragment<FragmentPreguntasBinding, PreguntasMvvm.ViewModel>
-        implements PreguntasMvvm.View {
+public class RespuestasFragment extends BaseFragment<FragmentRespuestasBinding, RespuestasMvvm.ViewModel>
+        implements RespuestasMvvm.View {
 
     @Inject
-    PreguntaItemAdapter adapter;
+    RespuestaItemAdapter adapter;
 
 
     @Override

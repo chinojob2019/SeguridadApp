@@ -46,7 +46,7 @@
                     android:layout_marginTop="23dp"
                     android:visibility="@{vm.model.editar==1? View.GONE :View.VISIBLE}"
                     android:fontFamily="@font/sourcesansprosemibold"
-                    android:text="Preguntas frecuentes"
+                    android:text="Mantenimiento de Preguntas Frecuentes"
                     android:textColor="@color/white"
                     android:textSize="24dp" />
 
@@ -92,6 +92,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_marginBottom="8dp"
+                        android:tooltipText="Inactivar"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         android:onClick="@{vm::onClickMasivoEliminar}"
@@ -103,10 +104,28 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="8dp"
+                        android:tooltipText="Activar"
                         android:onClick="@{vm::onClickMasivoActivar}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/imageView8"
                         app:srcCompat="@drawable/ic_activado" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="60dp"
+                        android:text="Activar"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toTopOf="@+id/imageView9"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Inactivar"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toTopOf="@+id/imageView9"
+                        app:layout_constraintEnd_toEndOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

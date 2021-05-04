@@ -74,6 +74,7 @@ public abstract class BaseAppViewModel<V extends MvvmView> extends BaseViewModel
         navigator.startDialog(new AlertEmailErrorDialog(ApplicationContext.getRes().getString(R.string.dialog_error_title),
                 e.getMessage(),
                 ApplicationContext.getRes().getString(R.string.dialog_error_button_message), this, null));
+
     }
 
     @Override
