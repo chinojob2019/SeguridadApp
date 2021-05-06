@@ -73,9 +73,13 @@ public class PreguntasViewModel extends BaseFragmentViewModel<PreguntasMvvm.View
             @Override
             public void onError(Throwable e) {
                 hideLoading();
-                validateErrorToken(e);
-                toast(e.getMessage());
-                showError(e);
+               if(! validateErrorToken(e)){
+                   showError(e);
+
+               }
+
+
+
             }
         }, null);
     }
@@ -157,10 +161,12 @@ public class PreguntasViewModel extends BaseFragmentViewModel<PreguntasMvvm.View
                         @Override
                         public void onError(Throwable e) {
                             hideLoading();
-                            validateErrorToken(e);
-                            toast(e.getMessage());
-                            showError(e);
                             getView().habilitarbotones(true);
+                            if(! validateErrorToken(e)){
+                                showError(e);
+
+                            }
+
                         }
                     }, null);
                     toast("Tus cambios se han guardado.");
@@ -169,8 +175,10 @@ public class PreguntasViewModel extends BaseFragmentViewModel<PreguntasMvvm.View
                 @Override
                 public void onError(Throwable e) {
                     hideLoading();
-                    validateErrorToken(e);
-                    showError(e);
+                    if(! validateErrorToken(e)){
+                        showError(e);
+
+                    }
                 }
             }, UpdateMasivoPreguntasUseCase.Params.datos(1, 1, integerList));
         } else {
@@ -215,10 +223,12 @@ public class PreguntasViewModel extends BaseFragmentViewModel<PreguntasMvvm.View
                         @Override
                         public void onError(Throwable e) {
                             hideLoading();
-                            validateErrorToken(e);
-                            toast(e.getMessage());
-                            showError(e);
                             getView().habilitarbotones(true);
+                            if(! validateErrorToken(e)){
+                                showError(e);
+
+                            }
+
                         }
                     }, null);
                     toast("Tus cambios se han guardado.");
@@ -228,9 +238,12 @@ public class PreguntasViewModel extends BaseFragmentViewModel<PreguntasMvvm.View
                 @Override
                 public void onError(Throwable e) {
                     hideLoading();
-                    validateErrorToken(e);
-                    showError(e);
                     getView().habilitarbotones(true);
+                    if(! validateErrorToken(e)){
+                        showError(e);
+
+                    }
+
                 }
             }, UpdateMasivoPreguntasUseCase.Params.datos(1, 0, integerList));
         } else {
@@ -285,9 +298,16 @@ public class PreguntasViewModel extends BaseFragmentViewModel<PreguntasMvvm.View
                 @Override
                 public void onError(Throwable e) {
                     hideLoading();
-                    validateErrorToken(e);
-                    toast(e.getMessage());
-                    showError(e);
+
+
+
+                    if( !validateErrorToken(e))
+                    {
+                        e.printStackTrace();
+                        showError(e);
+
+                    }
+
                 }
             }, null);
 

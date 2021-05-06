@@ -108,10 +108,12 @@ private Context context;
 
                                 @Override
                                 public void onError(Throwable e) {
-                                    validateErrorToken(e);
+                                 ;
                                     hideLoading();
-                                    e.printStackTrace();
-                                    showError(e);
+                                    if(! validateErrorToken(e)){
+                                        showError(e);
+
+                                    }
                                 }
                             }, AddContadorUseCase.Params.datos(getModel().getId() + ""));
 
@@ -148,10 +150,12 @@ private Context context;
 
                     @Override
                     public void onError(Throwable e) {
-                        validateErrorToken(e);
+
                         hideLoading();
-                        e.printStackTrace();
-                        showError(e);
+                        if(! validateErrorToken(e)){
+                            showError(e);
+
+                        }
                     }
                 }, AddContadorUseCase.Params.datos(getModel().getId() + ""));
             }
@@ -167,15 +171,17 @@ private Context context;
     }
 
     @Override
-    public void okAlertGeneric() {
+    public void okAlertGeneric(Integer type) {
         showLoading();
         this.setDestacadoUseCase.execute(new DefaultObserverSingle<Boolean>(){
             @Override
             public void onError(Throwable e) {
-                validateErrorToken(e);
+
                 hideLoading();
-                e.printStackTrace();
-                showError(e);
+                if(! validateErrorToken(e)){
+                    showError(e);
+
+                }
             }
 
             @Override
@@ -187,7 +193,7 @@ private Context context;
     }
 
     @Override
-    public void closeAlertGeneric() {
+    public void closeAlertGeneric(Integer type) {
 
     }
 

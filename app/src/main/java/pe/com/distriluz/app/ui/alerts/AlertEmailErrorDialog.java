@@ -30,6 +30,7 @@ public class AlertEmailErrorDialog extends BaseDialog<AlertEmailErrorFragmentBin
     private String title;
     private String subtitle;
     private String textButton;
+    private int type=0;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,6 +45,14 @@ public class AlertEmailErrorDialog extends BaseDialog<AlertEmailErrorFragmentBin
         this.textButton = textButton;
         this.listener = listener;
         this.idImage = idImage;
+    }
+    public AlertEmailErrorDialog(String title, String subtitle, String textButton, IViewModel listener, @Nullable Integer idImage,int type) {
+        this.title = title;
+        this.subtitle = subtitle;
+        this.textButton = textButton;
+        this.listener = listener;
+        this.idImage = idImage;
+        this.type=type;
     }
 
     @NonNull
@@ -71,11 +80,11 @@ public class AlertEmailErrorDialog extends BaseDialog<AlertEmailErrorFragmentBin
         binding.txtsubtitle.setText(subtitle);
         binding.btnCancel.setText(textButton);
         binding.btnClose.setOnClickListener(v -> {
-            this.listener.closeAlertGeneric();
+            this.listener.closeAlertGeneric(type);
             dismissAllowingStateLoss();
         });
         binding.btnCancel.setOnClickListener(v -> {
-            this.listener.okAlertGeneric();
+            this.listener.okAlertGeneric(type);
             dismissAllowingStateLoss();
         });
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));

@@ -25,7 +25,7 @@ public interface IViewModel<V extends MvvmView> extends MvvmViewModel<V> {
 
     void openCamera();
 
-    void closeAlertGeneric();
+    void closeAlertGeneric(Integer type);
 
-    void okAlertGeneric();
+    void okAlertGeneric(Integer type);
 }

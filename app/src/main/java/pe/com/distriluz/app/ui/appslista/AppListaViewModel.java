@@ -69,10 +69,12 @@ public class AppListaViewModel extends BaseFragmentViewModel<AppListaMvvm.View> 
 
             @Override
             public void onError(Throwable e) {
-                validateErrorToken(e);
                 hideLoading();
-                e.printStackTrace();
-                showError(e);
+                if(!validateErrorToken(e)){
+                    e.printStackTrace();
+                    showError(e);
+                }
+
             }
         },null);
     }

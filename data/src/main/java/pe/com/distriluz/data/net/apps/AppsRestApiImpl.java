@@ -56,8 +56,8 @@ public class AppsRestApiImpl extends BaseRestApiImpl {
                                     }else{
                                         int code = serverResponse.code();
                                         ErrorResponse response =new Gson().fromJson(serverResponse.errorBody().charStream(), ErrorResponse.class);
-                                        if(code == Constantes.TYPE_ERROR_CODE_TOKEN){
-                                            emitter.onError(new TokenException(response.getError().getTitulo()));
+                                        if(code == Constantes.TYPE_ERROR_CODE_TOKEN || response.getError().getCodigo().equals(Constantes.ERROR_CODE_TOKEN_EXPIRADO)){
+                                            emitter.onError(new TokenException(code == Constantes.TYPE_ERROR_CODE_TOKEN ?response.getError().getTitulo(): response.getError().getMensaje()));
                                         }else {
                                             emitter.onError(new ErrorException(response.getError().getMensaje()));
                                         }
@@ -96,8 +96,8 @@ public class AppsRestApiImpl extends BaseRestApiImpl {
                                 }else{
                                     ErrorResponse response =new Gson().fromJson(serverResponse.errorBody().charStream(), ErrorResponse.class);
                                     int code = serverResponse.code();
-                                    if(code == Constantes.TYPE_ERROR_CODE_TOKEN){
-                                        emitter.onError(new TokenException(response.getError().getTitulo()));
+                                    if(code == Constantes.TYPE_ERROR_CODE_TOKEN || response.getError().getCodigo().equals(Constantes.ERROR_CODE_TOKEN_EXPIRADO)){
+                                        emitter.onError(new TokenException(code == Constantes.TYPE_ERROR_CODE_TOKEN ?response.getError().getTitulo(): response.getError().getMensaje()));
                                     }else {
                                         emitter.onError(new ErrorException(response.getError().getMensaje()));
                                     }
@@ -134,8 +134,8 @@ public class AppsRestApiImpl extends BaseRestApiImpl {
                                 }else{
                                     ErrorResponse response =new Gson().fromJson(serverResponse.errorBody().charStream(), ErrorResponse.class);
                                     int code = serverResponse.code();
-                                    if(code == Constantes.TYPE_ERROR_CODE_TOKEN){
-                                        emitter.onError(new TokenException(response.getError().getTitulo()));
+                                    if(code == Constantes.TYPE_ERROR_CODE_TOKEN || response.getError().getCodigo().equals(Constantes.ERROR_CODE_TOKEN_EXPIRADO)){
+                                        emitter.onError(new TokenException(code == Constantes.TYPE_ERROR_CODE_TOKEN ?response.getError().getTitulo(): response.getError().getMensaje()));
                                     }else {
                                         emitter.onError(new ErrorException(response.getError().getMensaje()));
                                     }
@@ -173,8 +173,8 @@ public class AppsRestApiImpl extends BaseRestApiImpl {
                                 }else{
                                     ErrorResponse response =new Gson().fromJson(serverResponse.errorBody().charStream(), ErrorResponse.class);
                                     int code = serverResponse.code();
-                                    if(code == Constantes.TYPE_ERROR_CODE_TOKEN){
-                                        emitter.onError(new TokenException(response.getError().getTitulo()));
+                                    if(code == Constantes.TYPE_ERROR_CODE_TOKEN || response.getError().getCodigo().equals(Constantes.ERROR_CODE_TOKEN_EXPIRADO)){
+                                        emitter.onError(new TokenException(code == Constantes.TYPE_ERROR_CODE_TOKEN ?response.getError().getTitulo(): response.getError().getMensaje()));
                                     }else {
                                         emitter.onError(new ErrorException(response.getError().getMensaje()));
                                     }
@@ -219,8 +219,8 @@ public class AppsRestApiImpl extends BaseRestApiImpl {
                                 }else{
                                     ErrorResponse response =new Gson().fromJson(serverResponse.errorBody().charStream(), ErrorResponse.class);
                                     int code = serverResponse.code();
-                                    if(code == Constantes.TYPE_ERROR_CODE_TOKEN){
-                                        emitter.onError(new TokenException(response.getError().getTitulo()));
+                                    if(code == Constantes.TYPE_ERROR_CODE_TOKEN || response.getError().getCodigo().equals(Constantes.ERROR_CODE_TOKEN_EXPIRADO)){
+                                        emitter.onError(new TokenException(code == Constantes.TYPE_ERROR_CODE_TOKEN ?response.getError().getTitulo(): response.getError().getMensaje()));
                                     }else {
                                         emitter.onError(new ErrorException(response.getError().getMensaje()));
                                     }
@@ -265,8 +265,8 @@ public class AppsRestApiImpl extends BaseRestApiImpl {
                                 }else{
                                     ErrorResponse response =new Gson().fromJson(serverResponse.errorBody().charStream(), ErrorResponse.class);
                                     int code = serverResponse.code();
-                                    if(code == Constantes.TYPE_ERROR_CODE_TOKEN){
-                                        emitter.onError(new TokenException(response.getError().getTitulo()));
+                                    if(code == Constantes.TYPE_ERROR_CODE_TOKEN || response.getError().getCodigo().equals(Constantes.ERROR_CODE_TOKEN_EXPIRADO)){
+                                        emitter.onError(new TokenException(code == Constantes.TYPE_ERROR_CODE_TOKEN ?response.getError().getTitulo(): response.getError().getMensaje()));
                                     }else {
                                         emitter.onError(new ErrorException(response.getError().getMensaje()));
                                     }
@@ -307,8 +307,8 @@ public class AppsRestApiImpl extends BaseRestApiImpl {
                                 }else{
                                     ErrorResponse response =new Gson().fromJson(serverResponse.errorBody().charStream(), ErrorResponse.class);
                                     int code = serverResponse.code();
-                                    if(code == Constantes.TYPE_ERROR_CODE_TOKEN){
-                                        emitter.onError(new TokenException(response.getError().getTitulo()));
+                                    if(code == Constantes.TYPE_ERROR_CODE_TOKEN || response.getError().getCodigo().equals(Constantes.ERROR_CODE_TOKEN_EXPIRADO)){
+                                        emitter.onError(new TokenException(code == Constantes.TYPE_ERROR_CODE_TOKEN ?response.getError().getTitulo(): response.getError().getMensaje()));
                                     }else {
                                         emitter.onError(new ErrorException(response.getError().getMensaje()));
                                     }
@@ -354,8 +354,8 @@ public class AppsRestApiImpl extends BaseRestApiImpl {
                                 }else{
                                     ErrorResponse response =new Gson().fromJson(serverResponse.errorBody().charStream(), ErrorResponse.class);
                                     int code = serverResponse.code();
-                                    if(code == Constantes.TYPE_ERROR_CODE_TOKEN){
-                                        emitter.onError(new TokenException(response.getError().getTitulo()));
+                                    if(code == Constantes.TYPE_ERROR_CODE_TOKEN || response.getError().getCodigo().equals(Constantes.ERROR_CODE_TOKEN_EXPIRADO)){
+                                        emitter.onError(new TokenException(code == Constantes.TYPE_ERROR_CODE_TOKEN ?response.getError().getTitulo(): response.getError().getMensaje()));
                                     }else {
                                         emitter.onError(new ErrorException(response.getError().getMensaje()));
                                     }
@@ -400,8 +400,8 @@ public class AppsRestApiImpl extends BaseRestApiImpl {
                                 }else{
                                     ErrorResponse response =new Gson().fromJson(serverResponse.errorBody().charStream(), ErrorResponse.class);
                                     int code = serverResponse.code();
-                                    if(code == Constantes.TYPE_ERROR_CODE_TOKEN){
-                                        emitter.onError(new TokenException(response.getError().getTitulo()));
+                                    if(code == Constantes.TYPE_ERROR_CODE_TOKEN || response.getError().getCodigo().equals(Constantes.ERROR_CODE_TOKEN_EXPIRADO)){
+                                        emitter.onError(new TokenException(code == Constantes.TYPE_ERROR_CODE_TOKEN ?response.getError().getTitulo(): response.getError().getMensaje()));
                                     }else {
                                         emitter.onError(new ErrorException(response.getError().getMensaje()));
                                     }

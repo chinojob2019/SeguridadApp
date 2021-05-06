@@ -73,11 +73,14 @@ private Context context;
 
             @Override
             public void onError(Throwable e) {
-                validateErrorToken(e);
                 hideLoading();
+                additemsMenu();
+               if( !validateErrorToken(e))
+               {
                 e.printStackTrace();
                 showError(e);
-                additemsMenu();
+
+               }
             }
         },null);
     }

@@ -80,8 +80,16 @@ private int orden;
                 @Override
                 public void onError(Throwable e) {
                     hideLoading();
-                    validateErrorToken(e);
-                    showError(e);
+
+
+
+                    if( !validateErrorToken(e))
+                    {
+                        e.printStackTrace();
+                        showError(e);
+
+                    }
+
 
                 }
             }, UpdateRespuestaUseCase.Params.datos( model.getRespuesta(), Integer.parseInt(model.getOrden()), model.getIdEstado(),model.getIdPregunta(),model.getIdRespuesta()));
@@ -140,6 +148,7 @@ if(isChecked)
 
     @Override
     protected void hideLoading() {
+        super.hideLoading();
         if(dialog!=null) {
             dialog.dismissAllowingStateLoss();
             dialog=null;

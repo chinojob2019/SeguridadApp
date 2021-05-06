@@ -54,9 +54,11 @@ public class PreguntasLecturaViewModel extends BaseFragmentViewModel<PreguntasLe
             @Override
             public void onError(Throwable e) {
                 hideLoading();
-                validateErrorToken(e);
-                toast(e.getMessage());
-                showError(e);
+                if(! validateErrorToken(e)){
+                    showError(e);
+
+                }
+
             }
         }, null);
     }

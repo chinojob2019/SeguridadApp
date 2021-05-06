@@ -76,8 +76,9 @@ private int maximoOrden;
                 @Override
                 public void onError(Throwable e) {
                     hideLoading();
-                    validateErrorToken(e);
+                    if(!validateErrorToken(e)){
                     showError(e);
+                    }
 
                 }
             }, AddPreguntaUseCase.Params.datos(model.getDescripcion(), Integer.parseInt(model.getOrden()),model.getIdEstado()));
@@ -136,10 +137,14 @@ if(isChecked)
 
     @Override
     protected void hideLoading() {
+        super.hideLoading();
         if(dialog!=null) {
             dialog.dismissAllowingStateLoss();
             dialog=null;
         }
     }
+
+
+
 }
 

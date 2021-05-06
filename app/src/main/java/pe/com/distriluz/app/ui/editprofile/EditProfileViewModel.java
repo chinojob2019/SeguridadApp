@@ -72,8 +72,10 @@ public class EditProfileViewModel extends BaseActivityViewModel<EditProfileMvvm.
                 @Override
                 public void onError(Throwable e) {
                     hideLoading();
-                    validateErrorToken(e);
-                    showError(e);
+                    if(! validateErrorToken(e)){
+                        showError(e);
+
+                    }
 
                 }
             }, SaveInfoUserUseCase.Params.datos(getDireccion(), getTelefono(), getPhoto(), getEmail()));

@@ -196,10 +196,14 @@ public class RespuestasViewModel extends BaseFragmentViewModel<RespuestasMvvm.Vi
                         @Override
                         public void onError(Throwable e) {
                             hideLoading();
-                            validateErrorToken(e);
-                            toast(e.getMessage());
-                            showError(e);
                             getView().habilitarbotones(true);
+                            if(! validateErrorToken(e)){
+
+                                showError(e);
+
+                            }
+
+
                         }
                     }, null);
                     toast("Tus cambios se han guardado.");
@@ -257,10 +261,14 @@ int idpregunta=model.getIdPregunta();
                         @Override
                         public void onError(Throwable e) {
                             hideLoading();
-                            validateErrorToken(e);
-                            toast(e.getMessage());
-                            showError(e);
                             getView().habilitarbotones(true);
+                            if( !validateErrorToken(e))
+                            {
+                                e.printStackTrace();
+                                showError(e);
+
+                            }
+
                         }
                     }, null);
                     toast("Tus cambios se han guardado.");
@@ -270,8 +278,16 @@ int idpregunta=model.getIdPregunta();
                 @Override
                 public void onError(Throwable e) {
                     hideLoading();
-                    validateErrorToken(e);
-                    showError(e);
+                    getView().habilitarbotones(true);
+
+
+                    if( !validateErrorToken(e))
+                    {
+                        e.printStackTrace();
+                        showError(e);
+
+                    }
+
                     getView().habilitarbotones(true);
                 }
             }, UpdateMasivoPreguntasUseCase.Params.datos(2, 0, integerList));
@@ -338,9 +354,16 @@ int idpregunta=model.getIdPregunta();
                 @Override
                 public void onError(Throwable e) {
                     hideLoading();
-                    validateErrorToken(e);
-                    toast(e.getMessage());
-                    showError(e);
+
+
+
+                    if( !validateErrorToken(e))
+                    {
+                        e.printStackTrace();
+                        showError(e);
+
+                    }
+
                 }
             }, null);
 

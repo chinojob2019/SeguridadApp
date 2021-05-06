@@ -76,6 +76,13 @@ public abstract class BaseAppViewModel<V extends MvvmView> extends BaseViewModel
                 ApplicationContext.getRes().getString(R.string.dialog_error_button_message), this, null));
 
     }
+    protected void showErrorToken(Throwable  e) {
+
+        navigator.startDialog(new AlertEmailErrorDialog(ApplicationContext.getRes().getString(R.string.dialog_error_title),
+                e.getMessage(),
+                ApplicationContext.getRes().getString(R.string.dialog_error_button_message), this, null,1));
+
+    }
 
     @Override
     public void openDialog(DialogFragment dialog) {
@@ -83,10 +90,15 @@ public abstract class BaseAppViewModel<V extends MvvmView> extends BaseViewModel
     }
 
 
-    protected void validateErrorToken(Throwable e) {
+    protected Boolean validateErrorToken(Throwable e) {
+        boolean estokken=false;
         if(e instanceof TokenException){
-            navigator.clearSession();
+            estokken=true;
+            showErrorToken(e);
+
         }
+        return estokken;
+
     }
 
     @Override
@@ -105,12 +117,16 @@ public abstract class BaseAppViewModel<V extends MvvmView> extends BaseViewModel
     }
 
     @Override
-    public void closeAlertGeneric() {
-
+    public void closeAlertGeneric(Integer type) {
+     if(type==1){
+         navigator.clearSession();
+     }
     }
 
     @Override
-    public void okAlertGeneric() {
-
+    public void okAlertGeneric(Integer type) {
+        if(type==1){
+            navigator.clearSession();
+        }
     }
 }

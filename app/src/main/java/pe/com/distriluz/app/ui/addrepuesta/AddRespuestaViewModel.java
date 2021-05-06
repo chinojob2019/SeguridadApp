@@ -69,8 +69,10 @@ this.idpregunta =navigator.getIntent().getIntExtra(Navigator.EXTRA_IDPREGUNTA_AR
                 @Override
                 public void onError(Throwable e) {
                     hideLoading();
-                    validateErrorToken(e);
-                    showError(e);
+                    if(! validateErrorToken(e)){
+                        showError(e);
+
+                    }
 
                 }
             }, AddRespuestaUseCase.Params.datos(model.getDescripcion(), Integer.parseInt(model.getOrden()), model.getIdEstado(), model.getIdpregunta()));
@@ -121,6 +123,7 @@ this.idpregunta =navigator.getIntent().getIntExtra(Navigator.EXTRA_IDPREGUNTA_AR
 
     @Override
     protected void hideLoading() {
+        super.hideLoading();
         if (dialog != null) {
             dialog.dismissAllowingStateLoss();
             dialog = null;

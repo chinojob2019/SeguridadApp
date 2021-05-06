@@ -39,6 +39,7 @@ public class Constantes {
 
 
 
+    public static final String ERROR_CODE_TOKEN_EXPIRADO = "5000";
 
     public static final String ERROR_CODE_TOKEN = "5016";
     public static final int TYPE_ERROR_CODE_TOKEN = 401;
