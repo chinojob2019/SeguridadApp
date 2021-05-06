@@ -28,6 +28,7 @@ import pe.com.distriluz.app.ui.respuestas.RespuestasMvvm;
 import pe.com.distriluz.app.ui.respuestas.RespuestasObservableModel;
 
 import pe.com.distriluz.app.ui.updatepregunta.UpdatePreguntaActivity;
+import pe.com.distriluz.app.ui.updaterespuesta.UpdateRespuestaActivity;
 import pe.com.distriluz.data.net.apps.model.ItemPreguntaResponse;
 import pe.com.distriluz.data.utiles.Utils;
 import pe.com.distriluz.domain.interactor.GetPreguntasCase;
@@ -117,8 +118,29 @@ public class RespuestasViewModel extends BaseFragmentViewModel<RespuestasMvvm.Vi
     }
 
     @Override
+    public void onClickBackFragment() {
+        navigator.replaceFragment(R.id.box_fragment, new PreguntasFragment(),null);
+
+
+    }
+
+    @Override
     public void onClickAddRespuesta(android.view.View view) {
-        navigator.startActivityForResultFromFragment(AddRespuestaActivity.class, 0, AddRespuestaActivity.REQUEST_CODE);
+
+        int orden_maximo=0;
+     for(RespuestasObservableModel.RespuestasItem item: model.getRespuestas())  {
+         if(item.getOrden()>orden_maximo){
+
+             orden_maximo=item.getOrden();
+
+         }
+
+
+     }
+
+     orden_maximo=orden_maximo+1;
+
+        navigator.startActivityForResultFromFragment(AddRespuestaActivity.class, orden_maximo,model.getIdPregunta(), model.getPregunta(),model.getIdEstado(), AddRespuestaActivity.REQUEST_CODE);
     }
 
     @Override
@@ -134,67 +156,11 @@ public class RespuestasViewModel extends BaseFragmentViewModel<RespuestasMvvm.Vi
 
     }
 
+
+
+
     @Override
     public void onClickMasivoActivar(android.view.View view) {
-        showLoading();
-        List<Integer> integerList = new ArrayList<>();
-
-        for (int i = 0; i < getModel().getRespuestas().size(); i++) {
-            if (getModel().getRespuestas().get(i).getSeleccionado()) {
-                integerList.add(getModel().getRespuestas().get(i).getIdRespuesta());
-            }
-
-        }
-        if (integerList.size() > 0) {
-            /*
-            this.updateMasivoRespuestasUseCase.execute(new DisposableSingleObserver<Boolean>() {
-                @Override
-                public void onSuccess(Boolean aBoolean) {
-
-                    model = new RespuestasObservableModel();
-                    getRespuestasCase.execute(new DefaultObserverSingle<List<Respuestasfrecuentes>>() {
-                        @Override
-                        public void onSuccess(List<Respuestasfrecuentes> Respuestasfrecuentes) {
-                            hideLoading();
-                            mapper.mapperRespuestas(model, Respuestasfrecuentes);
-
-                            getModel().setEditar(0);
-                            for (int i = 0; i < getModel().getRespuestas().size(); i++) {
-                                getModel().getRespuestas().get(i).setEditarItem(0);
-                            }
-
-                            notifyChange();
-                            getView().changeGlobal();
-                            getView().habilitarbotones(true);
-                        }
-
-                        @Override
-                        public void onError(Throwable e) {
-                            hideLoading();
-                            validateErrorToken(e);
-                            toast(e.getMessage());
-                            showError(e);
-                            getView().habilitarbotones(true);
-                        }
-                    }, null);
-                    toast("Tus cambios se han guardado.");
-                }
-
-                @Override
-                public void onError(Throwable e) {
-                    hideLoading();
-                    validateErrorToken(e);
-                    showError(e);
-                }
-            }, UpdateMasivoPreguntasUseCase.Params.datos(1, 1, integerList));
-       */
-        } else {
-            toast("Seleccione al menos una Respuesta");
-        }
-    }
-
-    @Override
-    public void onClickMasivoEliminar(android.view.View view) {
         getView().habilitarbotones(false);
         showLoading();
         List<Integer> integerList = new ArrayList<>();
@@ -205,19 +171,19 @@ public class RespuestasViewModel extends BaseFragmentViewModel<RespuestasMvvm.Vi
             }
 
         }
-        if (integerList.size() > 0) {/*
+        if (integerList.size() > 0) {
             this.updateMasivoRespuestasUseCase.execute(new DisposableSingleObserver<Boolean>() {
                 @Override
                 public void onSuccess(Boolean aBoolean) {
-
+                    int idpregunta=model.getIdPregunta();
                     model = new RespuestasObservableModel();
-                    getRespuestasCase.execute(new DefaultObserverSingle<List<Respuestasfrecuentes>>() {
+                    getRespuestasCase.execute(new DefaultObserverSingle<List<Preguntasfrecuentes>>() {
                         @Override
-                        public void onSuccess(List<Respuestasfrecuentes> Respuestasfrecuentes) {
+                        public void onSuccess(List<Preguntasfrecuentes> Respuestasfrecuentes) {
                             hideLoading();
-                            mapper.mapperRespuestas(model, Respuestasfrecuentes);
+                            mapper.mapperPreguntas(model,Respuestasfrecuentes,idpregunta);
 
-                            getModel().setEditar(0);
+                            getModel().setEditarItem(0);
                             for (int i = 0; i < getModel().getRespuestas().size(); i++) {
                                 getModel().getRespuestas().get(i).setEditarItem(0);
                             }
@@ -247,8 +213,69 @@ public class RespuestasViewModel extends BaseFragmentViewModel<RespuestasMvvm.Vi
                     showError(e);
                     getView().habilitarbotones(true);
                 }
-            }, UpdateMasivoRespuestasUseCase.Params.datos(1, 0, integerList));
-      */  } else {
+            }, UpdateMasivoPreguntasUseCase.Params.datos(2, 1, integerList));
+        } else {
+            toast("Seleccione al menos una Respuesta");
+            getView().habilitarbotones(true);
+        }
+    }
+
+    @Override
+    public void onClickMasivoEliminar(android.view.View view) {
+        getView().habilitarbotones(false);
+        showLoading();
+        List<Integer> integerList = new ArrayList<>();
+
+        for (int i = 0; i < getModel().getRespuestas().size(); i++) {
+            if (getModel().getRespuestas().get(i).getSeleccionado()) {
+                integerList.add(getModel().getRespuestas().get(i).getIdRespuesta());
+            }
+
+        }
+        if (integerList.size() > 0) {
+            this.updateMasivoRespuestasUseCase.execute(new DisposableSingleObserver<Boolean>() {
+                @Override
+                public void onSuccess(Boolean aBoolean) {
+int idpregunta=model.getIdPregunta();
+                    model = new RespuestasObservableModel();
+                    getRespuestasCase.execute(new DefaultObserverSingle<List<Preguntasfrecuentes>>() {
+                        @Override
+                        public void onSuccess(List<Preguntasfrecuentes> Respuestasfrecuentes) {
+                            hideLoading();
+                            mapper.mapperPreguntas(model,Respuestasfrecuentes,idpregunta);
+
+                            getModel().setEditarItem(0);
+                            for (int i = 0; i < getModel().getRespuestas().size(); i++) {
+                                getModel().getRespuestas().get(i).setEditarItem(0);
+                            }
+
+                            notifyChange();
+                            getView().changeGlobal();
+                            getView().habilitarbotones(true);
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            hideLoading();
+                            validateErrorToken(e);
+                            toast(e.getMessage());
+                            showError(e);
+                            getView().habilitarbotones(true);
+                        }
+                    }, null);
+                    toast("Tus cambios se han guardado.");
+
+                }
+
+                @Override
+                public void onError(Throwable e) {
+                    hideLoading();
+                    validateErrorToken(e);
+                    showError(e);
+                    getView().habilitarbotones(true);
+                }
+            }, UpdateMasivoPreguntasUseCase.Params.datos(2, 0, integerList));
+       } else {
             toast("Seleccione al menos una Respuesta");
             getView().habilitarbotones(true);
         }
@@ -260,8 +287,13 @@ public class RespuestasViewModel extends BaseFragmentViewModel<RespuestasMvvm.Vi
     }
 
     @Override
+    public void onClickEditarRespuesta(RespuestasObservableModel.RespuestasItem item) {
+        navigator.startActivityForResultFromFragment(UpdateRespuestaActivity.class, item.getOrden(),this.model.getIdPregunta(),item.getIdRespuesta() ,model.getPregunta(),item.getRespuesta(),item.getIdEstado(),  UpdateRespuestaActivity.REQUEST_CODE);
+    }
+
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == AddRespuestaActivity.REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+        if (requestCode == UpdatePreguntaActivity.REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             // this.model = new ProfileObservableModel();
            model.setPregunta(data.getStringExtra("pregunta"));
             // showLoading();
@@ -287,7 +319,40 @@ public class RespuestasViewModel extends BaseFragmentViewModel<RespuestasMvvm.Vi
             notifyChange();
             getView().changeGlobal();
         }
+        if (requestCode == AddRespuestaActivity.REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            // this.model = new ProfileObservableModel();
+        //    model.setPregunta(data.getStringExtra("pregunta"));
+            // showLoading();
+
+            int idpreguntaL= this.model.getIdPregunta();
+            this.model= new RespuestasObservableModel();
+            getRespuestasCase.execute(new DefaultObserverSingle<List<Preguntasfrecuentes>>() {
+                @Override
+                public void onSuccess(List<Preguntasfrecuentes> Preguntasfrecuentes) {
+                    hideLoading();
+                    mapper.mapperPreguntas(model, Preguntasfrecuentes,idpreguntaL);
+                    notifyChange();
+                    getView().changeGlobal();
+                }
+
+                @Override
+                public void onError(Throwable e) {
+                    hideLoading();
+                    validateErrorToken(e);
+                    toast(e.getMessage());
+                    showError(e);
+                }
+            }, null);
+
+            notifyChange();
+            getView().changeGlobal();
+        }
     }
+
+
+
+
+
 
 
 }

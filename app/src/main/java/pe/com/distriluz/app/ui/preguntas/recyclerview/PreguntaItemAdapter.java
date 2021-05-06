@@ -133,7 +133,7 @@ viewHolder.viewModel().updateSelecionado(position);
             respuesta.setTag(respuestasItem.getIdRespuesta());
             respuesta.setPadding(0, 16, 0, 16);
 
-            viewHolder.getLyrespuestas().addView(respuesta);
+           // viewHolder.getLyrespuestas().addView(respuesta);
          /*   if(model.getPreguntas().get(position).getOpen()){
                 respuesta.setVisibility(View.VISIBLE);
 

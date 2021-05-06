@@ -49,6 +49,14 @@ public class RespuestaItemViewModel extends BaseViewHolderViewModel<RespuestaIte
     }
 
     @Override
+    public void onClicUpdateRespuesta(View view) {
+
+        getView().updateRespuesta(model);
+
+    }
+
+
+    @Override
     public RespuestasObservableModel.RespuestasItem getModel() {
         return model;
     }

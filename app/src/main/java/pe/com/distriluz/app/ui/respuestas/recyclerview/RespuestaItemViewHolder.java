@@ -9,6 +9,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import pe.com.distriluz.app.databinding.ItemRespuestaBinding;
 import pe.com.distriluz.app.ui.base.BaseViewHolder;
 import pe.com.distriluz.app.ui.respuestas.RespuestasMvvm;
+import pe.com.distriluz.app.ui.respuestas.RespuestasObservableModel;
 import pe.com.distriluz.app.ui.respuestas.recyclerview.RespuestaItemMvvm;
 
 
@@ -35,5 +36,14 @@ private final RespuestasMvvm.ViewModel viewModel;
 
     public CheckBox getCheckSelecionar(){
         return binding.checkBox;
+    }
+
+    @Override
+    public void updateRespuesta(RespuestasObservableModel.RespuestasItem item) {
+
+        this.viewModel.onClickEditarRespuesta(item);
+
+
+
     }
 }

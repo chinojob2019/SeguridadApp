@@ -24,13 +24,13 @@ public interface RespuestasMvvm {
         void onClickListadoRespuestas(RespuestasObservableModel.RespuestasItem item);
 
         void onClickOpenDrawer(android.view.View view);
-
+void onClickBackFragment();
         void onClickAddRespuesta(android.view.View view);
         void onClickBackEditar(android.view.View view);
         void onClickMasivoActivar(android.view.View view);
         void onClickMasivoEliminar(android.view.View view);
         void onClickEditarPregunta(android.view.View view);
-
+void onClickEditarRespuesta(RespuestasObservableModel.RespuestasItem item);
 
 
         void onActivityResult(int requestCode, int resultCode, Intent data);

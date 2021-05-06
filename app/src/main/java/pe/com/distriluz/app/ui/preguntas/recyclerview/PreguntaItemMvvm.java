@@ -21,6 +21,7 @@ public interface PreguntaItemMvvm {
         void onClickListarRespuesta(android.view.View view);
         void updateSelecionado(int indice);
         void update(PreguntasObservableModel.PreguntasfrecuentesObservable model);
+
         PreguntasObservableModel.PreguntasfrecuentesObservable getModel();
     }
 }

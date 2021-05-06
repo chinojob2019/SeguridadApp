@@ -29,6 +29,10 @@ public interface Navigator {
     public static final String EXTRA_DESCRIPCION_ARG = "_descripcion_args";
     public static final String EXTRA_IDPREGUNTA_ARG = "_idpregunta_args";
     public static final String EXTRA_IDESTADO_ARG = "_idestado_args";
+    public static final String EXTRA_IDRESPUESTA_ARG = "_idrespuesta_args";
+    public static final String EXTRA_RESPUESTA_ARG = "_respuesta_args";
+    public static final String EXTRA_PREGUNTA_ARG = "_pregunta_args";
+
 
 
 

@@ -100,7 +100,7 @@ public class RespuestaItemAdapter extends RecyclerView.Adapter<RespuestaItemView
             @Override
             public boolean onLongClick(View v) {
                 model.getRespuestas().get(position).setEditarItem(1);
-
+                model.getRespuestas().get(position).setSeleccionado(true);
                 for (int i = 0; i < model.getRespuestas().size(); i++) {
                     model.getRespuestas().get(i).setEditarItem(1);
                 }

@@ -1,28 +1,50 @@
-package pe.com.distriluz.app.ui.addrepuesta;
+package pe.com.distriluz.app.ui.updaterespuesta;
 
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
 
-public class AddRespuestaObservableModel extends BaseObservable {
+public class UpdateRespuestaObservableModel extends BaseObservable {
 
-    private String descripcion;
+    private String respuesta;
+    private String pregunta;
     private String orden ;
     private int idEstado;
     private boolean rememberMe;
     private String estadoDescripcion;
-    private int idpregunta;
-    private String pregunta;
+    private int idRespuesta;
+    private int idPregunta;
 
-    public AddRespuestaObservableModel(String descripcion, String orden, int idEstado, boolean rememberMe, String estadoDescripcion , int idpregunta,String pregunta) {
-        this.descripcion = descripcion;
+    public UpdateRespuestaObservableModel(String respuesta, String pregunta, String orden, int idEstado, boolean rememberMe, String estadoDescripcion, int idRespuesta,int idPregunta) {
+        this.respuesta = respuesta;
+        this.pregunta=pregunta;
         this.orden = orden;
         this.idEstado = idEstado;
         this.rememberMe= rememberMe;
         this.estadoDescripcion= estadoDescripcion;
-        this.idpregunta=idpregunta;
-        this.pregunta=pregunta;
+        this.idRespuesta= idRespuesta;
+        this.idPregunta=idPregunta;
+
+    }
+
+
+    public int getIdPregunta() {
+        return idPregunta;
+    }
+
+    public void setIdPregunta(int idPregunta) {
+        this.idPregunta = idPregunta;
+    }
+
+    @Bindable
+    public String getRespuesta() {
+        return respuesta;
+    }
+
+    public void setRespuesta(String respuesta) {
+        this.respuesta = respuesta;
+        notifyPropertyChanged(pe.com.distriluz.app.BR.respuesta);
     }
 
     @Bindable
@@ -36,16 +58,14 @@ public class AddRespuestaObservableModel extends BaseObservable {
     }
 
     @Bindable
-    public int getIdpregunta() {
-        return idpregunta;
+    public int getIdRespuesta() {
+        return idRespuesta;
     }
 
-    public void setIdpregunta(int idpregunta) {
-        this.idpregunta = idpregunta;
-        notifyPropertyChanged(pe.com.distriluz.app.BR.idpregunta);
+    public void setIdRespuesta(int idRespuesta) {
+        this.idRespuesta = idRespuesta;
+        notifyPropertyChanged(pe.com.distriluz.app.BR.idRespuesta);
     }
-
-
 
     @Bindable
     public String getEstadoDescripcion() {
@@ -57,15 +77,6 @@ public class AddRespuestaObservableModel extends BaseObservable {
         notifyPropertyChanged(pe.com.distriluz.app.BR.estadoDescripcion);
     }
 
-    @Bindable
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-        notifyPropertyChanged(pe.com.distriluz.app.BR.descripcion);
-    }
 
     @Bindable
     public String getOrden() {
@@ -111,6 +122,9 @@ setIdEstado(0);
             // Notify observers of a new value.
             notifyPropertyChanged(pe.com.distriluz.app.BR.rememberMe);
         }
+
+
+
 
     }
 }

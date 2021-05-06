@@ -5,6 +5,8 @@ import dagger.Binds;
 import dagger.Module;
 import pe.com.distriluz.app.ui.addpregunta.AddPreguntaMvvm;
 import pe.com.distriluz.app.ui.addpregunta.AddPreguntaViewModel;
+import pe.com.distriluz.app.ui.addrepuesta.AddRespuestaMvvm;
+import pe.com.distriluz.app.ui.addrepuesta.AddRespuestaViewModel;
 import pe.com.distriluz.app.ui.appslista.AppListaMvvm;
 import pe.com.distriluz.app.ui.appslista.AppListaViewModel;
 import pe.com.distriluz.app.ui.appslista.recyclerView.AppsItemMvvm;
@@ -39,6 +41,8 @@ import pe.com.distriluz.app.ui.restorepassword.RestorePasswordMvvm;
 import pe.com.distriluz.app.ui.restorepassword.RestorePasswordViewModel;
 import pe.com.distriluz.app.ui.updatepregunta.UpdatePreguntaMvvm;
 import pe.com.distriluz.app.ui.updatepregunta.UpdatePreguntaViewModel;
+import pe.com.distriluz.app.ui.updaterespuesta.UpdateRespuestaMvvm;
+import pe.com.distriluz.app.ui.updaterespuesta.UpdateRespuestaViewModel;
 import pe.com.distriluz.app.ui.validatecode.ValidateCodeMvvm;
 import pe.com.distriluz.app.ui.validatecode.ValidateCodeViewModel;
 
@@ -85,7 +89,11 @@ public abstract class ViewModelModule {
     @Binds
     abstract UpdatePreguntaMvvm.ViewModel bindUpdatePreguntaViewModel(UpdatePreguntaViewModel viewModel);
 
+    @Binds
+    abstract AddRespuestaMvvm.ViewModel bindAddRespuestaViewModel(AddRespuestaViewModel viewModel);
 
+    @Binds
+    abstract UpdateRespuestaMvvm.ViewModel bindUpdateRespuestaViewModel(UpdateRespuestaViewModel viewModel);
 
 
 }

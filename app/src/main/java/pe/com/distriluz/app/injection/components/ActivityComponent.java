@@ -24,6 +24,7 @@ import pe.com.distriluz.app.ui.login.LoginMapper;
 import pe.com.distriluz.app.ui.okrestorepass.OkRestorePassActivity;
 import pe.com.distriluz.app.ui.restorepassword.RestorePasswordActivity;
 import pe.com.distriluz.app.ui.updatepregunta.UpdatePreguntaActivity;
+import pe.com.distriluz.app.ui.updaterespuesta.UpdateRespuestaActivity;
 import pe.com.distriluz.app.ui.validatecode.ValidateCodeActivity;
 import pe.com.distriluz.domain.interactor.AddPreguntaUseCase;
 import pe.com.distriluz.domain.interactor.AddRespuestaUseCase;
@@ -31,6 +32,7 @@ import pe.com.distriluz.domain.interactor.ChangePasswordUseCase;
 import pe.com.distriluz.domain.interactor.GetMenuUseCase;
 import pe.com.distriluz.domain.interactor.LoginUseCase;
 import pe.com.distriluz.domain.interactor.UpdatePreguntaUseCase;
+import pe.com.distriluz.domain.interactor.UpdateRespuestaUseCase;
 
 
 @PerActivity
@@ -82,4 +84,8 @@ public interface ActivityComponent extends AppComponent {
 
     void inject(UpdatePreguntaActivity updatePreguntaActivity);
     UpdatePreguntaUseCase updatePregunta();
+
+    void inject(UpdateRespuestaActivity updateRespuestaActivity);
+    UpdateRespuestaUseCase updateRespuesta();
+
 }

@@ -136,4 +136,5 @@ public abstract class BaseFragment<B extends ViewDataBinding, V extends MvvmView
     public BaseActivity getBaseActivity(){
         return (BaseActivity)getActivity();
     }
+
 }

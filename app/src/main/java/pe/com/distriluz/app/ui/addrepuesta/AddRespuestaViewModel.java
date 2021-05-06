@@ -11,37 +11,45 @@ import javax.inject.Inject;
 import io.reactivex.observers.DisposableSingleObserver;
 import pe.com.distriluz.app.injection.qualifier.AppContext;
 import pe.com.distriluz.app.injection.scopes.PerActivity;
-import pe.com.distriluz.app.ui.addpregunta.AddPreguntaMvvm;
-import pe.com.distriluz.app.ui.addpregunta.AddPreguntaObservableModel;
+
 import pe.com.distriluz.app.ui.alerts.AlertLoadingDialog;
 import pe.com.distriluz.app.ui.base.navigator.Navigator;
 import pe.com.distriluz.app.ui.base.viewmodel.BaseActivityViewModel;
 import pe.com.distriluz.domain.interactor.AddPreguntaUseCase;
+import pe.com.distriluz.domain.interactor.AddRespuestaUseCase;
 
 @PerActivity
-public class AddRespuestaViewModel extends BaseActivityViewModel<AddPreguntaMvvm.View> implements AddPreguntaMvvm.ViewModel {
+public class AddRespuestaViewModel extends BaseActivityViewModel<AddRespuestaMvvm.View> implements AddRespuestaMvvm.ViewModel {
 
-    AddPreguntaObservableModel model;
-    private AddPreguntaUseCase addPreguntaUseCase;
+    AddRespuestaObservableModel model;
+    private AddRespuestaUseCase addRespuestaUseCase;
     private AlertLoadingDialog dialog;
-
+private int maximoOrden=0;
+private String pregunta="";
+private int idpregunta=0;
     @Inject
-    public AddRespuestaViewModel(@AppContext Context appContext, Navigator navigator, AddPreguntaUseCase saveInfoUserUseCase) {
+    public AddRespuestaViewModel(@AppContext Context appContext, Navigator navigator, AddRespuestaUseCase saveInfoUserUseCase) {
         super(appContext, navigator);
-        this.model = new AddPreguntaObservableModel(
-                "", "", 1, true, "");
-        this.addPreguntaUseCase = saveInfoUserUseCase;
+
+        this.maximoOrden = navigator.getIntent().getIntExtra(Navigator.EXTRA_ORDEN_ARG,1);
+this.pregunta = navigator.getIntent().getStringExtra(Navigator.EXTRA_DESCRIPCION_ARG);
+this.idpregunta =navigator.getIntent().getIntExtra(Navigator.EXTRA_IDPREGUNTA_ARG,1);
+
+
+        this.model = new AddRespuestaObservableModel(
+                "", String.valueOf(maximoOrden), 1, true, "",idpregunta,pregunta);
+        this.addRespuestaUseCase = saveInfoUserUseCase;
     }
 
     @Override
-    public AddPreguntaObservableModel getModel() {
+    public AddRespuestaObservableModel getModel() {
         return model;
     }
 
 
     @Override
     public void detachView() {
-        addPreguntaUseCase.dispose();
+        addRespuestaUseCase.dispose();
         super.detachView();
     }
 
@@ -49,7 +57,7 @@ public class AddRespuestaViewModel extends BaseActivityViewModel<AddPreguntaMvvm
     public void onClickGuardar(View view) {
         if (validateSendinfo()) {
             showLoading();
-            this.addPreguntaUseCase.execute(new DisposableSingleObserver<Boolean>() {
+            this.addRespuestaUseCase.execute(new DisposableSingleObserver<Boolean>() {
                 @Override
                 public void onSuccess(Boolean aBoolean) {
                     hideLoading();
@@ -65,7 +73,7 @@ public class AddRespuestaViewModel extends BaseActivityViewModel<AddPreguntaMvvm
                     showError(e);
 
                 }
-            }, AddPreguntaUseCase.Params.datos(model.getDescripcion(), Integer.parseInt(model.getOrden()), model.getIdEstado()));
+            }, AddRespuestaUseCase.Params.datos(model.getDescripcion(), Integer.parseInt(model.getOrden()), model.getIdEstado(), model.getIdpregunta()));
         }
     }
 

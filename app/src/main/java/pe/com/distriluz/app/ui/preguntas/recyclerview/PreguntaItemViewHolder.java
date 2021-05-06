@@ -27,11 +27,7 @@ private final PreguntasMvvm.ViewModel viewModel;
 
     }
 
-    public LinearLayout getLyrespuestas() {
 
-
-        return binding.lyrespuestas;
-    }
 
     public ConstraintLayout getLyPregunta(){
         return binding.linearLayout7;

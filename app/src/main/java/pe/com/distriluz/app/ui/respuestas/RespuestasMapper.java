@@ -40,6 +40,8 @@ public class RespuestasMapper {
                 model.setPregunta(item.getPregunta());
                 model.setIdEstado(item.getIdEstado());
                 model.setIdPregunta(item.getIdPregunta());
+                model.setEditarItem(0);
+                model.setCantidadSeleccionada("0");
                 List<RespuestasObservableModel.RespuestasItem> respuestas = new ArrayList<>();
                 List<Preguntasfrecuentes.RespuestasItem> respuestasItemList = new ArrayList<>();
                 respuestasItemList.addAll(item.getRespuestas());

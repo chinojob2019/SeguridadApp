@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.databinding.ObservableList;
@@ -79,14 +81,23 @@ public class PreguntaLecturaItemAdapter extends RecyclerView.Adapter<PreguntaLec
 
         for(PreguntasLecturaObservableModel.PreguntasfrecuentesObservable.RespuestasItem respuestasItem : model.getPreguntas().get(position).getRespuestas()){
 
+            LinearLayout linearLayout = new LinearLayout(context);
+            linearLayout.setOrientation(LinearLayout.HORIZONTAL);
 
 
+            ImageView guion = new ImageView(context);
+              guion.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_item_respuesta));
+ guion.setPadding(0,16,8,0);
             TextView respuesta = new TextView(context);
             respuesta.setText(respuestasItem.getRespuesta());
             respuesta.setTag(respuestasItem.getIdRespuesta());
-            respuesta.setPadding(0,16,0,16);
+            respuesta.setPadding(16,16,0,16);
+linearLayout.addView(guion);
+linearLayout.addView(respuesta);
 
-            viewHolder.getLyrespuestas().addView(respuesta);
+
+
+            viewHolder.getLyrespuestas().addView(linearLayout);
          /*   if(model.getPreguntas().get(position).getOpen()){
                 respuesta.setVisibility(View.VISIBLE);
 

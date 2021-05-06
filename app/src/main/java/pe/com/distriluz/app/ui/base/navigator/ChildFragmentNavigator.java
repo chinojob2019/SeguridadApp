@@ -53,12 +53,29 @@ public class ChildFragmentNavigator extends ActivityNavigator implements Fragmen
     }
 
     @Override
+    public void startActivityForResultFromFragment(@NonNull Class<? extends Activity> activityClass, String arg, int requestCode) {
+        startActivityInternal(activityClass, intent -> intent.putExtra(EXTRA_ARG, arg), requestCode);
+    }
+
+    @Override
     public void startActivityForResultFromFragment(@NonNull Class<? extends Activity> activityClass, int orden, int idpregunta, String descripcion, int idestado, int requestCode) {
         startActivityInternal(activityClass, intent -> {
             intent.putExtra(EXTRA_ORDEN_ARG, orden);
             intent.putExtra(EXTRA_IDPREGUNTA_ARG, idpregunta);
             intent.putExtra(EXTRA_DESCRIPCION_ARG, descripcion);
             intent.putExtra(EXTRA_IDESTADO_ARG, idestado);
+        }, requestCode);
+    }
+
+    @Override
+    public void startActivityForResultFromFragment(@NonNull Class<? extends Activity> activityClass, int orden, int idpregunta, int idrespuesta, String pregunta, String respuesta, int idestado, int requestCode) {
+        startActivityInternal(activityClass, intent -> {
+            intent.putExtra(EXTRA_ORDEN_ARG, orden);
+            intent.putExtra(EXTRA_IDPREGUNTA_ARG, idpregunta);
+            intent.putExtra(EXTRA_IDRESPUESTA_ARG, idrespuesta);
+            intent.putExtra(EXTRA_DESCRIPCION_ARG, respuesta);
+            intent.putExtra(EXTRA_IDESTADO_ARG, idestado);
+            intent.putExtra(EXTRA_PREGUNTA_ARG, pregunta);
         }, requestCode);
     }
 

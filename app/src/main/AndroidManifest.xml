@@ -105,8 +105,30 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="pe.com.distriluz.app.ui.clientelistar.ClienteListarActivity" />
         </activity>
+
         <activity
             android:name=".ui.updatepregunta.UpdatePreguntaActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".ui.clientelistar.ClienteListarActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="pe.com.distriluz.app.ui.clientelistar.ClienteListarActivity" />
+        </activity>
+
+        <activity
+            android:name=".ui.updaterespuesta.UpdateRespuestaActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".ui.clientelistar.ClienteListarActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="pe.com.distriluz.app.ui.clientelistar.ClienteListarActivity" />
+        </activity>
+        <activity
+            android:name=".ui.addrepuesta.AddRespuestaActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:parentActivityName=".ui.clientelistar.ClienteListarActivity"

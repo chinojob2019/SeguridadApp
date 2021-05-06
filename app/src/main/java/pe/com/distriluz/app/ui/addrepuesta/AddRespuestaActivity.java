@@ -13,9 +13,9 @@ import pe.com.distriluz.app.databinding.AddRespuestaActivityBinding;
 import pe.com.distriluz.app.ui.addpregunta.AddPreguntaMvvm;
 import pe.com.distriluz.app.ui.base.BaseActivity;
 
-public class AddRespuestaActivity extends BaseActivity<AddRespuestaActivityBinding, AddPreguntaMvvm.ViewModel> implements AddPreguntaMvvm.View {
+public class AddRespuestaActivity extends BaseActivity<AddRespuestaActivityBinding, AddRespuestaMvvm.ViewModel> implements AddRespuestaMvvm.View {
 
-    public static final int REQUEST_CODE = 656;
+    public static final int REQUEST_CODE = 756;
 
 
     @Override
