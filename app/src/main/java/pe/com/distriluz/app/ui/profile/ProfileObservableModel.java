@@ -65,4 +65,8 @@ public class ProfileObservableModel extends BaseObservable {
         return Utils.getInfo(ApplicationContext.getInstance()).getCorporativos().getUnidadnegocio();
     }
 
+    @Bindable
+    public String getTipopersona() {
+        return Utils.getInfo(ApplicationContext.getInstance()).getPersonales().getTipopersona();
+    }
 }

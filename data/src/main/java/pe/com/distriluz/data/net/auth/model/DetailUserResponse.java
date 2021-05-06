@@ -102,6 +102,10 @@ public class DetailUserResponse {
 
         @SerializedName("email")
         private String email;
+
+        @SerializedName("tipoPersona")
+        private String tipopersona;
+
         @SerializedName("foto")
         private String foto;
 
@@ -175,6 +179,14 @@ public class DetailUserResponse {
 
         public void setEmail(String email) {
             this.email = email;
+        }
+
+        public String getTipopersona() {
+            return tipopersona;
+        }
+
+        public void setTipopersona(String tipopersona) {
+            this.tipopersona = tipopersona;
         }
     }
 }
