@@ -16,12 +16,23 @@ public class EditProfileObservableModel extends BaseObservable {
     private String foto;
     private File newFoto;
     private String email;
+    private String mimetype;
+
 
     public EditProfileObservableModel(String direccion, String telefono, String foto, String email) {
         this.direccion = direccion;
         this.telefono = telefono;
         this.foto = foto;
         this.email = email;
+    }
+    @Bindable
+    public String getMimetype() {
+        return mimetype;
+    }
+
+    public void setMimetype(String mimetype) {
+        this.mimetype = mimetype;
+        notifyPropertyChanged(pe.com.distriluz.app.BR.mimetype);
     }
 
     @Bindable

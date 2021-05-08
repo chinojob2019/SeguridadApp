@@ -4,7 +4,9 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.reactivex.Single;
+import pe.com.distriluz.data.net.auth.model.ParametrosResponse;
 import pe.com.distriluz.data.utiles.Utils;
+import pe.com.distriluz.domain.model.Parametros;
 
 @Singleton
 public class AuthDBDataStore implements AuthDataStore {
@@ -50,6 +52,11 @@ public class AuthDBDataStore implements AuthDataStore {
     @Override
     public Single<Boolean> savePhoto(String base64) {
         return null;
+    }
+
+    @Override
+    public Single<Parametros> getParametros() {
+        return Utils.defaultErrorBDSingle();
     }
 
 }

@@ -9,8 +9,10 @@ import javax.inject.Singleton;
 
 import pe.com.distriluz.data.net.apps.model.AppsResponse;
 import pe.com.distriluz.data.net.apps.model.PreguntasResponse;
+import pe.com.distriluz.data.net.auth.model.ParametrosResponse;
 import pe.com.distriluz.domain.model.App;
 import pe.com.distriluz.domain.model.Apps;
+import pe.com.distriluz.domain.model.Parametros;
 import pe.com.distriluz.domain.model.Preguntasfrecuentes;
 
 /**
@@ -88,6 +90,10 @@ public class AppsDataMapper {
         }
         return result;
     }
+
+
+
+
 
 
     public App.DesplieguesItem mapperDespliegue(AppsResponse.DesplieguesItem itemDes){

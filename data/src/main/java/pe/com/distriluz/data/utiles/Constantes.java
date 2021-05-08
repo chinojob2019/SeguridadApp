@@ -13,6 +13,8 @@ public class Constantes {
     public static final String HOST_API_D4 = BuildConfig.HOST_API_D4;
     public static final String HOST_API_AUTENTICACION = BuildConfig.HOST_API_AUTENTICACION;
     public static final String HOST_API_ACCESO = BuildConfig.HOST_API_ACCESO;
+    public static final String HOST_API_CONFIGURACION = BuildConfig.HOST_API_CONFIGURACION;
+
 
     public static final String X_APPCODE = BuildConfig.X_APPCODE;
     public static final String X_APPKEY = BuildConfig.X_APPKEY;
@@ -37,6 +39,8 @@ public class Constantes {
     public static final String PREF_refreshToken = "pref_refreshToken";
     public static final String PREF_DATAPREGUNTA  = "pref_pregunta";
 
+    public static final String PREF_tamaniofoto  = "pref_tamaniofoto";
+    public static final String PREF_tipoarchivo  = "pref_tipoarchivo";
 
 
     public static final String ERROR_CODE_TOKEN_EXPIRADO = "5000";

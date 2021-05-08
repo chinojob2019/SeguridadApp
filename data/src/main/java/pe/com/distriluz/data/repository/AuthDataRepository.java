@@ -8,6 +8,7 @@ import io.reactivex.Single;
 import pe.com.distriluz.data.repository.datasource.auth.AuthDataMapper;
 import pe.com.distriluz.data.repository.datasource.auth.AuthDataStore;
 import pe.com.distriluz.data.repository.datasource.auth.AuthDataStoreFactory;
+import pe.com.distriluz.domain.model.Parametros;
 import pe.com.distriluz.domain.repository.AuthRepository;
 
 @Singleton
@@ -74,5 +75,11 @@ public class AuthDataRepository implements AuthRepository {
                 return Single.concat(Single.merge(saveData,savePhoto).last(false),dataStore.getDetailUser()).last(false);
             }
         }
+    }
+
+    @Override
+    public Single<Parametros> getParametros() {
+        AuthDataStore dataStore = this.factory.createCloudDataStore();
+        return dataStore.getParametros();
     }
 }

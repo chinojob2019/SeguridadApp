@@ -9,11 +9,14 @@ import pe.com.distriluz.data.net.auth.model.DetailUserResponse;
 import pe.com.distriluz.data.net.auth.model.EditProfileRequest;
 import pe.com.distriluz.data.net.auth.model.LoginRequest;
 import pe.com.distriluz.data.net.auth.model.LoginResponse;
+import pe.com.distriluz.data.net.auth.model.ParametrosResponse;
 import pe.com.distriluz.data.net.auth.model.RefreshTokensRequest;
 import pe.com.distriluz.data.net.auth.model.RefreshTokensResponse;
+import pe.com.distriluz.data.utiles.Constantes;
 import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -44,5 +47,15 @@ public interface AuthRestApi {
 
     @POST("autenticacion/refresh/token")
     Observable<Response<RefreshTokensResponse>> refreshTokens(@Body RefreshTokensRequest dataRefreshTokens);
+
+    @Headers({
+            "Content-Type:application/json",
+            "X-AppKey: " + Constantes.X_APPKEY,
+            "X-AppCode: " + Constantes.X_APPCODE
+    })
+    @GET("parametros")
+    Observable<Response<ParametrosResponse>> getParametros();
+
+
 
 }

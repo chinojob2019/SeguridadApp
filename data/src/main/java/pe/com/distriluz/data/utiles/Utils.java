@@ -105,6 +105,29 @@ public class Utils {
         context.getSharedPreferences(Constantes.PREFERENCES, Context.MODE_PRIVATE).edit().putInt(Constantes.PREF_id_user, id_user).apply();
     }
 
+
+
+
+    public static int get_Tamaniofoto(Context context) {
+        return context.getSharedPreferences(Constantes.PREFERENCES, Context.MODE_PRIVATE).getInt(Constantes.PREF_tamaniofoto, 150);
+    }
+
+    public static void setTamanioFoto(Context context, int tamanio_foto) {
+        context.getSharedPreferences(Constantes.PREFERENCES, Context.MODE_PRIVATE).edit().putInt(Constantes.PREF_tamaniofoto, tamanio_foto).apply();
+    }
+
+    public static String getTipoImagen(Context context) {
+        return context.getSharedPreferences(Constantes.PREFERENCES, Context.MODE_PRIVATE).getString(Constantes.PREF_tipoarchivo, "");
+    }
+
+    public static void setTipoImagen(Context context, String tipoImagen) {
+        context.getSharedPreferences(Constantes.PREFERENCES, Context.MODE_PRIVATE).edit().putString(Constantes.PREF_tipoarchivo, tipoImagen).apply();
+    }
+
+
+
+
+
     public static String getusername(Context context) {
         return context.getSharedPreferences(Constantes.PREFERENCES, Context.MODE_PRIVATE).getString(Constantes.PREF_username, "");
     }

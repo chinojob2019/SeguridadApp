@@ -3,6 +3,8 @@ package pe.com.distriluz.data.repository.datasource.auth;
 
 import io.reactivex.Single;
 import pe.com.distriluz.data.net.auth.AuthRestApiImpl;
+import pe.com.distriluz.data.net.auth.model.ParametrosResponse;
+import pe.com.distriluz.domain.model.Parametros;
 
 public class AuthCloudDataStore implements AuthDataStore {
 
@@ -47,6 +49,11 @@ public class AuthCloudDataStore implements AuthDataStore {
     @Override
     public Single<Boolean> savePhoto(String base64) {
         return restApi.savePhoto(base64);
+    }
+
+    @Override
+    public Single<Parametros> getParametros() {
+        return restApi.getParametros().map(mapper::mapperParametros);
     }
 
 }

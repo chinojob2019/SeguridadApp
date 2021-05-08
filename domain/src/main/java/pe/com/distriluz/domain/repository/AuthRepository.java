@@ -2,6 +2,7 @@ package pe.com.distriluz.domain.repository;
 
 
 import io.reactivex.Single;
+import pe.com.distriluz.domain.model.Parametros;
 
 public interface AuthRepository {
 
@@ -13,4 +14,6 @@ public interface AuthRepository {
 
     Single<Boolean> restablecePass(String idUser, String clave);
     Single<Boolean> saveDataInfo(String direccion, String telefono, String photo, String email);
+
+    Single<Parametros> getParametros();
 }
