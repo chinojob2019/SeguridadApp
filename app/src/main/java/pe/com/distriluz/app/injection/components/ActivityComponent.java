@@ -30,6 +30,7 @@ import pe.com.distriluz.domain.interactor.AddPreguntaUseCase;
 import pe.com.distriluz.domain.interactor.AddRespuestaUseCase;
 import pe.com.distriluz.domain.interactor.ChangePasswordUseCase;
 import pe.com.distriluz.domain.interactor.GetMenuUseCase;
+import pe.com.distriluz.domain.interactor.GetParametrosUseCase;
 import pe.com.distriluz.domain.interactor.LoginUseCase;
 import pe.com.distriluz.domain.interactor.UpdatePreguntaUseCase;
 import pe.com.distriluz.domain.interactor.UpdateRespuestaUseCase;
@@ -73,6 +74,7 @@ public interface ActivityComponent extends AppComponent {
     void inject(OkRestorePassActivity okRestorePassActivity);
 
     void inject(EditProfileActivity editProfileActivity);
+    GetParametrosUseCase getParametro();
 
     void inject(AddPreguntaActivity addPreguntaActivity);
 

@@ -3,7 +3,10 @@ package pe.com.distriluz.app.ui.editprofile;
 import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
+import android.os.Bundle;
 import android.view.View;
+
+import androidx.annotation.Nullable;
 
 import com.miguelbcr.ui.rx_paparazzo2.RxPaparazzo;
 import com.miguelbcr.ui.rx_paparazzo2.entities.FileData;
@@ -52,7 +55,25 @@ public class EditProfileViewModel extends BaseActivityViewModel<EditProfileMvvm.
 
 
 
-        this.getParametrosUseCase.execute(new DefaultObserverSingle<Parametros>() {
+
+    }
+
+    @Override
+    public EditProfileObservableModel getModel() {
+        return model;
+    }
+
+
+    @Override
+    public void detachView() {
+        saveInfoUserUseCase.dispose();
+        super.detachView();
+    }
+
+
+    @Override
+    public void attachView(EditProfileMvvm.View mvvmView, @Nullable Bundle savedInstanceState) {
+        getParametrosUseCase.execute(new DefaultObserverSingle<Parametros>() {
             @Override
             public void onSuccess(Parametros parametros) {
 
@@ -82,19 +103,7 @@ public class EditProfileViewModel extends BaseActivityViewModel<EditProfileMvvm.
             }
         }, null);
 
-
-    }
-
-    @Override
-    public EditProfileObservableModel getModel() {
-        return model;
-    }
-
-
-    @Override
-    public void detachView() {
-        saveInfoUserUseCase.dispose();
-        super.detachView();
+        super.attachView(mvvmView, savedInstanceState);
     }
 
     @Override
@@ -124,7 +133,7 @@ public class EditProfileViewModel extends BaseActivityViewModel<EditProfileMvvm.
                 }, SaveInfoUserUseCase.Params.datos(getDireccion(), getTelefono(), getPhoto(), getEmail()));
             }
         } else {
-            toast("Error al adjuntar imagen. El tamaño no puede exceder a" + Utils.get_Tamaniofoto(con) + " KB y debe ser de tipo " + Utils.getTipoImagen(con) + ", intente nuevamente ");
+            toast("Error al adjuntar imagen. El tamaño no puede exceder a " + Utils.get_Tamaniofoto(con) + " KB y debe ser de tipo " + Utils.getTipoImagen(con) + ", intente nuevamente ");
 
 
         }

@@ -24,6 +24,7 @@ public class PreguntaLecturaItemAdapter extends RecyclerView.Adapter<PreguntaLec
     PreguntasLecturaObservableModel model;
     Context context;
 
+
     @Inject
     public PreguntaLecturaItemAdapter() {
 
@@ -76,9 +77,8 @@ public class PreguntaLecturaItemAdapter extends RecyclerView.Adapter<PreguntaLec
 
     @Override
     public void onBindViewHolder(PreguntaLecturaItemViewHolder viewHolder, int position) {
-        viewHolder.viewModel().update(model.getPreguntas().get(position));
-        viewHolder.executePendingBindings();
 
+        viewHolder.getLyrespuestas().removeAllViews();
         for(PreguntasLecturaObservableModel.PreguntasfrecuentesObservable.RespuestasItem respuestasItem : model.getPreguntas().get(position).getRespuestas()){
 
             LinearLayout linearLayout = new LinearLayout(context);
@@ -107,10 +107,12 @@ linearLayout.addView(respuesta);
             }*/
 
         }
-
+        viewHolder.viewModel().update(model.getPreguntas().get(position));
+        viewHolder.executePendingBindings();
     }
 
-    @Override
+
+     @Override
     public int getItemCount() {
         return model.getPreguntas().size();
     }

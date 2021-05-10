@@ -25,7 +25,7 @@
         <activity
             android:name=".ui.clientelistar.ClienteListarActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
+
             android:theme="@style/AppTheme" />
 
         <activity

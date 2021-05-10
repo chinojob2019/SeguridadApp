@@ -74,62 +74,73 @@ private Context context;
             ly.setGravity(Gravity.LEFT);
             ly.setPadding(0, 32, 0, 32);
 
-            for (int i = 0; i < getModel().getDespliegues().size(); i++) {
-                TextView bt = new TextView(context);
-                bt.setText(getModel().getDespliegues().get(i).getNombreEmpresa().toUpperCase());
-                bt.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-                bt.setPadding(64, 32, 64, 32);
 
-                bt.setTextColor(Color.BLACK);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    bt.setTypeface(context.getResources().getFont(R.font.roboto_mediun), Typeface.BOLD);
-                }
-                bt.setGravity(Gravity.LEFT);
-                bt.setTag(getModel().getDespliegues().get(i).getUrlEmpresa());
-                bt.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+            if(getModel().getDespliegues().size()==1){
+
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(getModel().getDespliegues().get(0).getUrlEmpresa()));
+                navigator.startActivity(i);
+            }else {
 
 
-                        if(v.getTag()==null || v.getTag().toString().trim().equals("")){
-                            Toast.makeText(context,context.getString(R.string.lista_apps_url_noconfigurada), Toast.LENGTH_LONG).show();
-                        }
-                        else {
-                            Intent i = new Intent(Intent.ACTION_VIEW);
-                            i.setData(Uri.parse(v.getTag().toString()));
-                            navigator.startActivity(i);
-                            showLoading();
-                            addContadorUseCase.execute(new DisposableSingleObserver<Boolean>() {
-                                @Override
-                                public void onSuccess(Boolean aBoolean) {
-                                    hideLoading();
-                                    getView().reloadApps();
-                                }
+                for (int i = 0; i < getModel().getDespliegues().size(); i++) {
+                    TextView bt = new TextView(context);
+                    bt.setText(getModel().getDespliegues().get(i).getNombreEmpresa().toUpperCase());
+                    bt.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+                    bt.setPadding(64, 32, 64, 32);
 
-                                @Override
-                                public void onError(Throwable e) {
-                                 ;
-                                    hideLoading();
-                                    if(! validateErrorToken(e)){
-                                        showError(e);
-
-                                    }
-                                }
-                            }, AddContadorUseCase.Params.datos(getModel().getId() + ""));
-
-                            snackbar.dismiss();
-
-                        }
+                    bt.setTextColor(Color.BLACK);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        bt.setTypeface(context.getResources().getFont(R.font.roboto_mediun), Typeface.BOLD);
                     }
-                });
-                ly.addView(bt);
+                    bt.setGravity(Gravity.LEFT);
+                    bt.setTag(getModel().getDespliegues().get(i).getUrlEmpresa());
+                    bt.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+
+                            if (v.getTag() == null || v.getTag().toString().trim().equals("")) {
+                                Toast.makeText(context, context.getString(R.string.lista_apps_url_noconfigurada), Toast.LENGTH_LONG).show();
+                            } else {
+                                Intent i = new Intent(Intent.ACTION_VIEW);
+                                i.setData(Uri.parse(v.getTag().toString()));
+                                navigator.startActivity(i);
+                                showLoading();
+                                addContadorUseCase.execute(new DisposableSingleObserver<Boolean>() {
+                                    @Override
+                                    public void onSuccess(Boolean aBoolean) {
+                                        hideLoading();
+                                        getView().reloadApps();
+                                    }
+
+                                    @Override
+                                    public void onError(Throwable e) {
+                                        ;
+                                        hideLoading();
+                                        if (!validateErrorToken(e)) {
+                                            showError(e);
+
+                                        }
+                                    }
+                                }, AddContadorUseCase.Params.datos(getModel().getId() + ""));
+
+                                snackbar.dismiss();
+
+                            }
+                        }
+                    });
+                    ly.addView(bt);
+                }
+
+
+                snackbar.getView().setBackgroundColor(Color.WHITE);
+                Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) snackbar.getView();
+                snackbarLayout.setPadding(16, 24, 16, 24);
+                snackbarLayout.addView(ly, 0);
+                snackbar.show();
             }
-            snackbar.getView().setBackgroundColor(Color.WHITE);
-            Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) snackbar.getView();
-            snackbarLayout.setPadding(16, 24, 16, 24);
-            snackbarLayout.addView(ly, 0);
-            snackbar.show();
-        }
+            }
         else
         {
 
