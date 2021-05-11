@@ -22,6 +22,7 @@ import pe.com.distriluz.app.ui.base.viewmodel.BaseActivityViewModel;
 import pe.com.distriluz.app.ui.preguntas.PreguntasFragment;
 import pe.com.distriluz.app.ui.preguntaslectura.PreguntasLecturaFragment;
 import pe.com.distriluz.app.ui.profile.ProfileFragment;
+import pe.com.distriluz.app.ui.restorepassword.RestorePasswordActivity;
 import pe.com.distriluz.app.utils.Constantes;
 import pe.com.distriluz.domain.interactor.GetAppsUseCase;
 import pe.com.distriluz.domain.interactor.GetMenuUseCase;

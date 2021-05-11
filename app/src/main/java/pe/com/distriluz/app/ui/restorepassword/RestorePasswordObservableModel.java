@@ -29,7 +29,7 @@ public class RestorePasswordObservableModel extends BaseObservable {
         this.pass = pass;
         notifyPropertyChanged(pe.com.distriluz.app.BR.pass);
         notifyPropertyChanged(pe.com.distriluz.app.BR.errorPass);
-        //notifyPropertyChanged(pe.com.distriluz.app.BR.enableButtom);
+        notifyPropertyChanged(pe.com.distriluz.app.BR.enableButtom);
     }
     @Bindable
     public String getPass2() {
@@ -61,6 +61,6 @@ public class RestorePasswordObservableModel extends BaseObservable {
 
     @Bindable
     public Boolean getEnableButtom() {
-        return !getPass().isEmpty() && getErrorPass()== null && !getPass2().isEmpty()&&getErrorPass2()==null;
+        return !getPass().isEmpty() && getErrorPass()== null && !getPass2().isEmpty()&&getErrorPass2()==null && getPass().trim().equals(getPass2().trim());
     }
 }
